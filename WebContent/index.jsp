@@ -6,7 +6,7 @@
    <div class="col-md-6">
     <h2>Faça já sua reserva!</h2>
     <p>O que você está esperando?</p>
-    <form>
+    <form action="buscaModelos.jsp" method="post">
      <div class="form-group">
       <label for="local-retirada">Local de retirada</label> <select
        class="form-control" id="local-retirada">
