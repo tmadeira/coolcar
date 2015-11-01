@@ -14,8 +14,8 @@
 		String param = new String(request.getParameter("local-devolucao").getBytes("iso-8859-1"), "UTF-8");		
 		out.println("Modelos disponíveis em " + param);%> </th>
 <td> Modelo </td>
-<td> Preo </td>
-<td> Numero de assentoss </td>
+<td> Preco </td>
+<td> Numero de assentos </td>
 </tr>
   <%
     ModelosManager manager = new ModelosManager();
@@ -25,20 +25,19 @@
 	for (Modelo modelo : modelos) {
    		sb.append("<tr>");
 	   	if(modelo.getTipoCar()) {
-	   	    sb.append("<td><img src=\"https://www.omegarentalcars.com/assets/vehicles/_resampled/thumb-BAD323245-1230.jpg\" alt=\"...\" class=\"img-responsive img-circle\"></td>");
+	   	    sb.append("<td><img src=\"https://www.omegarentalcars.com/assets/vehicles/_resampled/thumb-BAD323245-1230.jpg\" alt=\"...\" class=\"img-responsive img-circle\" width=\"180\" height=\"180\"></td>");
 	   	 
 	   		sb.append("<td> " + modelo.getNome() + " </td>");
 		    sb.append("<td> " + modelo.getPreco() + " </td>");
 	   	   	
-	   	   		sb.append("<td> Carro </td>");
-	   	   	//sb.append("<td> " + modelo.getNumeroAssentos() + " </td>");
+	   	   	//	sb.append("<td> Carro </td>");
+	   	   	sb.append("<td> " + modelo.getNumeroAssentos() + " </td>");
 	   	   	}
 	   	   	else {
-	   	   	sb.append("<td><img src=\"http://www.casaraomotos.com.br/slices/img-Moto01.png\" alt=\"...\" class=\"img-responsive img-circle\"></td>");
-	      	 
+	   	   	sb.append("<td><img src=\"http://www.casaraomotos.com.br/slices/img-Moto01.png\" alt=\"...\" class=\"img-responsive img-circle\" width=\"180\" height=\"180\" ></td>");
 	   	    sb.append("<td> " + modelo.getNome() + " </td>");
 	   	    sb.append("<td> " + modelo.getPreco() + " </td>");
-	   	   		sb.append("<td> Moto </td>");
+	   	   	sb.append("<td> Moto </td>");
 	   	}
    	    sb.append("</tr>");
    	}
