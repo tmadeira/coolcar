@@ -1,10 +1,15 @@
-package coolcar;
+package coolcar.bd;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import coolcar.Config;
+import coolcar.Utils;
 
 public class BD {
   private String host;
@@ -66,5 +71,46 @@ public class BD {
   public ResultSet executaConsulta(String query) throws SQLException {
     this.resetStatement();
     return this.statement.executeQuery(query);
+  }
+
+  private String getVersao() {
+    try {
+      ResultSet rs = this.executaConsulta("SELECT versao FROM versoes");
+      if (rs.next()) {
+        return rs.getString("versao");
+      }
+    } catch (SQLException e) {
+      System.out.println("Nao foi possivel encontrar a versao do BD.");
+      e.printStackTrace();
+    }
+    return "";
+  }
+
+  private void atualizaVersao(String versao) {
+    try {
+      this.executaAtualizacao("CREATE TABLE IF NOT EXISTS versoes (versao CHAR(32))");
+      this.executaAtualizacao("DELETE FROM versoes");
+      this.executaAtualizacao("INSERT INTO versoes VALUES ('" + versao + "')");
+      System.out.println("Versao do BD atualizada para " + versao);
+    } catch (SQLException e) {
+      System.out.println("Nao foi possivel atualizar a versao do BD.");
+      e.printStackTrace();
+    }
+  }
+
+  public void setup(String setupFile) {
+    try {
+      String versaoAtual = this.getVersao();
+      String novaVersao = Utils.md5File(setupFile);
+      if (!versaoAtual.equals(novaVersao)) {
+        ScriptRunner runner = new ScriptRunner(connection, false, false);
+        BufferedReader reader = new BufferedReader(new FileReader(setupFile));
+        runner.runScript(reader);
+        this.atualizaVersao(novaVersao);
+      }
+    } catch (Exception e) {
+      System.out.println("Erro ao executar SQL.");
+      e.printStackTrace();
+    }
   }
 }
