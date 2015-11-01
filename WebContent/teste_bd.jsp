@@ -1,4 +1,4 @@
-<%@page import="coolcar.BD,java.sql.ResultSet"%>
+<%@page import="coolcar.bd.BD,java.sql.ResultSet"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 
 <%
