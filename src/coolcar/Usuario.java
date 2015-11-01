@@ -19,4 +19,8 @@ public class Usuario {
 		System.out.println("email " + email);
 		System.out.println("password " + password);
 	}
+	
+	String getNome() {
+		return nome;
+	}
 }
