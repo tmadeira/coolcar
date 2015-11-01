@@ -2,7 +2,7 @@
 <%@page import="coolcar.ModelosManager,coolcar.Modelo,coolcar.Moto,coolcar.Carro"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="header.jsp">
-  <jsp:param name="pageTitle" value="Resultados da busca" />
+<jsp:param name="pageTitle" value="Resultados da busca" />
 </jsp:include>
 
 <div class="container">
@@ -11,10 +11,10 @@
  <table class="table table-striped table-bordered table-hover table-condensed">
  <tr>
 <th> <% 
-		String bla = request.getParameter("local-devolucao"); 
-		out.println(bla);%> </th>
+		String param = new String(request.getParameter("local-devolucao").getBytes("iso-8859-1"), "UTF-8");		
+		out.println("Modelos disponíveis em " + param);%> </th>
 <td> Modelo </td>
-<td> Preco </td>
+<td> Preo </td>
 <td> Numero de assentoss </td>
 </tr>
   <%
@@ -44,8 +44,7 @@
    	}
    	out.println(sb.toString());
   %>
-  </table>
- </ul>
+</table>
 </div>
 
 <jsp:include page="footer.jsp" />
