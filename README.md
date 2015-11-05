@@ -19,7 +19,7 @@ coolCar
 
 5. Em *Run -> Run Configurations... -> Apache Tomcat -> Classpath -> Add JARs*, adicione *coolcar/vendor/postgresql-9.4-1205.jdbc41.jar*.
 
-6. Caso você não queira usar a configuração padrão para o banco de dados (Postgres rodando em *localhost* com nome de usuário do usuário que está rodando o servidor e sem senha), crie um arquivo *config.properties* na sua home com um conteúdo como:
+6. Caso você não queira usar a configuração padrão para o banco de dados (Postgres rodando em *localhost* com nome de usuário do usuário que está rodando o servidor e sem senha), crie um arquivo *coolcar.properties* na sua home com um conteúdo como:
 
   ```
   db_host="jdbc:postgresql://postgresql.linux.ime.usp.br:5432"
