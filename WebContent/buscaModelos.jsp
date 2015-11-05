@@ -1,7 +1,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="coolcar.ModelosManager,coolcar.Modelo"%>
 <%@page contentType="text/html; charset=UTF-8"%>
-<jsp:include page="header.jsp" />
+<jsp:include page="header.jsp">
+  <jsp:param name="pageTitle" value="Resultados da busca" />
+</jsp:include>
 
 <div class="container">
  <h2>Resultados</h2>
