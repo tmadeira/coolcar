@@ -14,4 +14,6 @@
     out.println("<li>" + id + "</li>");
   }
   out.println("</ul>");
+
+  bd.executaAtualizacao("DROP TABLE IF EXISTS teste");
 %>
