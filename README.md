@@ -22,10 +22,11 @@ coolCar
 6. Caso você não queira usar a configuração padrão para o banco de dados (Postgres rodando em *localhost* com nome de usuário do usuário que está rodando o servidor e sem senha), crie um arquivo *coolcar.properties* na sua home com um conteúdo como:
 
   ```
-  db_host="jdbc:postgresql://postgresql.linux.ime.usp.br:5432"
-  db_user="usuario"
-  db_pass="senha"
+  db_host=jdbc:postgresql://postgresql.linux.ime.usp.br:5432/usuario
+  db_user=usuario
   ```
+
+  (esse exemplo foi feito para a Rede Linux)
 
 7. *Run -> Run*
 

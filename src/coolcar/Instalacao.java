@@ -3,6 +3,8 @@ package coolcar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
+import coolcar.bd.BD;
+
 @SuppressWarnings("serial")
 public class Instalacao extends HttpServlet {
   public void init() throws ServletException {

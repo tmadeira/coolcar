@@ -1,15 +1,15 @@
-package coolcar;
+package coolcar.bd;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.security.DigestInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import coolcar.bd.ScriptRunner;
+import coolcar.Config;
+import coolcar.Utils;
 
 public class BD {
   private String host;
