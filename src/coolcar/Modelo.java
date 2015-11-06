@@ -5,6 +5,18 @@ public class Modelo {
   }
   
   public String getNome() {
-    return "Nome do modelo";
+    return "Honda";
+  }
+    
+  public float getPreco() {
+	  return (float) 100.49;
+  }
+  
+  public String getFabricante() {
+	  return "Honda";
+  }
+  
+  public boolean getTipoCar() {
+	  return true;
   }
 }

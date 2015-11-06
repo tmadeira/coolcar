@@ -19,7 +19,7 @@
      </div>
      <div class="form-group">
       <label for="local-devolucao">Local de devolucao</label> <select
-       class="form-control" id="local-devolucao">
+       class="form-control" name="local-devolucao" id="local-devolucao">
        <option>Selecione uma opção</option>
        <option>Butantã</option>
        <option>Consolação</option>
