@@ -19,4 +19,8 @@ public class Modelo {
   public boolean getTipoCar() {
 	  return true;
   }
+  
+  public int getNumeroAssentos() {
+	  return 1;
+  }
 }
