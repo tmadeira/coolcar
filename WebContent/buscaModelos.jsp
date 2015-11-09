@@ -45,7 +45,6 @@
    	out.println(sb.toString());
   %>
   </table>
- </ul>
 </div>
 
 <jsp:include page="footer.jsp" />
