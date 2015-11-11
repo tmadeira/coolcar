@@ -36,6 +36,7 @@ public class CoolCarLoginServlet extends HttpServlet {
             response.sendRedirect("logado.jsp");
         } else {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+            response.setCharacterEncoding("utf-8");
             PrintWriter out = response.getWriter();
             out.println("<font color=red>Por favor, preencha os campos de usuário e senha!</font>\n");
             rd.include(request, response);
