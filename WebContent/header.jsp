@@ -42,6 +42,10 @@
 		<%
 			} else {
 		%>
+    <form class="navbar-form navbar-right" action="cadastro.jsp" method="post">
+     <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+    
     <form class="navbar-form navbar-right" action="CoolCarLoginServlet" method="post">
      <div class="form-group">
       <input type="text" placeholder="E-mail" class="form-control" name="userEmail">
