@@ -12,9 +12,10 @@ public class UsuariosManager {
 		listaUsuarios = new ArrayList<Usuario>();
 	}
 	
-	public void cadastraUsuario(String nome, String sobrenome, String id, String email, String password) {
+	public void cadastraUsuario(String nome, String sobrenome, String dataDeNascimento, String cpf, String telefone,
+			String celular, String email, String password) {
 		
-		Usuario usuario = new Usuario(nome, sobrenome, id, email, password);
+		Usuario usuario = new Usuario(nome, sobrenome, dataDeNascimento, cpf, telefone, celular, email, password);
 		listaUsuarios.add(usuario);
 	}
 }

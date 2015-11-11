@@ -21,7 +21,8 @@ public class Session {
 	  if (email.equals("teste") && password.equals("123")) {
 		  userCookie = new Cookie("userEmail", email);
 		  logged = true;
-		  user = new Usuario("João", "da Silva", "666", email, password);
+		  user = new Usuario("João", "da Silva", "1975-10-17", "36057698734", "12345678", "911112222",
+				  email, password);
 		  return true;
 	  }
 	  return false;

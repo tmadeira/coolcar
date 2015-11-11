@@ -72,6 +72,7 @@ public class CadastroServlet extends HttpServlet {
             response.sendRedirect("criaConta.jsp");
         } else {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/cadastro.jsp");
+            response.setCharacterEncoding("utf-8");
             PrintWriter out = response.getWriter();
             out.println("<font color=red>Email ou senha nao conferem. Por favor, tente novamente!</font>\n");
             rd.include(request, response);

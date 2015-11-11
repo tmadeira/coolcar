@@ -4,30 +4,6 @@
 
 <%
 
-String nome, sobrenome, id, email, password;
-nome = sobrenome = id = email = password = ""; 
-
-	if (request.getParameter("nome") != null && !request.getParameter("nome").isEmpty()) {
-		nome = request.getParameter("nome");
-		}
-	
-	if (request.getParameter("sobrenome") != null && !request.getParameter("sobrenome").isEmpty()) {
-		sobrenome = request.getParameter("sobrenome");
-		}
-	
-	if (request.getParameter("id") != null && !request.getParameter("id").isEmpty()) {
-		id = request.getParameter("id");
-		}
-	
-	if (request.getParameter("email") != null && !request.getParameter("email").isEmpty()) {
-		email = request.getParameter("email");
-		}
-	
-	if (request.getParameter("pwd") != null && !request.getParameter("pwd").isEmpty()) {
-		password = request.getParameter("pwd");
-		}
-	UsuariosManager manager = new UsuariosManager();
-	manager.cadastraUsuario(nome, sobrenome, id, email, password);
 %>
 
 <div class="container">
@@ -35,25 +11,16 @@ nome = sobrenome = id = email = password = "";
  
  	<br />
  	<h3> Dados pessoais </h3>
-	 <form role="form" method="post" action="criaConta.jsp">
-	 	<div class="form-group">
-	      <label for="Tratamento">Tratamento</label> <select
-	       class="form-control" id="tratamento">
-	       <option>Selecione</option>
-	       <option>Sr.</option>
-	       <option>Sra.</option>
-	      </select>
-	      
-	    </div>
+	 <form role="form" method="post" action="CadastroServlet">
 		
 		<div class="form-group">
 		   <label for="Nome">*Nome:</label>
-	    <input type="text" class="form-control" name="nome" id="nome" required>
+	    <input type="text" class="form-control" name="nome" placeholder="Maria" id="nome" required>
 	    </div>
 	      
 		<div class="form-group">
 		   <label for="Sobrenome">*Sobrenome:</label>
-	    <input type="text" class="form-control" name="sobrenome" id="sobrenome" required>
+	    <input type="text" class="form-control" name="sobrenome" placeholder="Silveira" id="sobrenome" required>
 	    </div>
 	    
 		<div class="form-group">
@@ -62,18 +29,18 @@ nome = sobrenome = id = email = password = "";
 	    </div>
 	    
 		<div class="form-group">
-		   <label for="cpf-passaporte">*CPF/Passaporte:</label>
-		<input type="text" class="form-control" name="id" id="cpf-passaporte" required>   
+		   <label for="cpf">*CPF:</label>
+		<input type="text" class="form-control" name="cpf" placeholder="11122233344" id="cpf" required>   
 	    </div>
 	    
 		<div class="form-group">
 		   <label for="telefone">Telefone:</label>
-	    <input type="tel" class="form-control" id="telefone">
+	    <input type="tel" class="form-control" name="telefone" placeholder="88887777" id="telefone">
 	    </div>
 	    
 		<div class="form-group">
 		   <label for="celular">*Celular:</label>
-	    <input type="tel" class="form-control" id="celular" required>
+	    <input type="tel" class="form-control" name="celular" placeholder="988887777" id="celular" required>
 	    </div>
 	 
 	 <br />
@@ -82,22 +49,22 @@ nome = sobrenome = id = email = password = "";
 	      
 		<div class="form-group">
 		   <label for="email">*Email:</label>
-	    <input type="email" class="form-control" name="email" id="email" required>
+	    <input type="email" class="form-control" name="email" placeholder="maria@coolcar.com" id="email" required>
 	    </div>
 	     
 	    <div class="form-group">
 		   <label for="email">*Confirme seu email:</label>
-	    <input type="email" class="form-control" id="confirmeEmail" required>
+	    <input type="email" class="form-control" name="confirmacaoDeEmail" placeholder="maria@coolcar.com" id="confirmacaoDeEmail" required>
 	    </div>
 	     
 		 <div class="form-group">
 		    <label for="pwd">*Senha de acesso:</label>
-		    <input type="password" class="form-control" name="pwd" id="pwd" required>
+		    <input type="password" class="form-control" placeholder="*****" name="pwd" id="pwd" required>
 		  </div>
 		  
 		 <div class="form-group">
 		    <label for="pwd">*Confirme sua senha:</label>
-		    <input type="password" class="form-control" id="confirmePwd" required>
+		    <input type="password" class="form-control" placeholder="*****" name="confirmacaoDePassword" id="confirmacaoDePassword" required>
 		 </div>
 		  
 		 
