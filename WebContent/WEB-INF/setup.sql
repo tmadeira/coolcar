@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS Filial CASCADE;
 CREATE TABLE Filial (
   id_filial                       SERIAL,
-  id_funcionario_cadastrou        INT NOT NULL,
+  id_funcionario_cadastrou        INT DEFAULT NULL,
   nome                            VARCHAR(255) NOT NULL,
   endereco_logradouro             VARCHAR(255),
   endereco_numero                 INT,
@@ -35,7 +35,7 @@ CREATE TABLE Funcionario (
   cpf                               CHAR(11) NOT NULL UNIQUE,
   dt_ingresso                       DATE NOT NULL,
   dt_nascimento                     DATE NOT NULL,
-  filial_trabalha                   INT NOT NULL,
+  filial_trabalha                   INT,
 
   FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario)
       ON UPDATE CASCADE ON DELETE CASCADE,
@@ -357,5 +357,8 @@ CREATE TABLE TelefoneUsuario (
       ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-
 INSERT INTO Filial VALUES (DEFAULT, NULL, 'IME', 'Rua do Matão', 1010, NULL, '05508090', 'São Paulo', 'SP', -23.5598948, -46.7337699);
+INSERT INTO Filial VALUES (DEFAULT, NULL, 'FAU', 'Rua do Lago', 876, NULL, '04280000', 'São Paulo', 'SP', -23.5610024, -46.7294776);
+INSERT INTO Filial VALUES (DEFAULT, NULL, 'FEA', 'Av. Prof. Luciano Gualberto', 908, NULL, '05508010', 'São Paulo', 'SP', -23.5588353, -46.7313283);
+INSERT INTO Filial VALUES (DEFAULT, NULL, 'EEFE', 'Av. Professor Mello Moraes', 65, NULL, '05508030', 'São Paulo', 'SP', -23.5625024, -46.71929);
+INSERT INTO Filial VALUES (DEFAULT, NULL, 'FFLCH', 'Av. Prof. Lineu Prestes', 3380, NULL, '05508000', 'São Paulo', 'SP', -23.560694, -46.7278951);
