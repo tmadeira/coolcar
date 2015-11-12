@@ -63,7 +63,10 @@ public class BD {
     this.statement = this.connection.createStatement();
   }
 
-  public Connection getConnection() {
+  public Connection getConnection() throws SQLException {
+    if (this.connection == null) {
+      this.conecta();
+    }
     return this.connection;
   }
 

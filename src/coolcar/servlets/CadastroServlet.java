@@ -43,8 +43,8 @@ public class CadastroServlet extends HttpServlet {
       sobrenome = request.getParameter("sobrenome");
     }
 
-    if (request.getParameter("data-de-nascimento") != null && !request.getParameter("data-de-nascimento").isEmpty()) {
-      dataDeNascimento = (String) request.getParameter("data-de-nascimento");
+    if (request.getParameter("dtNascimento") != null && !request.getParameter("dtNascimento").isEmpty()) {
+      dataDeNascimento = (String) request.getParameter("dtNascimento");
     }
 
     if (request.getParameter("cpf") != null && !request.getParameter("cpf").isEmpty()) {

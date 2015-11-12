@@ -29,13 +29,12 @@ public class UsuariosManager {
       stmt.setString(2, usuario.getEmail());
       stmt.setString(3, usuario.getSenha()); // TODO: hash
       stmt.setString(4, usuario.getEndereco().getLogradouro());
-      stmt.setInt(4, usuario.getEndereco().getNumero());
-      stmt.setString(4, usuario.getEndereco().getComplemento());
-      stmt.setString(4, usuario.getEndereco().getCep());
-      stmt.setString(4, usuario.getEndereco().getCidade());
-      stmt.setString(4, usuario.getEndereco().getEstado());
+      stmt.setInt(5, usuario.getEndereco().getNumero());
+      stmt.setString(6, usuario.getEndereco().getComplemento());
+      stmt.setString(7, usuario.getEndereco().getCep());
+      stmt.setString(8, usuario.getEndereco().getCidade());
+      stmt.setString(9, usuario.getEndereco().getEstado());
       int affectedRows = stmt.executeUpdate();
-      stmt.close();
 
       if (affectedRows == 0) {
         throw new SQLException("Erro ao criar usuario (affectedRows = 0)");
@@ -53,7 +52,6 @@ public class UsuariosManager {
         stmt = connection.prepareStatement(sql);
         stmt.setInt(1, usuario.getId());
         stmt.executeUpdate();
-        stmt.close();
       }
 
       if (usuario.getTipo().equals("cliente_pf")) {
@@ -65,7 +63,6 @@ public class UsuariosManager {
         stmt.setDate(3, new Date(clientePF.getDtNascimento().getTime()));
         stmt.setString(4, "" + clientePF.getSexo());
         stmt.executeUpdate();
-        stmt.close();
       }
 
       if (usuario.getTipo().equals("cliente_pj")) {
@@ -75,6 +72,8 @@ public class UsuariosManager {
       if (usuario.getTipo().equals("funcionario")) {
         // TODO
       }
+
+      stmt.close();
     } catch (Exception e) {
       e.printStackTrace();
       return false;
