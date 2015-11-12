@@ -20,7 +20,7 @@ CREATE TABLE Usuario (
   id_usuario                        SERIAL PRIMARY KEY,
   nome                              VARCHAR(255) NOT NULL,
   email                             VARCHAR(255) NOT NULL UNIQUE,
-  senha                             CHAR(32) NOT NULL,
+  senha                             CHAR(10) NOT NULL,
   endereco_logradouro               VARCHAR(255),
   endereco_numero                   INT,
   endereco_complemento              VARCHAR(255),
@@ -149,10 +149,9 @@ DROP TABLE IF EXISTS Veiculo CASCADE;
 CREATE TABLE Veiculo (
     chassi                          CHAR(17),
     placa                           CHAR(7) NOT NULL,
-    marca                           VARCHAR(255) NOT NULL,
     kilometragem                    INT NOT NULL DEFAULT 0,
     ano                             INT NOT NULL,
-    nome                            VARCHAR(255) NOT NULL,
+    status                          INT NOT NULL DEFAULT 0,
     id_funcionario                  INT NOT NULL,
     id_modelo                       INT NOT NULL,
     filial_alojada                  INT NOT NULL,
@@ -268,7 +267,7 @@ CREATE TABLE Carro (
   id_modelo                       INT,
   num_portas                      INT NOT NULL DEFAULT 2,
   num_assentos                    INT NOT NULL DEFAULT 5,
-  tamanho_portas_malas            REAL NOT NULL,
+  tamanho_portas_malas            DECIMAL(10,2) NOT NULL,
   id_caracteristicas			        INT NOT NULL DEFAULT 1,
 
   CONSTRAINT CARRO_PK PRIMARY KEY(id_modelo),
@@ -285,8 +284,8 @@ CREATE TABLE Carro (
 DROP TABLE IF EXISTS Moto CASCADE;
 CREATE TABLE Moto (
   id_modelo                       INT,
-  cilindradas                     REAL NOT NULL,
-  tamanho_tanque                  REAL NOT NULL,
+  cilindradas                     DECIMAL(10,2) NOT NULL,
+  tamanho_tanque                  DECIMAL(10,2) NOT NULL,
 
   CONSTRAINT MOTO_PK PRIMARY KEY(id_modelo),
 
@@ -357,7 +356,7 @@ CREATE TABLE TelefoneUsuario (
       ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-INSERT INTO Usuario VALUES (DEFAULT, 'Marcos Kazuya Yamazaki', 'kazuya_ym@hotmail.com', 'senha123', 'Rua Americo Pellini', 274, NULL, '18086329', 'Sorocaba', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Marcos Kazuya Yamazaki', 'mky@coolcar.com', '1251475389', 'Rua Americo Pellini', 274, NULL, '18086329', 'Sorocaba', 'SP');
 INSERT INTO Funcionario VALUES (1, '395083659XX', '2015-11-12', '1992-07-28', NULL);
 
 INSERT INTO Filial VALUES (DEFAULT, 1, 'IME', 'Rua do Matão', 1010, NULL, '05508090', 'São Paulo', 'SP', -23.5598948, -46.7337699);
@@ -366,20 +365,47 @@ INSERT INTO Filial VALUES (DEFAULT, 1, 'FEA', 'Av. Prof. Luciano Gualberto', 908
 INSERT INTO Filial VALUES (DEFAULT, 1, 'EEFE', 'Av. Professor Mello Moraes', 65, NULL, '05508030', 'São Paulo', 'SP', -23.5625024, -46.71929);
 INSERT INTO Filial VALUES (DEFAULT, 1, 'FFLCH', 'Av. Prof. Lineu Prestes', 3380, NULL, '05508000', 'São Paulo', 'SP', -23.560694, -46.7278951);
 
-INSERT INTO Usuario VALUES (DEFAULT, 'Felipe Túlio Pereira da Cruz', 'felipepc@gmail.com', 'senha123', 'Rua xx', 1912, NULL, 'xxxxxxxx', 'São Paulo', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Felipe Túlio Pereira da Cruz', 'ftpdc@coolcar.com', '1251475389', 'Rua xx', 1912, NULL, 'xxxxxxxx', 'São Paulo', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Tiago Madeira', 'tm@coolcar.com', '1251475389', 'Rua x', 1912, NULL, 'xxxxxxxx', 'São Paulo', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Caio Lopes', 'cl@coolcar.com', '1251475389', 'Rua y', 13423, NULL, 'xxxxxxxx', 'Santo André', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Rodrigo Zerbini', 'rz@coolcar.com', '1251475389', 'Rua z', 1912, NULL, 'xxxxxxxx', 'São Paulo', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Erika Midori Akabane', 'era@coolcar.com', '1251475389', 'Rua z', 1912, NULL, 'xxxxxxxx', 'São Paulo', 'SP');
+
 INSERT INTO Funcionario VALUES (2, '736285735XX', '2015-11-09', '1990-01-23', 1);
-
-INSERT INTO Usuario VALUES (DEFAULT, 'Tiago Madeira', 'madeira@gmail.com', 'senha123', 'Rua x', 1912, NULL, 'xxxxxxxx', 'São Paulo', 'SP');
 INSERT INTO Funcionario VALUES (3, '236482637XX', '2015-11-12', '1992-07-28', 2);
-
-INSERT INTO Usuario VALUES (DEFAULT, 'Caio Lopes', 'caio@gmail.com', 'senha123', 'Rua y', 13423, NULL, 'xxxxxxxx', 'Santo André', 'SP');
 INSERT INTO Funcionario VALUES (4, '937236482XX', '2015-11-12', '1992-07-28', 3);
-
-INSERT INTO Usuario VALUES (DEFAULT, 'Rodrigo Zerbini', 'rodrigo@gmail.com', 'senha123', 'Rua z', 1912, NULL, 'xxxxxxxx', 'São Paulo', 'SP');
 INSERT INTO Funcionario VALUES (5, '462849274XX', '2015-11-12', '1992-07-28', 4);
-
-INSERT INTO Usuario VALUES (DEFAULT, 'Erika Midori Akabane', 'mi@gmail.com', 'senha123', 'Rua z', 1912, NULL, 'xxxxxxxx', 'São Paulo', 'SP');
 INSERT INTO Funcionario VALUES (6, '111111114XX', '2015-11-13', '1992-08-16', 5);
+
+INSERT INTO Usuario VALUES (DEFAULT, 'Epifânia Santos', 'es@coolcar.com', '1251475389', 'Rua A', 101, NULL, NULL, 'São Paulo', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Lurdes Carvalheiro', 'lc@coolcar.com', '1251475389', 'Rua A', 102, NULL, NULL, 'São Paulo', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Tobias Sabala', 'ts@coolcar.com', '1251475389', 'Rua B', 101, NULL, NULL, 'São Paulo', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Luís Guterres', 'lg@coolcar.com', '1251475389', 'Rua B', 102, NULL, NULL, 'São Paulo', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Timóteo Igrejas', 'ti@coolcar.com', '1251475389', 'Rua C', 101, NULL, NULL, 'São Paulo', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Dorindo Maia', 'dm@coolcar.com', '1251475389', 'Rua D', 101, NULL, NULL, 'São Paulo', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Virgílio Mainha', 'vm@coolcar.com', '1251475389', 'Rua F', 101, NULL, NULL, 'São Paulo', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Huangko Wuji', 'hw@coolcar.com', '1251475389', 'Rua R', 101, NULL, NULL, 'São Paulo', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Liubao Zen', 'lz@coolcar.com', '1251475389', 'Rua Z', 101, NULL, NULL, 'São Paulo', 'SP');
+
+INSERT INTO Cliente VALUES (7  , TRUE);
+INSERT INTO Cliente VALUES (8  , TRUE);
+INSERT INTO Cliente VALUES (9  , TRUE);
+INSERT INTO Cliente VALUES (10 , TRUE);
+INSERT INTO Cliente VALUES (11 , TRUE);
+INSERT INTO Cliente VALUES (12 , TRUE);
+INSERT INTO Cliente VALUES (13 , TRUE);
+INSERT INTO Cliente VALUES (14 , TRUE);
+INSERT INTO Cliente VALUES (15 , TRUE);
+
+INSERT INTO Cliente_PF VALUES (7  , '12463283300', '1990-01-08', 'F');
+INSERT INTO Cliente_PF VALUES (8  , '72192601727', '1983-05-18', 'F');
+INSERT INTO Cliente_PF VALUES (9  , '32407532007', '1991-02-12', 'M');
+INSERT INTO Cliente_PF VALUES (10 , '51407454536', '1983-01-01', 'M');
+INSERT INTO Cliente_PF VALUES (11 , '92195173378', '1953-12-25', 'M');
+INSERT INTO Cliente_PF VALUES (12 , '53568594900', '1973-09-30', 'M');
+INSERT INTO Cliente_PF VALUES (13 , '67416056810', '1964-10-12', 'M');
+INSERT INTO Cliente_PF VALUES (14 , '78674144365', '1990-11-04', 'F');
+INSERT INTO Cliente_PF VALUES ((select max(id_usuario) from usuario) , '35727556546', '1982-06-23', 'F');
 
 INSERT INTO CaracteristicasCarro VALUES(1, FALSE, FALSE, FALSE);
 INSERT INTO CaracteristicasCarro VALUES(2, TRUE , FALSE, FALSE);
@@ -416,3 +442,28 @@ INSERT INTO Moto VALUES(9,  108, 6.5);
 INSERT INTO Moto VALUES(10,150, 8.0);
 INSERT INTO Moto VALUES(11,125, 19.5);
 INSERT INTO Moto VALUES(12,150, 15.2);
+
+INSERT INTO Veiculo VALUES ('82365723284637471', 'HEN6392', DEFAULT, 2015, 0, 1, 1, 1);
+INSERT INTO Veiculo VALUES ('54506848608101697', 'IER6302', DEFAULT, 2015, 0, 1, 1, 1);
+INSERT INTO Veiculo VALUES ('10196705251250375', 'BXL2730', DEFAULT, 2015, 0, 1, 2, 1);
+INSERT INTO Veiculo VALUES ('62097254808968142', 'HCM2842', DEFAULT, 2015, 0, 1, 2, 1);
+INSERT INTO Veiculo VALUES ('65124894564072935', 'CJW1730', DEFAULT, 2015, 0, 1, 3, 2);
+INSERT INTO Veiculo VALUES ('95634609419502584', 'MSH1352', DEFAULT, 2015, 0, 1, 3, 3);
+INSERT INTO Veiculo VALUES ('21614532201682467', 'NOE1930', DEFAULT, 2015, 0, 1, 4, 4);
+INSERT INTO Veiculo VALUES ('46344523523535236', 'WFE5713', DEFAULT, 2015, 0, 1, 4, 4);
+INSERT INTO Veiculo VALUES ('32523526342346234', 'TDN7432', DEFAULT, 2015, 0, 1, 5, 2);
+INSERT INTO Veiculo VALUES ('98742735618398136', 'WDV7252', DEFAULT, 2015, 0, 1, 5, 3);
+INSERT INTO Veiculo VALUES ('15801353808683240', 'JRT6342', DEFAULT, 2015, 0, 1, 6, 5);
+INSERT INTO Veiculo VALUES ('81250764023675913', 'QEW4626', DEFAULT, 2015, 0, 1, 6, 5);
+INSERT INTO Veiculo VALUES ('95658609419502584', 'RUH2536', DEFAULT, 2015, 0, 1, 7, 3);
+INSERT INTO Veiculo VALUES ('21618013201682467', 'RBE2673', DEFAULT, 2015, 0, 1, 7, 2);
+INSERT INTO Veiculo VALUES ('13728594893848058', 'HNT6246', DEFAULT, 2015, 0, 1, 8, 1);
+INSERT INTO Veiculo VALUES ('16476354028023089', 'VWR6546', DEFAULT, 2015, 0, 1, 9, 4);
+INSERT INTO Veiculo VALUES ('74503840926801792', 'WTV7323', DEFAULT, 2015, 0, 1, 10, 1);
+INSERT INTO Veiculo VALUES ('15801353124683240', 'WEG6352', DEFAULT, 2015, 0, 1, 11, 5);
+INSERT INTO Veiculo VALUES ('12412264023675913', 'THB4616', DEFAULT, 2015, 0, 1, 12, 5);
+INSERT INTO Veiculo VALUES ('95658601644302584', 'WEG2516', DEFAULT, 2015, 0, 1, 1, 3);
+INSERT INTO Veiculo VALUES ('43664364201682467', 'VWE2653', DEFAULT, 2015, 0, 1, 2, 2);
+INSERT INTO Veiculo VALUES ('13728594464361058', 'ACR6216', DEFAULT, 2015, 0, 1, 3, 1);
+INSERT INTO Veiculo VALUES ('13643462468023089', 'BYW6516', DEFAULT, 2015, 0, 1, 4, 4);
+INSERT INTO Veiculo VALUES ('67464346364801792', 'NBV7353', DEFAULT, 2015, 0, 1, 12, 1);
