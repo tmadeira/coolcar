@@ -17,7 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import coolcar.managers.UsuariosManager;
 import coolcar.modelos.ClientePF;
+import coolcar.modelos.ClientePJ;
 import coolcar.modelos.Endereco;
+import coolcar.modelos.Telefone;
+import coolcar.modelos.Usuario;
 
 @WebServlet("/CadastroServlet")
 public class CadastroServlet extends HttpServlet {
@@ -29,12 +32,26 @@ public class CadastroServlet extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    String nome, sobrenome, dataDeNascimento, cpf, telefone, celular;
+    String nome, sobrenome, cpf, telefone, celular;
     String email, email2, password, password2;
-    nome = sobrenome = dataDeNascimento = cpf = telefone = celular = "";
+    String logradouro, complemento, cep, cidade, estado;
+    String cnpj, tipoPessoa;
+    char sexo;
+    int numero;
+    boolean validado;
+    Date dataDeNascimento = null;
+    
+    numero = 0;
+    nome = sobrenome = cpf = cnpj = telefone = celular = tipoPessoa = "";
     email = email2 = password = password2 = "";
-    boolean validado = true;
+    logradouro = complemento = cep = cidade = estado = "";
+    sexo = ' ';
+    validado = true;
+    
 
+    if (request.getParameter("selectbasic") != null && !request.getParameter("selectbasic").isEmpty()) {
+        tipoPessoa = request.getParameter("selectbasic");
+    }
     if (request.getParameter("nome") != null && !request.getParameter("nome").isEmpty()) {
       nome = request.getParameter("nome");
     }
@@ -44,7 +61,13 @@ public class CadastroServlet extends HttpServlet {
     }
 
     if (request.getParameter("dtNascimento") != null && !request.getParameter("dtNascimento").isEmpty()) {
-      dataDeNascimento = (String) request.getParameter("dtNascimento");
+    	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    	try {
+			dataDeNascimento = df.parse(request.getParameter("dtNascimento"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     if (request.getParameter("cpf") != null && !request.getParameter("cpf").isEmpty()) {
@@ -71,6 +94,38 @@ public class CadastroServlet extends HttpServlet {
         && !request.getParameter("confirmacaoDePassword").isEmpty()) {
       password2 = request.getParameter("confirmacaoDePassword");
     }
+    if (request.getParameter("logradouro") != null
+            && !request.getParameter("logradouro").isEmpty()) {
+          logradouro = request.getParameter("logradouro");
+    }
+    if (request.getParameter("complemento") != null
+            && !request.getParameter("complemento").isEmpty()) {
+    	complemento = request.getParameter("complemento");
+    }
+    if (request.getParameter("cep") != null
+            && !request.getParameter("cep").isEmpty()) {
+    	cep = request.getParameter("cep");
+    }
+    if (request.getParameter("cidade") != null
+            && !request.getParameter("cidade").isEmpty()) {
+    	cidade = request.getParameter("cidade");
+    }
+    if (request.getParameter("estado") != null
+            && !request.getParameter("estado").isEmpty()) {
+    	estado = request.getParameter("estado");
+    }
+    if (request.getParameter("numero") != null
+            && !request.getParameter("numero").isEmpty()) {
+    	numero = Integer.parseInt(request.getParameter("numero"));
+    }
+    if (request.getParameter("sexo") != null
+            && !request.getParameter("sexo").isEmpty()) {
+    	sexo = request.getParameter("sexo").charAt(0);
+    }
+    if (request.getParameter("cnpj") != null
+            && !request.getParameter("cnpj").isEmpty()) {
+    	cnpj = request.getParameter("cnpj");
+    }
 
     if (!validaEmailSenha(email, email2, password, password2)) {
       validado = false;
@@ -78,40 +133,59 @@ public class CadastroServlet extends HttpServlet {
 
     if (validado) {
       UsuariosManager manager = new UsuariosManager();
-      ClientePF usuario = new ClientePF();
+      Usuario usuario;
+      if (tipoPessoa.equals("1")) {
+    	  usuario = new ClientePF();
+          usuario.setNome(nome + " " + sobrenome);
+          usuario.setCpf(cpf);
+          usuario.setSexo(sexo);
+          usuario.setDtNascimento(dataDeNascimento);
+      }
+      else {
+    	  usuario = new ClientePJ();
+          usuario.setNome(nome);
+          usuario.setCnpj(cnpj);
+      }
 
-      // Campos de Usuario
-      usuario.setNome(nome + " " + sobrenome);
+      // Campos em comum para PF e PJ
       usuario.setEmail(email);
       usuario.setSenha(password);
 
       Endereco endereco = new Endereco();
-      /*
-       * TODO: deve cadastrar endereço no formulário e usar setters aqui
-       */
+      endereco.setLogradouro(logradouro);
+      endereco.setComplemento(complemento);
+      endereco.setCep(cep);
+      endereco.setCidade(cidade);
+      endereco.setEstado(estado);
+      endereco.setNumero(numero);
+      
       usuario.setEndereco(endereco);
-
-      // Campos de ClientePF
-      usuario.setCpf(cpf);
-      /*
-       * TODO: deve pegar sexo (M ou F) no formulário e usar setter aqui
-       */
-
-      DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
-      Date dtNascimento;
-      try {
-        dtNascimento = format.parse(dataDeNascimento);
-        usuario.setDtNascimento(dtNascimento);
-      } catch (ParseException e) {
-        System.out.println("Data de nascimento invalida.");
-        e.printStackTrace();
+      
+      System.out.println("Tel " + telefone + " Cel " + celular);
+      
+      Telefone tel = new Telefone();
+      if (!telefone.equals("")) {
+    	  tel.setDdd(telefone.substring(1,3));
+          tel.setNumero(telefone.substring(5));
       }
-
+      else {
+    	  tel.setDdd("");
+    	  tel.setNumero("");
+      }
+      usuario.setTelefone(tel);
+      
+      Telefone cel = new Telefone();
+      if (!celular.equals("")) {
+    	  cel.setDdd(celular.substring(1,3));
+          cel.setNumero(celular.substring(5));
+      }
+      else {
+    	  cel.setDdd("");
+    	  cel.setNumero("");
+      }
+      usuario.setCelular(cel);
+      
       manager.insere(usuario);
-
-      /*
-       * TODO: cadastrar telefones
-       */
 
       response.sendRedirect("contaCriada.jsp");
     } else {
