@@ -71,7 +71,7 @@ public class CadastroServlet extends HttpServlet {
     if (validado) {
       UsuariosManager manager = new UsuariosManager();
       manager.cadastraUsuario(nome, sobrenome, dataDeNascimento, cpf, telefone, celular, email, password);
-      response.sendRedirect("criaConta.jsp");
+      response.sendRedirect("contaCriada.jsp");
     } else {
       RequestDispatcher rd = getServletContext().getRequestDispatcher("/cadastro.jsp");
       response.setCharacterEncoding("utf-8");
