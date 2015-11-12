@@ -63,6 +63,10 @@ public class BD {
     this.statement = this.connection.createStatement();
   }
 
+  public Connection getConnection() {
+    return this.connection;
+  }
+
   public void executaAtualizacao(String query) throws SQLException {
     this.resetStatement();
     this.statement.executeUpdate(query);

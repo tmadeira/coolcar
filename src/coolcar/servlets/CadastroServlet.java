@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import coolcar.managers.UsuariosManager;
+import coolcar.modelos.Usuario;
 
 @WebServlet("/CadastroServlet")
 public class CadastroServlet extends HttpServlet {
@@ -70,7 +71,8 @@ public class CadastroServlet extends HttpServlet {
 
     if (validado) {
       UsuariosManager manager = new UsuariosManager();
-      manager.cadastraUsuario(nome, sobrenome, dataDeNascimento, cpf, telefone, celular, email, password);
+      Usuario usuario = new Usuario(nome, sobrenome, dataDeNascimento, cpf, telefone, celular, email, password);
+      manager.insere(usuario);
       response.sendRedirect("contaCriada.jsp");
     } else {
       RequestDispatcher rd = getServletContext().getRequestDispatcher("/cadastro.jsp");
