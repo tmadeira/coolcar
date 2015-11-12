@@ -1,19 +1,14 @@
-DROP TYPE IF EXISTS TIPO_ENDERECO CASCADE;
-CREATE TYPE TIPO_ENDERECO AS (
-  rua                               VARCHAR(255),
-  numero                            INT,
-  complemento                       VARCHAR(255),
-  cep                               CHAR(8),
-  cidade                            VARCHAR(255),
-  estado                            CHAR(2)
-);
-
 DROP TABLE IF EXISTS Filial CASCADE;
 CREATE TABLE Filial (
   id_filial                       SERIAL,
   id_funcionario_cadastrou        INT NOT NULL,
   nome                            VARCHAR(255) NOT NULL,
-  endereco                        TIPO_ENDERECO NOT NULL,
+  endereco_logradouro             VARCHAR(255),
+  endereco_numero                 INT,
+  endereco_complemento            VARCHAR(255),
+  endereco_cep                    CHAR(8),
+  endereco_cidade                 VARCHAR(255),
+  endereco_estado                 CHAR(2),
   coordenadas_longitude           DECIMAL(10,8),
   coordenadas_latitude            DECIMAL(10,8),
 
@@ -26,7 +21,12 @@ CREATE TABLE Usuario (
   nome                              VARCHAR(255) NOT NULL,
   email                             VARCHAR(255) NOT NULL UNIQUE,
   senha                             CHAR(32) NOT NULL,
-  endereco                          TIPO_ENDERECO NOT NULL
+  endereco_logradouro               VARCHAR(255),
+  endereco_numero                   INT,
+  endereco_complemento              VARCHAR(255),
+  endereco_cep                      CHAR(8),
+  endereco_cidade                   VARCHAR(255),
+  endereco_estado                   CHAR(2)
 );
 
 DROP TABLE IF EXISTS Funcionario CASCADE;
@@ -58,15 +58,12 @@ CREATE TABLE Cliente (
     ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-DROP TYPE IF EXISTS GENDER CASCADE;
-CREATE TYPE GENDER AS ENUM('Masculino', 'Feminino');
-
 DROP TABLE IF EXISTS Cliente_PF CASCADE;
 CREATE TABLE Cliente_PF (
   id_usuario                        INT PRIMARY KEY,
   cpf                               CHAR(11) NOT NULL UNIQUE,
   dt_nascimento                     DATE NOT NULL,
-  sexo                              GENDER NOT NULL,
+  sexo                              CHAR(1) NOT NULL,
 
   FOREIGN KEY(id_usuario) REFERENCES Cliente(id_usuario)
     ON UPDATE CASCADE ON DELETE CASCADE,
@@ -84,16 +81,13 @@ CREATE TABLE Cliente_PJ (
     ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-DROP TYPE IF EXISTS TIPO_COMBUSTIVEL CASCADE;
-CREATE TYPE TIPO_COMBUSTIVEL AS ENUM('Gasolina', 'Álcool', 'Diesel', 'Gás');
-
 DROP TABLE IF EXISTS Modelo CASCADE;
 CREATE TABLE Modelo (
     id_modelo                       SERIAL,
     nome                            VARCHAR(255) NOT NULL,
     diaria                          DECIMAL(10,2) NOT NULL,
     fabricante                      VARCHAR(255) NOT NULL,
-    combustivel                     TIPO_COMBUSTIVEL NOT NULL DEFAULT 'Gasolina',
+    combustivel                     VARCHAR(16) NOT NULL DEFAULT 'Gasolina',
     id_funcionario                  INT NOT NULL,
 
     CONSTRAINT MODELO_PK
@@ -309,18 +303,13 @@ CREATE TABLE Avaliacao (
       ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-DROP TYPE IF EXISTS TIPO_TELEFONE CASCADE;
-CREATE TYPE TIPO_TELEFONE AS (
-  ddd                       CHAR(2),
-  numero                    VARCHAR(9)
-);
-
 DROP TABLE IF EXISTS TelefoneFilial CASCADE;
 CREATE TABLE TelefoneFilial (
   id_filial                 INT,
-  telefone                  TIPO_TELEFONE,
+  telefone_ddd              CHAR(2),
+  telefone_numero           VARCHAR(9),
 
-  CONSTRAINT TELEFONE_FILIAL_PK PRIMARY KEY(id_filial, telefone),
+  CONSTRAINT TELEFONE_FILIAL_PK PRIMARY KEY(id_filial, telefone_ddd, telefone_numero),
 
   CONSTRAINT TELEFONE_FILIAL_FK
     FOREIGN KEY(id_filial) REFERENCES Filial(id_filial)
@@ -330,10 +319,11 @@ CREATE TABLE TelefoneFilial (
 DROP TABLE IF EXISTS TelefoneUsuario CASCADE;
 CREATE TABLE TelefoneUsuario (
   id_usuario                INT,
-  telefone                  TIPO_TELEFONE,
+  telefone_ddd              CHAR(2),
+  telefone_numero           VARCHAR(9),
 
   CONSTRAINT TELEFONE_USUARIO_PK
-    PRIMARY KEY(id_usuario, telefone),
+    PRIMARY KEY(id_usuario, telefone_ddd, telefone_numero),
 
   CONSTRAINT TELEFONE_USUARIO_FK
     FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario)
