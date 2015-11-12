@@ -33,7 +33,7 @@
 			Session s = Session.getInstance();
 			if (s.isLogged()) {
 		%>
-    <form class="navbar-form navbar-right" action="CoolCarLogoutServlet"
+    <form class="navbar-form navbar-right" action="LogoutServlet"
      method="post">
      <div class="form-group">
       <font color="#bbbbbb">Bem vindo <strong>
@@ -50,7 +50,7 @@
      <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 
-    <form class="navbar-form navbar-right" action="CoolCarLoginServlet"
+    <form class="navbar-form navbar-right" action="LoginServlet"
      method="post">
      <div class="form-group">
       <input type="text" placeholder="E-mail" class="form-control"
