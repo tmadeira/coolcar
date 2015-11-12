@@ -1,5 +1,5 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="coolcar.LocacoesManager,coolcar.Locacao"%>
+<%@page import="coolcar.managers.LocacoesManager,coolcar.modelos.Locacao"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="header.jsp">
   <jsp:param name="pageTitle" value="Histórico de Locações" />

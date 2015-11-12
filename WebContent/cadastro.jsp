@@ -1,5 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-<%@page import="coolcar.UsuariosManager"%>
+<%@page import="coolcar.managers.UsuariosManager"%>
 <jsp:include page="header.jsp" />
 
 <%

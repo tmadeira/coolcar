@@ -5,7 +5,8 @@ import java.io.InputStream;
 import java.security.MessageDigest;
 
 public class Utils {
-  // Copiado de http://stackoverflow.com/questions/304268/getting-a-files-md5-checksum-in-java
+  // Copiado de
+  // http://stackoverflow.com/questions/304268/getting-a-files-md5-checksum-in-java
   public static String md5File(String file) throws Exception {
     byte[] b = createChecksum(file);
     String result = "";

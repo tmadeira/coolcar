@@ -1,5 +1,5 @@
 <%@page import="java.util.*"%>
-<%@page import="coolcar.ModelosManager,coolcar.Modelo,coolcar.Moto,coolcar.Carro"%>
+<%@page import="coolcar.managers.ModelosManager,coolcar.modelos.Modelo,coolcar.modelos.Moto,coolcar.modelos.Carro"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="header.jsp">
 <jsp:param name="pageTitle" value="Resultados da busca" />

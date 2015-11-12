@@ -1,4 +1,4 @@
-<%@page import="coolcar.Session, coolcar.Usuario"%>
+<%@page import="coolcar.Session, coolcar.modelos.Usuario"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -29,33 +29,40 @@
     <a class="navbar-brand" href="index.jsp">coolCar</a>
    </div>
    <div id="navbar" class="navbar-collapse collapse">
-		<%
+    <%
 			Session s = Session.getInstance();
 			if (s.isLogged()) {
 		%>
-    <form class="navbar-form navbar-right" action="CoolCarLogoutServlet" method="post">
+    <form class="navbar-form navbar-right" action="CoolCarLogoutServlet"
+     method="post">
      <div class="form-group">
-      <font color="#bbbbbb">Bem vindo <strong><% out.println(s.getNomeUsuario()); %>!</strong></font>
+      <font color="#bbbbbb">Bem vindo <strong>
+        <% out.println(s.getNomeUsuario()); %>!
+      </strong></font>
      </div>
      <button type="submit" class="btn btn-danger">Logout</button>
     </form>
-		<%
+    <%
 			} else {
 		%>
-    <form class="navbar-form navbar-right" action="cadastro.jsp" method="post">
+    <form class="navbar-form navbar-right" action="cadastro.jsp"
+     method="post">
      <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
-    
-    <form class="navbar-form navbar-right" action="CoolCarLoginServlet" method="post">
+
+    <form class="navbar-form navbar-right" action="CoolCarLoginServlet"
+     method="post">
      <div class="form-group">
-      <input type="text" placeholder="E-mail" class="form-control" name="userEmail">
+      <input type="text" placeholder="E-mail" class="form-control"
+       name="userEmail">
      </div>
      <div class="form-group">
-      <input type="password" placeholder="Senha" class="form-control" name="userPwd">
+      <input type="password" placeholder="Senha" class="form-control"
+       name="userPwd">
      </div>
      <button type="submit" class="btn btn-success">Entrar</button>
     </form>
-    	<%
+    <%
 			}
 		%>
    </div>
