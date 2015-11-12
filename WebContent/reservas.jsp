@@ -18,14 +18,15 @@
 	    StringBuilder sb = new StringBuilder();
 	    
 	    out.println("<h2> Histórico de Locações de "+ s.getNomeUsuario() +"</h2>");
-	    out.println("<br><table class=\"table table-striped table-bordered table-hover table-condensed\">");
-	    out.println("<tr>");
-	    out.println("<th> Id da Locação</th>");
-	    out.println("<th>Data de Retirada</th>");
-	    out.println("<th>Data de Devolução</th>");
-	    out.println("<th>Modelo</th>");
-	    out.println("</tr>");
-	
+	%>
+	    <br><table class="table table-striped table-bordered table-hover table-condensed">
+	    <tr>
+	    <th> Id da Locação</th>
+	    <th>Data de Retirada</th>
+	    <th>Data de Devolução</th>
+	    <th>Modelo</th>
+	    </tr>
+	<%
 	    for (Reserva reserva : reservas) {
 	      sb.append("<tr>");
 	      sb.append("<td>" + reserva.getId() + "</td>");
