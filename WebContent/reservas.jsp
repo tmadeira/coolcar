@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList, coolcar.Sessao"%>
 <%@page
- import="coolcar.managers.ReservasManager,coolcar.modelos.Reserva"%>
+ import="coolcar.managers.ReservasManager,coolcar.modelos.Reserva, coolcar.managers.ModelosManager, coolcar.modelos.Modelo, java.text.SimpleDateFormat, java.text.DateFormat"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="header.jsp">
  <jsp:param name="pageTitle" value="Histórico de Locações" />
@@ -14,8 +14,11 @@
   	Sessao s = Sessao.getInstance();
 	if (s.isLogged()) {
 	    ReservasManager manager = new ReservasManager();
+	    ModelosManager mod_manager = new ModelosManager();
 	    ArrayList<Reserva> reservas = manager.consulta(s.getId());
+	    Modelo modelo; 
 	    StringBuilder sb = new StringBuilder();
+	    DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 	    
 	    out.println("<h2> Histórico de Locações de "+ s.getNomeUsuario() +"</h2>");
 	%>
@@ -28,11 +31,13 @@
 	    </tr>
 	<%
 	    for (Reserva reserva : reservas) {
+	    	
+	      modelo = mod_manager.consulta(reserva.getId_modelo());
 	      sb.append("<tr>");
-	      sb.append("<td>" + reserva.getId() + "</td>");
-	      sb.append("<td>" + reserva.getData() + "</td>");
-	      sb.append("<td>" + reserva.getDevolucao() + "</td>");
-	      sb.append("<td>" + reserva.getNome() + "</td>");
+	      sb.append("<td>" + reserva.getId_reserva() + "</td>");
+	      sb.append("<td>" + reserva.getDt_inicio_reserva() + "</td>");
+	      sb.append("<td>" + reserva.getDt_fim_reserva() + "</td>");
+	      sb.append("<td>" + modelo.getNome()  + "</td>");
 	      out.println(sb.toString());
 	    }
 	}

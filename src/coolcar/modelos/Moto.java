@@ -1,26 +1,26 @@
 package coolcar.modelos;
 
 public class Moto extends Modelo {
-  private int cilindradas, tamanhoTanque;
+  private float cilindradas, tamanhoTanque;
 
   @Override
   public String getTipo() {
     return "moto";
   }
 
-  public int getCilindradas() {
+  public float getCilindradas() {
     return cilindradas;
   }
 
-  public void setCilindradas(int cilindradas) {
+  public void setCilindradas(float cilindradas) {
     this.cilindradas = cilindradas;
   }
 
-  public int getTamanhoTanque() {
+  public float getTamanhoTanque() {
     return tamanhoTanque;
   }
 
-  public void setTamanhoTanque(int tamanhoTanque) {
+  public void setTamanhoTanque(float tamanhoTanque) {
     this.tamanhoTanque = tamanhoTanque;
   }
 }

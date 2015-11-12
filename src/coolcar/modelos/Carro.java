@@ -1,7 +1,7 @@
 package coolcar.modelos;
 
 public class Carro extends Modelo {
-  private int numPortas, numAssentos, tamanhoPortaMalas;
+  private int numPortas, numAssentos, tamanhoPortaMalas, id_caracteristicas;
   private String tipoCarro;
 
   @Override
@@ -40,4 +40,12 @@ public class Carro extends Modelo {
   public void setTipoCarro(String tipoCarro) {
     this.tipoCarro = tipoCarro;
   }
+
+public int getId_caracteristicas() {
+	return id_caracteristicas;
+}
+
+public void setId_caracteristicas(int id_caracteristicas) {
+	this.id_caracteristicas = id_caracteristicas;
+}
 }
