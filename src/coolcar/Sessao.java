@@ -61,6 +61,10 @@ public class Sessao {
   public String getNomeUsuario() {
     return usuario.getNome();
   }
+  
+  public int getId(){
+	  return usuario.getId();
+  }
 
   public Cookie getCookie() {
     return userCookie;
