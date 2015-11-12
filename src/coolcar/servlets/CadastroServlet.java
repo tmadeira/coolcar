@@ -2,6 +2,11 @@ package coolcar.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import coolcar.managers.UsuariosManager;
-import coolcar.modelos.Usuario;
+import coolcar.modelos.ClientePF;
+import coolcar.modelos.Endereco;
 
 @WebServlet("/CadastroServlet")
 public class CadastroServlet extends HttpServlet {
@@ -66,13 +72,47 @@ public class CadastroServlet extends HttpServlet {
       password2 = request.getParameter("confirmacaoDePassword");
     }
 
-    if (!validaEmailSenha(email, email2, password, password2))
+    if (!validaEmailSenha(email, email2, password, password2)) {
       validado = false;
+    }
 
     if (validado) {
       UsuariosManager manager = new UsuariosManager();
-      Usuario usuario = new Usuario(nome, sobrenome, dataDeNascimento, cpf, telefone, celular, email, password);
+      ClientePF usuario = new ClientePF();
+
+      // Campos de Usuario
+      usuario.setNome(nome + " " + sobrenome);
+      usuario.setEmail(email);
+      usuario.setSenha(password);
+
+      Endereco endereco = new Endereco();
+      /*
+       * TODO: deve cadastrar endereço no formulário e usar setters aqui
+       */
+      usuario.setEndereco(endereco);
+
+      // Campos de ClientePF
+      usuario.setCpf(cpf);
+      /*
+       * TODO: deve pegar sexo (M ou F) no formulário e usar setter aqui
+       */
+
+      DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+      Date dtNascimento;
+      try {
+        dtNascimento = format.parse(dataDeNascimento);
+        usuario.setDtNascimento(dtNascimento);
+      } catch (ParseException e) {
+        System.out.println("Data de nascimento invalida.");
+        e.printStackTrace();
+      }
+
       manager.insere(usuario);
+
+      /*
+       * TODO: cadastrar telefones
+       */
+
       response.sendRedirect("contaCriada.jsp");
     } else {
       RequestDispatcher rd = getServletContext().getRequestDispatcher("/cadastro.jsp");

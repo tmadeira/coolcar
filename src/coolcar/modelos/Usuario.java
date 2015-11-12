@@ -1,31 +1,49 @@
 package coolcar.modelos;
 
-public class Usuario {
+public abstract class Usuario {
+  private int id;
+  private String nome, email, senha;
+  private Endereco endereco;
 
-  String nome, sobrenome, dataDeNascimento, cpf, telefone, celular, email, password;
+  public abstract String getTipo();
 
-  public Usuario(String nome, String sobrenome, String dataDeNascimento, String cpf, String telefone, String celular,
-      String email, String password) {
+  public int getId() {
+    return id;
+  }
 
-    this.nome = nome;
-    this.sobrenome = sobrenome;
-    this.dataDeNascimento = dataDeNascimento;
-    this.cpf = cpf;
-    this.telefone = telefone;
-    this.celular = celular;
-    this.email = email;
-    this.password = password;
-
-    System.out.println("Dados do usuario: " + nome + " " + sobrenome);
-    System.out.println("Data de nascimento : " + dataDeNascimento);
-    System.out.println("cpf " + cpf);
-    System.out.println("telefone " + telefone);
-    System.out.println("celular " + celular);
-    System.out.println("email " + email);
-    System.out.println("password " + password);
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getNome() {
     return nome;
+  }
+
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getSenha() {
+    return senha;
+  }
+
+  public void setSenha(String senha) {
+    this.senha = senha;
+  }
+
+  public Endereco getEndereco() {
+    return endereco;
+  }
+
+  public void setEndereco(Endereco endereco) {
+    this.endereco = endereco;
   }
 }
