@@ -1,4 +1,4 @@
-<%@page import="coolcar.Session, coolcar.modelos.Usuario"%>
+<%@page import="coolcar.Sessao, coolcar.modelos.Usuario"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -30,7 +30,7 @@
    </div>
    <div id="navbar" class="navbar-collapse collapse">
     <%
-			Session s = Session.getInstance();
+			Sessao s = Sessao.getInstance();
 			if (s.isLogged()) {
 		%>
     <form class="navbar-form navbar-right" action="LogoutServlet"

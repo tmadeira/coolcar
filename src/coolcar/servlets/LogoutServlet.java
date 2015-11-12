@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import coolcar.Session;
+import coolcar.Sessao;
 
 /*
  * Author: Crunchify.com
@@ -27,7 +27,7 @@ public class LogoutServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     response.setContentType("text/html");
 
-    Session s = Session.getInstance();
+    Sessao s = Sessao.getInstance();
     Cookie loginCookie = s.logOut(request.getCookies());
 
     if (loginCookie != null) {

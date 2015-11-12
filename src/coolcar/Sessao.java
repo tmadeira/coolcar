@@ -5,17 +5,17 @@ import javax.servlet.http.Cookie;
 import coolcar.modelos.ClientePF;
 import coolcar.modelos.Usuario;
 
-public class Session {
-  private static Session singleton = new Session();
+public class Sessao {
+  private static Sessao singleton = new Sessao();
   private boolean logged;
   private Usuario user;
   private Cookie userCookie;
 
-  public static Session getInstance() {
+  public static Sessao getInstance() {
     return singleton;
   }
 
-  private Session() {
+  private Sessao() {
     logged = false;
     user = null;
   }

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import coolcar.Session;
+import coolcar.Sessao;
 
 /*
  * Author: Crunchify.com
@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
     String paramUserEmail = request.getParameter("userEmail");
     String paramUserPwd = request.getParameter("userPwd");
 
-    Session s = Session.getInstance();
+    Sessao s = Sessao.getInstance();
 
     if (s.logIn(paramUserEmail, paramUserPwd)) {
       response.addCookie(s.getCookie());
