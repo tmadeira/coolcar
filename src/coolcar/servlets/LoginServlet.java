@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 
     if (s.logIn(paramUserEmail, paramUserPwd)) {
       response.addCookie(s.getCookie());
-      response.sendRedirect("logado.jsp");
+      response.sendRedirect("index.jsp");
     } else {
       RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
       response.setCharacterEncoding("utf-8");

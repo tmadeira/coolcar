@@ -24,7 +24,6 @@ $(document).ready(function(){
     
     $('#selectbasic').on('change', function() {
       if (this.value == "1")
-      //.....................^.......
       {
         $("#sobrenome").show();
         $("#dtNasc").show();

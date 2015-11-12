@@ -14,8 +14,6 @@ import coolcar.modelos.Usuario;
 
 public class UsuariosManager {
 
-  public UsuariosManager() {
-  }
 
   public ArrayList<Usuario> consulta(Usuario usuario) {
     // TODO

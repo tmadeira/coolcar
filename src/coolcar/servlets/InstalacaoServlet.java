@@ -1,4 +1,4 @@
-package coolcar;
+package coolcar.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import coolcar.bd.BD;
 
 @SuppressWarnings("serial")
-public class Instalacao extends HttpServlet {
+public class InstalacaoServlet extends HttpServlet {
   public void init() throws ServletException {
     try {
       BD bd = new BD();

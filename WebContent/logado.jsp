@@ -1,9 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="coolcar.managers.ModelosManager,coolcar.modelos.Modelo"%>
 <%@page contentType="text/html; charset=UTF-8"%>
-<jsp:include page="header.jsp">
-  <jsp:param name="pageTitle" value="Deu certo! :)" />
-</jsp:include>
+<jsp:include page="header.jsp" />
 
 <div class="container">
 

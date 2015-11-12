@@ -53,6 +53,7 @@ ALTER TABLE Filial ADD CONSTRAINT FILIAL_FK
 DROP TABLE IF EXISTS Cliente CASCADE;
 CREATE TABLE Cliente (
   id_usuario                        INT NOT NULL PRIMARY KEY,
+  cadastro_confirmado				BOOLEAN DEFAULT FALSE,
 
   FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario)
     ON UPDATE CASCADE ON DELETE CASCADE
@@ -98,6 +99,18 @@ CREATE TABLE Modelo (
             ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+DROP TABLE IF EXISTS AcessoriosAdicionais CASCADE;
+CREATE TABLE AcessoriosAdicionais (
+  id_acessorios                    INT,
+  gps                              BOOLEAN NOT NULL DEFAULT FALSE,
+  cadeiras_de_bebe                 INT NOT NULL DEFAULT 0,
+  seguro                           BOOLEAN NOT NULL DEFAULT FALSE,
+  
+  CONSTRAINT ACESSORIOSADICIONAIS_PK
+  	PRIMARY KEY(id_acessorios)
+
+);
+
 DROP TABLE IF EXISTS Reserva CASCADE;
 CREATE TABLE Reserva (
     id_reserva                      SERIAL,
@@ -108,9 +121,7 @@ CREATE TABLE Reserva (
     dt_inicio_reserva               DATE NOT NULL,
     id_filial_devolucao             INT NOT NULL,
     dt_fim_reserva                  DATE NOT NULL,
-    gps                             BOOLEAN NOT NULL DEFAULT FALSE,
-    cadeiras_de_bebe                INT NOT NULL DEFAULT 0,
-    seguro                          BOOLEAN NOT NULL DEFAULT FALSE,
+	id_acessorios					INT NOT NULL DEFAULT 0,
 
     CONSTRAINT RESERVA_PK PRIMARY KEY(id_reserva),
 
@@ -125,6 +136,9 @@ CREATE TABLE Reserva (
         ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT FILIAL_DEVOLUCAO_RESERVA_FK
       FOREIGN KEY(id_filial_devolucao) REFERENCES Filial(id_filial)
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT ACESSORIO_FK
+      FOREIGN KEY(id_acessorios) REFERENCES AcessoriosAdicionais(id_acessorios)
         ON DELETE RESTRICT ON UPDATE CASCADE,
 
     CONSTRAINT VERIFICA_DATA CHECK (dt_inicio_reserva <= dt_fim_reserva)
@@ -236,6 +250,18 @@ CREATE TABLE Locacao (
   CONSTRAINT VERIFICA_DATA CHECK (data_retirada <= data_devolucao)
 );
 
+DROP TABLE IF EXISTS CaracteristicasCarro CASCADE;
+CREATE TABLE CaracteristicasCarro (
+  id_caracteristicas              INT,
+  ar_condicionado                 BOOLEAN NOT NULL DEFAULT FALSE,
+  direcao_hidraulica              BOOLEAN NOT NULL DEFAULT FALSE,
+  cambio_automatico               BOOLEAN NOT NULL DEFAULT FALSE,
+
+  CONSTRAINT CARACTERISTICASCARRO_PK
+  	PRIMARY KEY(id_caracteristicas)
+
+);
+
 DROP TABLE IF EXISTS Carro CASCADE;
 CREATE TABLE Carro (
   id_modelo                       INT,
@@ -243,16 +269,17 @@ CREATE TABLE Carro (
   num_portas                      INT NOT NULL DEFAULT 2,
   num_assentos                    INT NOT NULL DEFAULT 5,
   tamanho_portas_malas            INT NOT NULL,
-  ar_condicionado                 BOOLEAN NOT NULL DEFAULT FALSE,
-  direcao_hidraulica              BOOLEAN NOT NULL DEFAULT FALSE,
-  cambio_automatico               BOOLEAN NOT NULL DEFAULT FALSE,
-  descricao_geral                 TEXT,
+  id_caracteristicas			  INT NOT NULL DEFAULT 0,
 
   CONSTRAINT CARRO_PK PRIMARY KEY(id_modelo),
 
   CONSTRAINT ID_MODELO_FK
     FOREIGN KEY(id_modelo) REFERENCES Modelo(id_modelo)
-      ON DELETE RESTRICT ON UPDATE CASCADE
+      ON DELETE RESTRICT ON UPDATE CASCADE,
+      
+  CONSTRAINT ID_CARACTERISTICAS_FK
+    FOREIGN KEY(id_caracteristicas) REFERENCES CaracteristicasCarro(id_caracteristicas)
+      ON DELETE SET DEFAULT ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS Moto CASCADE;
@@ -329,3 +356,6 @@ CREATE TABLE TelefoneUsuario (
     FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario)
       ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
+
+INSERT INTO Filial VALUES (DEFAULT, NULL, 'IME', 'Rua do Matão', 1010, NULL, '05508090', 'São Paulo', 'SP', -23.5598948, -46.7337699);
