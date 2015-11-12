@@ -4,8 +4,9 @@ public class Carro extends Modelo {
   public Carro() {
   }
 
-  public boolean getTipoCar() {
-    return true;
+  @Override
+  public String getTipo() {
+    return "carro";
   }
 
   public int getNumeroAssentos() {

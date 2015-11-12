@@ -1,6 +1,6 @@
 package coolcar.modelos;
 
-public class Modelo {
+public abstract class Modelo {
   public Modelo() {
   }
 
@@ -16,9 +16,7 @@ public class Modelo {
     return "Honda";
   }
 
-  public boolean getTipoCar() {
-    return true;
-  }
+  public abstract String getTipo();
 
   public int getNumeroAssentos() {
     return 1;
