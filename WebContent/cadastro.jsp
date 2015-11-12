@@ -1,11 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="coolcar.managers.UsuariosManager"%>
 <jsp:include page="header.jsp" />
-
-<%
-
-%>
-
 <div class="container">
  <h2>Crie sua conta</h2>
  

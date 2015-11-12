@@ -9,7 +9,7 @@ import coolcar.modelos.Usuario;
 public class Sessao {
   private static Sessao singleton = new Sessao();
   private boolean logged;
-  private Usuario user;
+  private Usuario usuario;
   private Cookie userCookie;
 
   public static Sessao getInstance() {
@@ -18,12 +18,12 @@ public class Sessao {
 
   private Sessao() {
     logged = false;
-    user = null;
+    usuario = null;
   }
 
   public boolean logIn(String email, String password) {
-    Usuario usuario = new ClientePF();
-    usuario.setEmail(email);
+	usuario = new ClientePF();
+	usuario.setEmail(email);
     usuario.setSenha(password);
     // UsuariosManager manager = new UsuariosManager();
     // if (manager.consulta(usuario).size() == 1) {
@@ -49,7 +49,7 @@ public class Sessao {
     }
 
     logged = false;
-    user = null;
+    usuario = null;
 
     return loginCookie;
   }
@@ -59,7 +59,7 @@ public class Sessao {
   }
 
   public String getNomeUsuario() {
-    return user.getNome();
+    return usuario.getNome();
   }
 
   public Cookie getCookie() {
