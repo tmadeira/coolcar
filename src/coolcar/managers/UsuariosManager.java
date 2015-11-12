@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import coolcar.bd.BD;
 import coolcar.modelos.ClientePF;
@@ -14,6 +15,11 @@ import coolcar.modelos.Usuario;
 public class UsuariosManager {
 
   public UsuariosManager() {
+  }
+
+  public ArrayList<Usuario> consulta(Usuario usuario) {
+    // TODO
+    return new ArrayList<Usuario>();
   }
 
   public boolean insere(Usuario usuario) {
