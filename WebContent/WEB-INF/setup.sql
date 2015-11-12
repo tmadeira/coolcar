@@ -267,7 +267,7 @@ CREATE TABLE Carro (
   id_modelo                       INT,
   num_portas                      INT NOT NULL DEFAULT 2,
   num_assentos                    INT NOT NULL DEFAULT 5,
-  tamanho_portas_malas            DECIMAL(10,2) NOT NULL,
+  tamanho_portas_malas            INT NOT NULL,
   id_caracteristicas			        INT NOT NULL DEFAULT 1,
 
   CONSTRAINT CARRO_PK PRIMARY KEY(id_modelo),
