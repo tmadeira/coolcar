@@ -25,21 +25,23 @@
     for (Modelo modelo : modelos) {
       //sb.append("<tr><table class=\"table table-striped table-bordered table-hover table-condensed\">");
       if (modelo.getTipo().equals("carro")) {
-        sb.append("<tr><th> " + modelo.getNome() + "");
+        Carro carro = (Carro) modelo;
+        sb.append("<tr><th> " + carro.getNome() + "");
         sb.append(
             "<img src=\"https://www.omegarentalcars.com/assets/vehicles/_resampled/thumb-BAD323245-1230.jpg\" alt=\"...\" class=\"img-responsive img-circle\" width=\"180\" height=\"180\"></th>");
         sb.append("<td>");
-        sb.append("<table><tr><td> Preço: " + modelo.getPreco() + " </td></tr>");
+        sb.append("<table><tr><td> Preço: " + carro.getDiaria() + " </td></tr>");
 
         //	sb.append("<td> Carro </td>");
-        sb.append("<tr><td> Num Assentos: " + modelo.getNumeroAssentos() + " </td></tr>");
+        sb.append("<tr><td> Num Assentos: " + carro.getNumAssentos() + " </td></tr>");
         sb.append("</tr></table></td>");
       } else {
+        Moto moto = (Moto) modelo;
     	//sb.append("<tr><th colspan=\"2\"> " + modelo.getNome() + " </th></tr>");
         sb.append(
             "<tr><th>"+modelo.getNome()+"<br><img src=\"http://www.casaraomotos.com.br/slices/img-Moto01.png\" alt=\"...\" class=\"img-responsive img-circle\" width=\"180\" height=\"180\" ></th>");
         sb.append("<td><table>");
-        sb.append("<tr><td> Preço: " + modelo.getPreco() + " </td></tr>");
+        sb.append("<tr><td> Preço: " + moto.getDiaria() + " </td></tr>");
         sb.append("<tr><td> Moto </td></tr>");
         sb.append("</tr></table></td>");
       }
