@@ -1,7 +1,7 @@
 package coolcar.modelos;
 
-public class Locacao {
-  public Locacao() {
+public class Reserva {
+  public Reserva() {
   }
 
   public String getNome() {
