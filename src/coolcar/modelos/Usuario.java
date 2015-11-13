@@ -1,9 +1,12 @@
 package coolcar.modelos;
 
+import java.util.Date;
+
 public abstract class Usuario {
   private int id;
   private String nome, email, senha;
   private Endereco endereco;
+  private Telefone telefone, celular;
 
   public Usuario(){}
   
@@ -55,5 +58,41 @@ public abstract class Usuario {
 
   public void setEndereco(Endereco endereco) {
     this.endereco = endereco;
+  }
+  
+  public void setCpf(String cpf) {
+	  }
+  
+  public void setSexo(char sexo) {
+  }
+  
+  public Date getDtNascimento() {
+	    return null;
+  }
+  
+  public void setDtNascimento(Date dtNascimento) {
+  }
+  
+  public Telefone getTelefone() {
+	  return telefone;
+  }
+  
+  public void setTelefone(Telefone telefone) {
+	  this.telefone = telefone;
+  }
+  
+  public Telefone getCelular() {
+	  return celular;
+  }
+  
+  public void setCelular(Telefone celular) {
+	  this.celular = celular;
+  }
+  
+  public String getCnpj() {
+	  return "";
+  }
+ 
+  public void setCnpj(String cnpj) {
   }
 }
