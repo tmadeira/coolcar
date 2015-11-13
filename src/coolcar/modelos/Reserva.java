@@ -12,11 +12,6 @@ public class Reserva {
   public Reserva() {
   }
 
-  /*public String getNome() {
-    return ;
-  }*/
-
-
 public int getId_filial_retirada() {
 	return id_filial_retirada;
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import coolcar.bd.BD;
 import coolcar.modelos.ClientePF;
+import coolcar.modelos.ClientePJ;
 import coolcar.modelos.Usuario;
 
 public class UsuariosManager {
@@ -69,7 +70,12 @@ public class UsuariosManager {
       }
 
       if (usuario.getTipo().equals("cliente_pj")) {
-        // TODO
+    	  ClientePJ clientePJ = (ClientePJ) usuario;
+          sql = "INSERT INTO Cliente_PJ (id_usuario, cnpj) VALUES (?, ?)";
+          stmt = connection.prepareStatement(sql);
+          stmt.setInt(1, usuario.getId());
+          stmt.setString(2, clientePJ.getCnpj());
+          stmt.executeUpdate();
       }
 
       if (usuario.getTipo().equals("funcionario")) {
