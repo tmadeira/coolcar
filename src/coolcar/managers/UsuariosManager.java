@@ -16,8 +16,7 @@ public class UsuariosManager {
 
 
   public ArrayList<Usuario> consulta(Usuario usuario) {
-    // TODO
-    return new ArrayList<Usuario>();
+	  return new ArrayList<Usuario>();
   }
 
   public boolean insere(Usuario usuario) {

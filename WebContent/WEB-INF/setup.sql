@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS Filial CASCADE;
 CREATE TABLE Filial (
   id_filial                       SERIAL,
-  id_funcionario_cadastrou        INT NOT NULL,
+  id_funcionario_cadastrou        INT DEFAULT NULL,
   nome                            VARCHAR(255) NOT NULL,
   endereco_logradouro             VARCHAR(255),
   endereco_numero                 INT,
@@ -35,7 +35,7 @@ CREATE TABLE Funcionario (
   cpf                               CHAR(11) NOT NULL UNIQUE,
   dt_ingresso                       DATE NOT NULL,
   dt_nascimento                     DATE NOT NULL,
-  filial_trabalha                   INT NOT NULL,
+  filial_trabalha                   INT,
 
   FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario)
       ON UPDATE CASCADE ON DELETE CASCADE,
@@ -70,7 +70,7 @@ CREATE TABLE Cliente_PF (
     ON UPDATE CASCADE ON DELETE CASCADE,
 
   CONSTRAINT maioridade_cliente
-    CHECK (dt_nascimento >= CURRENT_TIMESTAMP - INTERVAL '18 YEARS')
+    CHECK (dt_nascimento <= CURRENT_TIMESTAMP - INTERVAL '18 YEARS')
 );
 
 DROP TABLE IF EXISTS Cliente_PJ CASCADE;
@@ -359,3 +359,11 @@ CREATE TABLE TelefoneUsuario (
 
 
 INSERT INTO Filial VALUES (DEFAULT, NULL, 'IME', 'Rua do Matão', 1010, NULL, '05508090', 'São Paulo', 'SP', -23.5598948, -46.7337699);
+
+
+
+
+
+INSERT INTO Usuario VALUES (DEFAULT, 'Administrador', 'adm@', '123', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO Cliente VALUES (1, TRUE);
+INSERT INTO Cliente_PF VALUES (1, '12345678900', '1990-06-15', 'M');

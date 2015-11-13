@@ -2,7 +2,7 @@ package coolcar;
 
 import javax.servlet.http.Cookie;
 
-import coolcar.managers.UsuariosManager;
+import coolcar.managers.ClientePFManager;
 import coolcar.modelos.ClientePF;
 import coolcar.modelos.Usuario;
 
@@ -22,19 +22,21 @@ public class Sessao {
   }
 
   public boolean logIn(String email, String password) {
+	
 	usuario = new ClientePF();
 	usuario.setEmail(email);
     usuario.setSenha(password);
-    // UsuariosManager manager = new UsuariosManager();
-    // if (manager.consulta(usuario).size() == 1) {
-    if (email.equals("teste") && password.equals("123")) {
-      userCookie = new Cookie("userEmail", email);
-      logged = true;
-      usuario.setNome("João da Silva");
-      return true;
+    
+    ClientePFManager manager = new ClientePFManager();
+    if (manager.consulta(usuario).size() == 1) {
+	    if (email.equals("teste") && password.equals("123")) {
+	      userCookie = new Cookie("userEmail", email);
+	      logged = true;
+	      usuario.setNome("João da Silva");
+	      return true;
+	    }
+	    return false;
     }
-    return false;
-  }
 
   public Cookie logOut(Cookie[] cookies) {
 
