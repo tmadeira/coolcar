@@ -4,12 +4,12 @@ import javax.servlet.http.Cookie;
 
 import coolcar.managers.ClientePFManager;
 import coolcar.modelos.ClientePF;
-import coolcar.modelos.Usuario;
+import java.util.ArrayList;
 
 public class Sessao {
   private static Sessao singleton = new Sessao();
   private boolean logged;
-  private Usuario usuario;
+  private ClientePF usuario; // TODO: alterar esse ClientePF para algo genérico, pois temos que abranger os ClientesPJ
   private Cookie userCookie;
 
   public static Sessao getInstance() {
@@ -28,15 +28,18 @@ public class Sessao {
     usuario.setSenha(password);
     
     ClientePFManager manager = new ClientePFManager();
-    if (manager.consulta(usuario).size() == 1) {
-	    if (email.equals("teste") && password.equals("123")) {
-	      userCookie = new Cookie("userEmail", email);
-	      logged = true;
-	      usuario.setNome("João da Silva");
-	      return true;
-	    }
-	    return false;
-    }
+    ArrayList<ClientePF> resultados = manager.consulta(usuario);
+    
+    if (resultados.size() != 1)
+    	return false;
+    
+    usuario = resultados.get(0);
+    
+    userCookie = new Cookie("userEmail", usuario.getEmail());
+    logged = true;
+   
+    return true;
+  }
 
   public Cookie logOut(Cookie[] cookies) {
 

@@ -5,7 +5,8 @@
   BD bd = new BD();
 
   ClientePF cpf_teste = new ClientePF();
-  cpf_teste.setNome("Administrador");
+  cpf_teste.setEmail("adm@");
+  cpf_teste.setSenha("senha123");
 	
   ClientePFManager cpf_manager = new ClientePFManager();
 	
