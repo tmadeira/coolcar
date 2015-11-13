@@ -32,7 +32,7 @@
     <%
 			Sessao s = Sessao.getInstance();
 			if (s.isLogged()) {
-		%>
+	%>
     <form class="navbar-form navbar-right" action="LogoutServlet"
      method="post">
      <div class="form-group">
