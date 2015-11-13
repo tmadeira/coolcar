@@ -1,3 +1,4 @@
+<%@page import="coolcar.bd.BD, coolcar.modelos.Filial, coolcar.managers.FilialManager,java.util.ArrayList, java.util.Iterator"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="header.jsp" />
 <div class="jumbotron">
@@ -11,29 +12,46 @@
       <label for="local-retirada">Local de retirada</label> <select
        class="form-control" id="local-retirada">
        <option>Selecione uma opção</option>
-       <option>Butantã</option>
-       <option>Consolação</option>
-       <option>Jaguaré</option>
-       <option>Paraíso</option>
+<%
+	  BD bd = new BD();
+	
+	  Filial filiais = new Filial();
+      FilialManager filial_manager = new FilialManager();
+      
+	  ArrayList<Filial> resultados = filial_manager.consulta(filiais);
+	  Iterator<Filial> result = resultados.iterator();
+	  
+	  while (result.hasNext()) {
+		Filial tupla = result.next();
+	    out.println("<option>" + tupla.getNome() + "</option>");
+	  }
+%>
       </select>
      </div>
      <div class="form-group">
       <label for="local-devolucao">Local de devolucao</label> <select
        class="form-control" name="local-devolucao" id="local-devolucao">
-       <option>Selecione uma opção</option>
-       <option>Butantã</option>
-       <option>Consolação</option>
-       <option>Jaguaré</option>
-       <option>Paraíso</option>
-      </select>
+       <option>Selecione uma opção</option>   
+<%
+	  ArrayList<Filial> resultados2 = filial_manager.consulta(filiais);
+	  Iterator<Filial> result2 = resultados2.iterator();
+	  
+	  while (result2.hasNext()) {
+		Filial tupla = result2.next();
+	    out.println("<option>" + tupla.getNome() + "</option>");
+	  }
+
+
+%>
+     </select>
      </div>
      <div class="checkbox">
       <label class="checkbox-inline"> <input type="checkbox">
-       Ar condicionado
+       Ar Condicionado
       </label> <label class="checkbox-inline"> <input type="checkbox">
-       Seguro
+       Direção Hidráulica
       </label> <label class="checkbox-inline"> <input type="checkbox">
-       GPS
+       Câmbio Automático
       </label>
      </div>
      <button type="submit" class="btn btn-default">Buscar</button>
