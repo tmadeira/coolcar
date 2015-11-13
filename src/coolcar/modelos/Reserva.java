@@ -3,7 +3,7 @@ package coolcar.modelos;
 import java.util.Date;
 
 public class Reserva {
-	private int id_cliente, id_reserva, id_modelo, id_filial_retirada, 
+	private int id_cliente, id_reserva, id_modelo, id_filial_retirada, id_acessorios, 
 	id_filial_devolucao, cadeiras_de_bebe;
 	private float valor;
 	private Date dt_fim_reserva, dt_inicio_reserva;
@@ -103,5 +103,13 @@ public Date getDt_inicio_reserva() {
 
 public void setDt_inicio_reserva(Date dt_inicio_reserva) {
 	this.dt_inicio_reserva = dt_inicio_reserva;
+}
+
+public void setId_acessorios(int id_acessorios) {
+	this.id_acessorios = id_acessorios;
+}
+
+public int getId_acessorios() {
+	return id_acessorios;
 }
 }

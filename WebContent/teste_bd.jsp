@@ -7,7 +7,7 @@
   ClientePF cpf_teste = new ClientePF();
   cpf_teste.setEmail("adm@");
   cpf_teste.setSenha("senha123");
-	
+  
   ClientePFManager cpf_manager = new ClientePFManager();
 	
   ArrayList<ClientePF> resultados = cpf_manager.consulta(cpf_teste);

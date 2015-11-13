@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import coolcar.bd.BD;
 import coolcar.modelos.Reserva;
-import coolcar.modelos.Usuario;
 
 public class ReservasManager {
 	
@@ -21,9 +20,10 @@ public class ReservasManager {
     try {
         BD bd = new BD();
         Connection connection = bd.getConnection();
-        String sql = "SELECT * FROM Reserva WHERE id_cliente = " + userId;
+        String sql = "SELECT * FROM Reserva WHERE id_cliente = ?";
         PreparedStatement stmt = connection.prepareStatement(sql);
-        ResultSet rs = stmt.executeQuery(sql);
+    	stmt.setInt(1, userId);
+        ResultSet rs = stmt.executeQuery();
         
         while(rs.next()){
             Reserva reserva = new Reserva();
@@ -35,9 +35,7 @@ public class ReservasManager {
             reserva.setId_filial_devolucao(rs.getInt("id_filial_devolucao"));
             reserva.setDt_inicio_reserva(rs.getDate("dt_inicio_reserva"));
             reserva.setDt_fim_reserva(rs.getDate("dt_fim_reserva"));
-            reserva.setGps(rs.getBoolean("gps"));
-            reserva.setCadeiras_de_bebe(rs.getInt("cadeiras_de_bebe"));
-            reserva.setSeguro(rs.getBoolean("seguro"));
+            reserva.setId_acessorios(rs.getInt("id_acessorios"));
             reserva.setId_modelo(rs.getInt("id_modelo"));
 
             reservas.add(reserva);

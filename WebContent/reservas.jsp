@@ -16,7 +16,10 @@
 	    ReservasManager manager = new ReservasManager();
 	    ModelosManager mod_manager = new ModelosManager();
 	    ArrayList<Reserva> reservas = manager.consulta(s.getId());
-	    Modelo modelo; 
+	    if (reservas.isEmpty())
+	    	System.out.println("VAZIO");
+	    Modelo modelo;
+	    ArrayList<Modelo> modelos = new ArrayList<Modelo>();
 	    StringBuilder sb = new StringBuilder();
 	    DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 	    
@@ -32,7 +35,12 @@
 	<%
 	    for (Reserva reserva : reservas) {
 	    	
-	      modelo = mod_manager.consulta(reserva.getId_modelo());
+	      modelos = mod_manager.consulta(reserva.getId_modelo());
+	      
+	      if (modelos.size() != 1)
+	    	  out.println("ERRO NA CONSULTA");
+	      modelo = modelos.get(0);
+	      
 	      sb.append("<tr>");
 	      sb.append("<td>" + reserva.getId_reserva() + "</td>");
 	      sb.append("<td>" + reserva.getDt_inicio_reserva() + "</td>");
