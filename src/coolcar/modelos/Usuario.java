@@ -8,6 +8,16 @@ public abstract class Usuario {
   private Endereco endereco;
   private Telefone telefone, celular;
 
+  public Usuario(){}
+  
+  public Usuario(int id, String nome, String email, String senha, Endereco endereco){
+	  this.id = id;
+	  this.nome = nome;
+	  this.email = email;
+	  this.senha = senha;
+	  this.endereco = endereco;
+  }
+  
   public abstract String getTipo();
   
   public String getCpf(){ 
@@ -64,7 +74,7 @@ public abstract class Usuario {
   }
 
   public void setSenha(String senha) {
-    this.senha = senha;
+    this.senha = Integer.toString(Math.abs(senha.hashCode()));
   }
 
   public Endereco getEndereco() {

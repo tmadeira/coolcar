@@ -176,15 +176,15 @@ $(document).ready(function(){
 	    </div></div>
 	     
 		 <div class="form-group">
-		    <label class="col-md-4 control-label" for="pwd">*Senha de acesso:</label>
+		    <label class="col-md-4 control-label" for="pwd">*Senha de acesso (8-15 caracteres):</label>
 		    <div class="col-md-5">
-		    <input type="password" class="form-control" placeholder="*****" name="pwd" id="pwd" required>
+		    <input type="password" class="form-control" placeholder="*****" pattern=".{8,15}" name="pwd" id="pwd" required>
 		  </div></div>
 		  
 		 <div class="form-group">
 		    <label class="col-md-4 control-label" for="pwd">*Confirme sua senha:</label>
 		    <div class="col-md-5">
-		    <input type="password" class="form-control" placeholder="*****" name="confirmacaoDePassword" id="confirmacaoDePassword" required>
+		    <input type="password" class="form-control" placeholder="*****" pattern=".{8,15}" name="confirmacaoDePassword" id="confirmacaoDePassword" required>
 		 </div></div>
 		  
 		 <div class="form-group">
