@@ -9,6 +9,31 @@ public abstract class Usuario {
   private Telefone telefone, celular;
 
   public abstract String getTipo();
+  
+  public String getCpf(){ 
+	  return ""; 
+  };
+  public void setCpf(String cpf){
+  };
+  
+  public char getSexo(){
+	  return ' ';
+  };
+  public void setSexo(char sexo){
+	  
+  };
+  public Date getDtNascimento(){
+	  return new Date();
+  };
+  public void setDtNascimento(Date dtNascimento){
+	  
+  };
+  public String getCnpj(){
+	  return "";
+  };
+
+  public void setCnpj(String cnpj){
+  };
 
   public int getId() {
     return id;
@@ -49,19 +74,7 @@ public abstract class Usuario {
   public void setEndereco(Endereco endereco) {
     this.endereco = endereco;
   }
-  
-  public void setCpf(String cpf) {
-	  }
-  
-  public void setSexo(char sexo) {
-  }
-  
-  public Date getDtNascimento() {
-	    return null;
-  }
-  
-  public void setDtNascimento(Date dtNascimento) {
-  }
+
   
   public Telefone getTelefone() {
 	  return telefone;
@@ -77,12 +90,5 @@ public abstract class Usuario {
   
   public void setCelular(Telefone celular) {
 	  this.celular = celular;
-  }
-  
-  public String getCnpj() {
-	  return "";
-  }
- 
-  public void setCnpj(String cnpj) {
   }
 }
