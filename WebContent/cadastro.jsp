@@ -21,7 +21,6 @@ jQuery(function($){
 $(document).ready(function(){
 	
 	$("#cnpj").hide();
-    
     $('#selectbasic').on('change', function() {
       if (this.value == "1")
       {
