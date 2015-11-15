@@ -87,7 +87,7 @@ $(document).ready(function(){
 	    <div class="form-group" id="sexo">
 		   <label class="col-md-4 control-label" for="nome">*Sexo:</label>
 		   <div class="col-md-5">
-	    <select id="selectbasic" class="form-control" name="selectbasic" required>
+	    <select id="sexo" class="form-control" name="sexo" required>
 	    <option value="1">M</option>
 	    <option value="2">F</option>
 	    </select>

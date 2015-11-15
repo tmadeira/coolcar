@@ -221,8 +221,8 @@ CREATE TABLE Locacao (
   id_reserva                      INT NOT NULL,
   filial_retirada                 INT NOT NULL,
   data_retirada                   DATE  NOT NULL,
-  filial_devolucao                INT NOT NULL,
-  data_devolucao                  DATE NOT NULL,
+  filial_devolucao                INT,
+  data_devolucao                  DATE,
   arquivo_copia_cnh               VARCHAR(255) NOT NULL,
   chassi_veiculo                  CHAR(17) NOT NULL,
 
@@ -356,14 +356,14 @@ CREATE TABLE TelefoneUsuario (
       ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-INSERT INTO Usuario VALUES (DEFAULT, 'Marcos Kazuya Yamazaki', 'mky@coolcar.com', '1251475389', 'Rua Americo Pellini', 274, NULL, '18086329', 'Sorocaba', 'SP');
+INSERT INTO Usuario VALUES (DEFAULT, 'Marcos Kazuya Yamazaki2', 'mky@coolcar.com', '1251475389', 'Rua Americo Pellini', 274, NULL, '18086329', 'Sorocaba', 'SP');
 INSERT INTO Funcionario VALUES (1, '395083659XX', '2015-11-12', '1992-07-28', NULL);
 
-INSERT INTO Filial VALUES (DEFAULT, 1, 'IME', 'Rua do Matão', 1010, NULL, '05508090', 'São Paulo', 'SP', -23.5598948, -46.7337699);
-INSERT INTO Filial VALUES (DEFAULT, 1, 'FAU', 'Rua do Lago', 876, NULL, '04280000', 'São Paulo', 'SP', -23.5610024, -46.7294776);
-INSERT INTO Filial VALUES (DEFAULT, 1, 'FEA', 'Av. Prof. Luciano Gualberto', 908, NULL, '05508010', 'São Paulo', 'SP', -23.5588353, -46.7313283);
-INSERT INTO Filial VALUES (DEFAULT, 1, 'EEFE', 'Av. Professor Mello Moraes', 65, NULL, '05508030', 'São Paulo', 'SP', -23.5625024, -46.71929);
-INSERT INTO Filial VALUES (DEFAULT, 1, 'FFLCH', 'Av. Prof. Lineu Prestes', 3380, NULL, '05508000', 'São Paulo', 'SP', -23.560694, -46.7278951);
+INSERT INTO Filial VALUES (DEFAULT, 1, 'IME - Instituto de Matemática e Estatística', 'Rua do Matão', 1010, NULL, '05508090', 'São Paulo', 'SP', -23.5598948, -46.7337699);
+INSERT INTO Filial VALUES (DEFAULT, 1, 'FAU - Faculdade de arquitetura e Urbanismo', 'Rua do Lago', 876, NULL, '04280000', 'São Paulo', 'SP', -23.5610024, -46.7294776);
+INSERT INTO Filial VALUES (DEFAULT, 1, 'FEA - Faculdade de Economia e Administração', 'Av. Prof. Luciano Gualberto', 908, NULL, '05508010', 'São Paulo', 'SP', -23.5588353, -46.7313283);
+INSERT INTO Filial VALUES (DEFAULT, 1, 'EEFE - Escola de Educação Física e Esporte', 'Av. Professor Mello Moraes', 65, NULL, '05508030', 'São Paulo', 'SP', -23.5625024, -46.71929);
+INSERT INTO Filial VALUES (DEFAULT, 1, 'FFLCH - Faculdade de Filosofia, Letras e Ciências Humanas', 'Av. Prof. Lineu Prestes', 3380, NULL, '05508000', 'São Paulo', 'SP', -23.560694, -46.7278951);
 
 INSERT INTO Usuario VALUES (DEFAULT, 'Felipe Túlio Pereira da Cruz', 'ftpdc@coolcar.com', '1251475389', 'Rua xx', 1912, NULL, 'xxxxxxxx', 'São Paulo', 'SP');
 INSERT INTO Usuario VALUES (DEFAULT, 'Tiago Madeira', 'tm@coolcar.com', '1251475389', 'Rua x', 1912, NULL, 'xxxxxxxx', 'São Paulo', 'SP');
@@ -443,13 +443,22 @@ INSERT INTO Moto VALUES(10,150, 8.0);
 INSERT INTO Moto VALUES(11,125, 19.5);
 INSERT INTO Moto VALUES(12,150, 15.2);
 
-INSERT INTO Veiculo VALUES ('82365723284637471', 'HEN6392', DEFAULT, 2015, 0, 1, 1, 1);
+
+--    chassi                          CHAR(17),
+--    placa                           CHAR(7) NOT NULL,
+--    kilometragem                    INT NOT NULL DEFAULT 0,
+--    ano                             INT NOT NULL,
+--    status                          INT NOT NULL DEFAULT 0,
+--    id_funcionario                  INT NOT NULL,
+--    id_modelo                       INT NOT NULL,
+--    filial_alojada                  INT NOT NULL,
+INSERT INTO Veiculo VALUES ('82365723284637471', 'HEN6392', DEFAULT, 2015, 0, 1, 1, 1); -- uno
 INSERT INTO Veiculo VALUES ('54506848608101697', 'IER6302', DEFAULT, 2015, 0, 1, 1, 1);
-INSERT INTO Veiculo VALUES ('10196705251250375', 'BXL2730', DEFAULT, 2015, 0, 1, 2, 1);
+INSERT INTO Veiculo VALUES ('10196705251250375', 'BXL2730', DEFAULT, 2015, 0, 1, 2, 1); -- palio
 INSERT INTO Veiculo VALUES ('62097254808968142', 'HCM2842', DEFAULT, 2015, 0, 1, 2, 1);
-INSERT INTO Veiculo VALUES ('65124894564072935', 'CJW1730', DEFAULT, 2015, 0, 1, 3, 2);
+INSERT INTO Veiculo VALUES ('65124894564072935', 'CJW1730', DEFAULT, 2015, 0, 1, 3, 2); --
 INSERT INTO Veiculo VALUES ('95634609419502584', 'MSH1352', DEFAULT, 2015, 0, 1, 3, 3);
-INSERT INTO Veiculo VALUES ('21614532201682467', 'NOE1930', DEFAULT, 2015, 0, 1, 4, 4);
+INSERT INTO Veiculo VALUES ('21614532201682467', 'NOE1930', DEFAULT, 2015, 0, 1, 4, 4); -- 
 INSERT INTO Veiculo VALUES ('46344523523535236', 'WFE5713', DEFAULT, 2015, 0, 1, 4, 4);
 INSERT INTO Veiculo VALUES ('32523526342346234', 'TDN7432', DEFAULT, 2015, 0, 1, 5, 2);
 INSERT INTO Veiculo VALUES ('98742735618398136', 'WDV7252', DEFAULT, 2015, 0, 1, 5, 3);
@@ -468,9 +477,61 @@ INSERT INTO Veiculo VALUES ('13728594464361058', 'ACR6216', DEFAULT, 2015, 0, 1,
 INSERT INTO Veiculo VALUES ('13643462468023089', 'BYW6516', DEFAULT, 2015, 0, 1, 4, 4);
 INSERT INTO Veiculo VALUES ('67464346364801792', 'NBV7353', DEFAULT, 2015, 0, 1, 12, 1);
 
-INSERT INTO AcessoriosAdicionais VALUES (1, TRUE, 0, TRUE);
+INSERT INTO AcessoriosAdicionais VALUES (1, FALSE, 0,FALSE);
+INSERT INTO AcessoriosAdicionais VALUES (2, FALSE, 0, TRUE);
+INSERT INTO AcessoriosAdicionais VALUES (3, TRUE, 0, FALSE);
+INSERT INTO AcessoriosAdicionais VALUES (4, TRUE, 0, TRUE);
 
-INSERT INTO Reserva VALUES (DEFAULT, 7, 1, 119.90, 1, '1990-01-08', 1, '1990-01-08', 1);
-INSERT INTO Reserva VALUES (DEFAULT, 7, 2, 109.90, 1, '1990-01-08', 1, '1990-01-08', 1);
-INSERT INTO Reserva VALUES (DEFAULT, 7, 5, 399.90, 1, '1990-01-11', 1, '1990-01-16', 1);
+INSERT INTO AcessoriosAdicionais VALUES (5, FALSE, 1,FALSE);
+INSERT INTO AcessoriosAdicionais VALUES (6, FALSE, 1, TRUE);
+INSERT INTO AcessoriosAdicionais VALUES (7, TRUE, 1, FALSE);
+INSERT INTO AcessoriosAdicionais VALUES (8, TRUE, 1, TRUE);
 
+INSERT INTO AcessoriosAdicionais VALUES (9, FALSE, 2,FALSE);
+INSERT INTO AcessoriosAdicionais VALUES (10, FALSE, 2, TRUE);
+INSERT INTO AcessoriosAdicionais VALUES (11, TRUE, 2, FALSE);
+INSERT INTO AcessoriosAdicionais VALUES (12, TRUE, 2, TRUE);
+
+INSERT INTO Reserva VALUES (DEFAULT, 7, 1, 239.90, 1, '2015-01-08', 1, '2015-01-10', 1);
+INSERT INTO Reserva VALUES (DEFAULT, 7, 2, 409.90, 1, '2015-04-24', 1, '2015-04-25', 1);
+INSERT INTO Reserva VALUES (DEFAULT, 7, 5, 399.90, 1, '2015-06-11', 1, '2015-06-16', 1);
+INSERT INTO Reserva VALUES (DEFAULT, 7, 9, 399.90, 1, '2015-06-11', 1, '2015-06-16', 1);
+INSERT INTO Reserva VALUES (DEFAULT, 7, 9, 399.90, 1, '2015-06-11', 1, '2015-06-16', 1);
+
+INSERT INTO Reserva VALUES (DEFAULT, 8, 2, 109.90, 1, '2015-01-08', 2, '2015-01-08', 1);
+INSERT INTO Reserva VALUES (DEFAULT, 8, 2, 109.90, 1, '2015-04-08', 2, '2015-04-08', 4);
+INSERT INTO Reserva VALUES (DEFAULT, 8, 2, 109.90, 1, '2015-05-11', 2, '2015-05-16', 3);
+
+INSERT INTO Reserva VALUES (DEFAULT, 9, 9, 119.90, 1, '2015-01-08', 1, '2015-01-08', 1);
+INSERT INTO Reserva VALUES (DEFAULT, 9, 9, 109.90, 1, '2015-01-08', 1, '2015-01-08', 1);
+
+INSERT INTO Reserva VALUES (DEFAULT, 10, 10, 399.90, 5, '2015-01-11', 5, '2015-01-16', 1);
+
+INSERT INTO Reserva VALUES (DEFAULT, 11, 5, 119.90, 1, '2015-01-08', 1, '2015-01-08', 1);
+INSERT INTO Reserva VALUES (DEFAULT, 11, 6, 109.90, 1, '2015-01-08', 1, '2015-01-08', 2);
+INSERT INTO Reserva VALUES (DEFAULT, 11, 3, 399.90, 1, '2015-01-11', 1, '2015-01-16', 1);
+INSERT INTO Reserva VALUES (DEFAULT, 11, 2, 119.90, 1, '2015-01-08', 1, '2015-01-08', 1);
+INSERT INTO Reserva VALUES (DEFAULT, 11, 6, 109.90, 1, '2015-01-08', 1, '2015-01-08', 2);
+
+INSERT INTO Reserva VALUES (DEFAULT, 12, 11, 399.90, 2, '2015-01-11', 2, '2015-01-16', 1);
+INSERT INTO Reserva VALUES (DEFAULT, 12, 11, 119.90, 4, '2015-01-08', 4, '2015-01-08', 1);
+
+INSERT INTO Reserva VALUES (DEFAULT, 13, 2, 109.90, 1, '2015-01-08', 1, '2015-01-08', 1);
+INSERT INTO Reserva VALUES (DEFAULT, 13, 1, 399.90, 1, '2015-01-11', 1, '2015-01-16', 1);
+
+INSERT INTO Reserva VALUES (DEFAULT, 14, 2, 119.90, 3, '2015-01-08', 3, '2015-01-08', 9);
+
+INSERT INTO Reserva VALUES (DEFAULT, 15, 2, 109.90, 1, '2015-01-08', 1, '2015-01-08', 1);
+INSERT INTO Reserva VALUES (DEFAULT, 15, 3, 399.90, 1, '2015-01-11', 1, '2015-01-16', 1);
+
+--  id_locacao,
+--  id_funcionario_entrega,
+--  id_funcionario_recebe,
+--  id_reserva,
+--  filial_retirada,
+--  data_retirada,
+--  filial_devolucao,
+--  data_devolucao,
+--  arquivo_copia_cnh,
+--  chassi_veiculo) 
+INSERT INTO Locacao VALUES(DEFAULT, 1, 1, 1, 1, '2015-01-08', 1, '2015-01-10' ,'arquivo.png?', '82365723284637471');

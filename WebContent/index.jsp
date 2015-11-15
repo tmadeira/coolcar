@@ -9,9 +9,8 @@
     <p>O que você está esperando?</p>
     <form action="buscaModelos.jsp" method="post">
      <div class="form-group">
-      <label for="local-retirada">Local de retirada</label> <select
-       class="form-control" id="local-retirada">
-       <option>Selecione uma opção</option>
+      <label for="local-retirada">Local de retirada</label> 
+      <select class="form-control" name="local-retirada" id="local-retirada">
 <%
 	  BD bd = new BD();
 	
@@ -23,22 +22,21 @@
 	  
 	  while (result.hasNext()) {
 		Filial tupla = result.next();
-	    out.println("<option>" + tupla.getNome() + "</option>");
+	    out.println("<option value=\"" + tupla.getId() + "\">" + tupla.getNome() + "</option>");
 	  }
 %>
       </select>
      </div>
      <div class="form-group">
-      <label for="local-devolucao">Local de devolucao</label> <select
-       class="form-control" name="local-devolucao" id="local-devolucao">
-       <option>Selecione uma opção</option>   
+      <label for="local-devolucao">Local de devolucao</label> 
+      <select class="form-control" name="local-devolucao" id="local-devolucao">
 <%
 	  ArrayList<Filial> resultados2 = filial_manager.consulta(filiais);
 	  Iterator<Filial> result2 = resultados2.iterator();
 	  
 	  while (result2.hasNext()) {
 		Filial tupla = result2.next();
-	    out.println("<option>" + tupla.getNome() + "</option>");
+	    out.println("<option value=\"" + tupla.getId() + "\">" + tupla.getNome() + "</option>");
 	  }
 
 

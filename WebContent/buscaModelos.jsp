@@ -7,7 +7,11 @@
 
 <div class="container">
 
- <h2>Resultados</h2>
+<h2>
+<% 
+    //String param = new String(request.getParameter("local-devolucao").getBytes("iso-8859-1"), "UTF-8");   
+    out.println("Modelos disponíveis em " + request.getParameter("local-retirada"));%>
+</h2>
  <table class="table table-striped table-bordered table-hover table-condensed">
  <%-- <tr>
 <th> <% 

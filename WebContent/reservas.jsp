@@ -16,8 +16,8 @@
 	    ReservasManager manager = new ReservasManager();
 	    ModelosManager mod_manager = new ModelosManager();
 	    ArrayList<Reserva> reservas = manager.consulta(s.getId());
-	    if (reservas.isEmpty())
-	    	System.out.println("VAZIO");
+	    //if (reservas.isEmpty())
+	    //	System.out.println("VAZIO");
 	    Modelo modelo;
 	    ArrayList<Modelo> modelos = new ArrayList<Modelo>();
 	    StringBuilder sb = new StringBuilder();
