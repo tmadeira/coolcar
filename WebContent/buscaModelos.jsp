@@ -25,7 +25,8 @@
   Veiculo veiculo_search = new Veiculo();
   veiculo_search.setTipoDoVeiculo(request.getParameter("tipo-veiculo"));
   veiculo_search.setFilialAlojada(Integer.parseInt(request.getParameter("local-retirada")));
-
+  veiculo_search.setStatus("Disponível");
+  
   StringBuilder sb = new StringBuilder();
   out.println();
   
@@ -53,6 +54,15 @@
 	    sb.append("<img src=\"" + veiculo.getCarro().getLink() + "\" alt=\"...\" class=\"img-responsive img-thumbnail\" width=\"300\" height=\"300\"></th>");
 	    sb.append("<td>");
 	    
+	    sb.append("<br>");
+	    sb.append("<form name=\"listaVeiculos\" id=\"listaVeiculos\" action=\"\" method=\"post\">");
+	    sb.append("<input type=\"hidden\" name=\"pseudo\" value=\"refutando\" />");
+	    sb.append("<input type=\"hidden\" name=\"uri\" value=\"/presentation.php\" />");
+	    sb.append("<input type=\"hidden\" name=\"LANG_IN_BLOG\" value=\"br\" />");
+	    sb.append("<input type=\"hidden\" name=\"oldnote\" value=\"5\" />");
+	    sb.append("<button type=\"submit\" class=\"btn btn-warning\"><b>Reserve este modelo agora</b></button>");
+	    sb.append("</form>");
+	    
 	    sb.append("<table><tr><td> <u>Preço da Diária:</u> R$" + String.format("%.2f",veiculo.getCarro().getDiaria()) + " </td></tr>");
 	    sb.append("<tr><td><b> Ano:</b> " + veiculo.getAno() + " </td></tr>");
 	    sb.append("<tr><td><b> Fabricante:</b> " + veiculo.getCarro().getFabricante() + " </td></tr>");
@@ -70,8 +80,7 @@
 	    	sb.append("<tr><td> Câmbio Manual </td></tr>");
 	    if(veiculo.getCarro().getCarac().getDirHid())
 	    	sb.append("<tr><td> Direção Hidráulica </td></tr>");
-	    
-	    
+	   
 	    sb.append("</table></td></tr>");
 	  }
   } else {
@@ -82,6 +91,15 @@
 	    sb.append("<tr><th> " + veiculo.getMoto().getNome() + "<br>");
 	    sb.append("<img src=\"" + veiculo.getMoto().getLink() + "\" alt=\"...\" class=\"img-responsive img-thumbnail\" width=\"300\" height=\"300\"></th>");
 	    sb.append("<td>");
+	    
+	    sb.append("<br>");
+	    sb.append("<form name=\"voteVote\" id=\"voteVote\" action=\"http://www.spaceblog.com.br/structureSmarty/vote_exec.php\" method=\"post\">");
+	    sb.append("<input type=\"hidden\" name=\"pseudo\" value=\"refutando\" />");
+	    sb.append("<input type=\"hidden\" name=\"uri\" value=\"/presentation.php\" />");
+	    sb.append("<input type=\"hidden\" name=\"LANG_IN_BLOG\" value=\"br\" />");
+	    sb.append("<input type=\"hidden\" name=\"oldnote\" value=\"5\" />");
+	    sb.append("<button type=\"submit\" class=\"btn btn-warning\"><b>Reserve este modelo agora</b></button>");
+	    sb.append("</form>");
 	    
 	    sb.append("<table><tr><td> <u>Preço da Diária:</u> R$" + String.format("%.2f",veiculo.getMoto().getDiaria()) + " </td></tr>");
 	    sb.append("<tr><td> Ano: " + veiculo.getAno() + " </td></tr>");
