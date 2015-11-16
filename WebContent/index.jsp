@@ -71,9 +71,9 @@ $(document).ready(function(){
       </select>
 	  </div>
 	     <div class="checkbox" id="carac-carro">
-	      <label class="checkbox-inline"> <input type="checkbox" name="arcond" id="arcond">Ar Condicionado</label>
-	      <label class="checkbox-inline"> <input type="checkbox" name="dirhidri" id="dirhidri">Direção Hidráulica</label>
-	      <label class="checkbox-inline"> <input type="checkbox" name="cambauto" id="cambauto">Câmbio Automático</label>
+	      <label class="checkbox-inline"> <input type="checkbox" checked="checked" name="arcond" id="arcond">Ar Condicionado</label>
+	      <label class="checkbox-inline"> <input type="checkbox" checked="checked" name="dirhidri" id="dirhidri">Direção Hidráulica</label>
+	      <label class="checkbox-inline"> <input type="checkbox" checked="checked" name="cambauto" id="cambauto">Câmbio Automático</label>
 	   	 </div>
      <button type="submit" class="btn btn-default">Buscar</button>
     </form>

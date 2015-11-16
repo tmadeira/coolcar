@@ -13,22 +13,27 @@
   
   Moto moto_teste = new Moto();
   moto_teste.setCilindradas(150);
+  
+  Veiculo veiculo_teste = new Veiculo();
+  veiculo_teste.setTipoDoVeiculo("Moto");
 
   ClientePFManager cpf_manager = new ClientePFManager();
   CarroManager carro_manager = new CarroManager();	
   MotoManager moto_manager = new MotoManager();
+  VeiculosManager veiculos_manager = new VeiculosManager();
 
   ArrayList<ClientePF> resultados = cpf_manager.consulta(cpf_teste);
   ArrayList<Carro> carros = carro_manager.consulta(carro_teste);
   ArrayList<Moto> motos = moto_manager.consulta(moto_teste);
+  ArrayList<Veiculo> veiculos = veiculos_manager.consulta(veiculo_teste);
   
   // ResultSet resultados = bd.executaConsulta("SELECT nome FROM Usuario WHERE endereco_logradouro LIKE '%'");
 
   out.println("<ul>");
-  Iterator<Moto> i = motos.iterator();
+  Iterator<Veiculo> i = veiculos.iterator();
   while (i.hasNext()) {
-	Moto j = i.next();
-    String nome = j.getNome();
+	Veiculo j = i.next();
+    String nome = j.getMoto().getNome();
     out.println("<li>" + nome  + "</li>");
   }
   out.println("</ul>");

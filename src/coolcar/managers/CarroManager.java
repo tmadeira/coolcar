@@ -1,5 +1,5 @@
 package coolcar.managers;
-
+import coolcar.modelos.CaracteristicasCarro;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -43,12 +43,20 @@ public class CarroManager {
 		    else
 		    	idCaracStr = "id_caracteristicas";
 	        
-	        String sql = "SELECT * FROM Carro NATURAL JOIN Modelo WHERE id_modelo = " + idModeloStr + " AND num_portas = " + numPortasStr + " AND num_assentos = " + numAssentosStr + " AND tamanho_portas_malas = " + tamPortaMalasStr + " AND id_caracteristicas = " + idCaracStr;
+	        String sql = "SELECT * FROM (Carro NATURAL JOIN caracteristicascarro) NATURAL JOIN Modelo WHERE id_modelo = " + idModeloStr + 
+	        		" AND num_portas = " + numPortasStr + " AND num_assentos = " + numAssentosStr + " "
+	        				+ "AND tamanho_portas_malas = " + tamPortaMalasStr + " AND id_caracteristicas = " + idCaracStr;
         	
         	PreparedStatement stmt = connection.prepareStatement(sql);
         	
 		    ResultSet resultados = stmt.executeQuery();
-		    while (resultados.next()) {	    
+		    while (resultados.next()) {
+		    CaracteristicasCarro carac_select = new CaracteristicasCarro(
+		    		resultados.getBoolean("ar_condicionado"),
+		    		resultados.getBoolean("direcao_hidraulica"),
+		    		resultados.getBoolean("cambio_automatico")
+		    		);
+		   
 	    	Carro carro_select = new Carro(resultados.getString("nome"),
 	    							resultados.getString("fabricante"),
 	    							resultados.getString("combustivel"),
@@ -59,7 +67,8 @@ public class CarroManager {
 	    							resultados.getInt("num_portas"),
 	    							resultados.getInt("num_assentos"),
 	    							resultados.getInt("tamanho_portas_malas"),
-	    							resultados.getInt("id_caracteristicas"));
+	    							resultados.getInt("id_caracteristicas"),
+	    							carac_select);
 	    	carros.add(carro_select);
 		    }
 		}
