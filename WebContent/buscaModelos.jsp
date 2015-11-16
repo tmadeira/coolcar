@@ -49,23 +49,47 @@
 	  ArrayList<Veiculo> veiculos = veiculos_manager.consulta(veiculo_search);
 	  
 	  for (Veiculo veiculo : veiculos) {       
-	    sb.append("<tr><th> " + veiculo.getCarro().getNome() + "");
-	    sb.append("<img src=\"" + veiculo.getCarro().getLink() + "\" alt=\"...\" class=\"img-responsive img-thumbnail\" width=\"180\" height=\"180\"></th>");
+	    sb.append("<tr><th> <h4>" + veiculo.getCarro().getNome() + "<br></h4>");
+	    sb.append("<img src=\"" + veiculo.getCarro().getLink() + "\" alt=\"...\" class=\"img-responsive img-thumbnail\" width=\"300\" height=\"300\"></th>");
 	    sb.append("<td>");
-	    sb.append("<table><tr><td> Chassi: " + veiculo.getChassi() + " </td></tr>");
-	    sb.append("<tr><td> Num Assentos: " + veiculo.getCarro().getNumAssentos() + " </td></tr>");
-	    sb.append("</tr></table></td>");
+	    
+	    sb.append("<table><tr><td> <u>Preço da Diária:</u> R$" + String.format("%.2f",veiculo.getCarro().getDiaria()) + " </td></tr>");
+	    sb.append("<tr><td><b> Ano:</b> " + veiculo.getAno() + " </td></tr>");
+	    sb.append("<tr><td><b> Fabricante:</b> " + veiculo.getCarro().getFabricante() + " </td></tr>");
+	    sb.append("<tr><td><b> Tipo:</b> " + veiculo.getCarro().getTipo() + " </td></tr>");
+	    sb.append("<tr><td><b> Número de Portas:</b> " + veiculo.getCarro().getNumPortas() + " </td></tr>");
+	    sb.append("<tr><td><b> Número de Assentos:</b> " + veiculo.getCarro().getNumAssentos() + " </td></tr>");
+	    sb.append("<tr><td><b> Tamanho do Porta-Malas:</b> " + veiculo.getCarro().getTamanhoPortaMalas() + "L </td></tr>");
+	    sb.append("<tr><td><b> Combustível:</b> " + veiculo.getCarro().getCombustivel() + " </td></tr>");
+	    sb.append("<tr><td><b> Num Assentos:</b> " + veiculo.getCarro().getNumAssentos() + " </td></tr>");
+	    if(veiculo.getCarro().getCarac().getArCond())
+	    	sb.append("<tr><td> Ar Condicionado </td></tr>");
+	    if(veiculo.getCarro().getCarac().getCambAuto())
+	    	sb.append("<tr><td> Câmbio Automático </td></tr>");
+	    else
+	    	sb.append("<tr><td> Câmbio Manual </td></tr>");
+	    if(veiculo.getCarro().getCarac().getDirHid())
+	    	sb.append("<tr><td> Direção Hidráulica </td></tr>");
+	    
+	    
+	    sb.append("</table></td></tr>");
 	  }
   } else {
 	  VeiculosManager veiculos_manager = new VeiculosManager();
 	  ArrayList<Veiculo> veiculos = veiculos_manager.consulta(veiculo_search);
 	
 	  for (Veiculo veiculo : veiculos) {       
-	    sb.append("<tr><th> " + veiculo.getCarro().getNome() + "");
-	    sb.append("<img src=\"" + veiculo.getCarro().getLink() + "\" alt=\"...\" class=\"img-responsive img-thumbnail\" width=\"180\" height=\"180\"></th>");
+	    sb.append("<tr><th> " + veiculo.getMoto().getNome() + "<br>");
+	    sb.append("<img src=\"" + veiculo.getMoto().getLink() + "\" alt=\"...\" class=\"img-responsive img-thumbnail\" width=\"300\" height=\"300\"></th>");
 	    sb.append("<td>");
-	    sb.append("<table><tr><td> Chassi: " + veiculo.getChassi() + " </td></tr>");
-	    sb.append("<tr><td> Num Assentos: " + veiculo.getCarro().getNumAssentos() + " </td></tr>");
+	    
+	    sb.append("<table><tr><td> <u>Preço da Diária:</u> R$" + String.format("%.2f",veiculo.getMoto().getDiaria()) + " </td></tr>");
+	    sb.append("<tr><td> Ano: " + veiculo.getAno() + " </td></tr>");
+	    sb.append("<tr><td> Fabricante: " + veiculo.getMoto().getFabricante() + " </td></tr>");
+	    sb.append("<tr><td> Tipo: " + veiculo.getMoto().getTipo() + " </td></tr>");
+	    sb.append("<tr><td> Combustível: " + veiculo.getMoto().getCombustivel() + " </td></tr>");
+	    sb.append("<tr><td> Tamanho do Tanque: " + veiculo.getMoto().getTamanhoTanque() + "L</td></tr>");
+	    sb.append("<tr><td> Cilindradas: " + veiculo.getMoto().getCilindradas() + " </td></tr>");
 	    sb.append("</tr></table></td>");
 	  }
   }

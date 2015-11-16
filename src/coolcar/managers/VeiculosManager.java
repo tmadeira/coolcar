@@ -61,7 +61,7 @@ public class VeiculosManager {
 			    else
 			    	cambAutoStr = "false";
 		    
-		        sql = "SELECT * FROM veiculo NATURAL JOIN (modelo NATURAL JOIN (carro NATURAL JOIN caracteristicascarro))"
+		        sql = "SELECT DISTINCT modelo, * FROM veiculo NATURAL JOIN (modelo NATURAL JOIN (carro NATURAL JOIN caracteristicascarro))"
 		        		+ "WHERE placa = " + placaStr + " AND ano = " + anoStr + " AND filial_alojada = " + filialStr + " AND"
 		        		+ " status = " + statusStr + " AND ar_condicionado = " + arCondStr
 		        		+ " AND direcao_hidraulica = " + dirHidStr + " AND cambio_automatico = " + cambAutoStr;

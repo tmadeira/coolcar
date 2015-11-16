@@ -24,7 +24,7 @@
 	%>
 	    <br><table class="table table-striped table-bordered table-hover table-condensed">
 	    <tr>
-	    <th>Id da Locação</th>
+	    <th>ID da Reserva</th>
 	    <th>Data de Retirada</th>
 	    <th>Data de Devolução</th>
 	    <th>Modelo</th>
