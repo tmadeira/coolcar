@@ -91,6 +91,7 @@ CREATE TABLE Modelo (
     fabricante                      VARCHAR(255) NOT NULL,
     combustivel                     VARCHAR(16) NOT NULL DEFAULT 'Gasolina',
     id_funcionario                  INT NOT NULL,
+    link                            VARCHAR(255),
 
     CONSTRAINT MODELO_PK
         PRIMARY KEY(id_modelo),
@@ -416,18 +417,18 @@ INSERT INTO CaracteristicasCarro VALUES(6, TRUE , FALSE, TRUE );
 INSERT INTO CaracteristicasCarro VALUES(7, FALSE, TRUE , TRUE );
 INSERT INTO CaracteristicasCarro VALUES(8, TRUE , TRUE , TRUE );
 
-INSERT INTO Modelo VALUES (DEFAULT, 'Hatch',  'Uno', 119.90,             'Fiat', 'Gasolina/Álcool', 1);
-INSERT INTO Modelo VALUES (DEFAULT, 'Hatch',  'Palio Fire', 109.90,      'Fiat', 'Gasolina/Álcool', 1);
-INSERT INTO Modelo VALUES (DEFAULT, 'Sedan',  'Siena', 144.90,           'Fiat', 'Gasolina/Álcool', 1);
-INSERT INTO Modelo VALUES (DEFAULT, 'Sedan',  'Linea', 243.90,           'Fiat', 'Gasolina/Álcool', 1);
-INSERT INTO Modelo VALUES (DEFAULT, 'SUV',    'Freemont', 399.90,        'Fiat', 'Gasolina/Álcool', 1);
-INSERT INTO Modelo VALUES (DEFAULT, 'SUV',    'Renegade', 287.90,        'Jeep', 'Gasolina/Álcool', 1);
-INSERT INTO Modelo VALUES (DEFAULT, 'Minivan','Idea', 199.90,            'Fiat', 'Gasolina/Álcool', 1);
-INSERT INTO Modelo VALUES (DEFAULT, 'Minivan','Doblò', 249.90,           'Fiat', 'Gasolina/Álcool', 1);
-INSERT INTO Modelo VALUES (DEFAULT, 'Scooter','Lead', 32.90,            'Honda', 'Gasolina', 1);
-INSERT INTO Modelo VALUES (DEFAULT, 'Scooter','PCX', 36.90,             'Honda', 'Gasolina', 1);
-INSERT INTO Modelo VALUES (DEFAULT, 'Street', 'Factor 125 TBR', 40.90, 'Yamaha', 'Gasolina', 1);
-INSERT INTO Modelo VALUES (DEFAULT, 'Street', 'Fazer 150 SED', 45.90,  'Yamaha', 'Gasolina', 1);
+INSERT INTO Modelo VALUES (DEFAULT, 'Hatch',  'Uno', 119.90,             'Fiat', 'Gasolina/Álcool', 1, 'http://uno2015.com.br/wp-content/uploads/2014/01/fiat-uno-2015-automatico.jpg');
+INSERT INTO Modelo VALUES (DEFAULT, 'Hatch',  'Palio Fire', 109.90,      'Fiat', 'Gasolina/Álcool', 1, 'http://www.fiat.com.br/content/dam/fiat-brasil/desktop/produtos/modelos/372/versoes/37211Z1/178.png');
+INSERT INTO Modelo VALUES (DEFAULT, 'Sedan',  'Siena', 144.90,           'Fiat', 'Gasolina/Álcool', 1, 'https://i.ytimg.com/vi/SybDoj-hbmo/maxresdefault.jpg');
+INSERT INTO Modelo VALUES (DEFAULT, 'Sedan',  'Linea', 243.90,           'Fiat', 'Gasolina/Álcool', 1, 'http://www.carblogindia.com/wp-content/uploads/2014/03/2014-Fiat-Linea-Pearl-White.jpg');
+INSERT INTO Modelo VALUES (DEFAULT, 'SUV',    'Freemont', 399.90,        'Fiat', 'Gasolina/Álcool', 1, 'http://triautoautopecas.com.br/media/catalog/category/fiat-freemont-triauto-auto-pecas_1.jpg');
+INSERT INTO Modelo VALUES (DEFAULT, 'SUV',    'Renegade', 287.90,        'Jeep', 'Gasolina/Álcool', 1, 'http://carros.ig.com.br/fotos/2015/620_413/jeep-renegade-hard-steel-1_620_413.jpg');
+INSERT INTO Modelo VALUES (DEFAULT, 'Minivan','Idea', 199.90,            'Fiat', 'Gasolina/Álcool', 1, 'http://www.consorcionacionalunifisa.com.br/assets/fiat_idea.png');
+INSERT INTO Modelo VALUES (DEFAULT, 'Minivan','Doblò', 249.90,           'Fiat', 'Gasolina/Álcool', 1, 'http://auto-database.com/image/fiat-doblo-pictures-18330.jpg');
+INSERT INTO Modelo VALUES (DEFAULT, 'Scooter','Lead', 32.90,            'Honda', 'Gasolina', 1, 'http://jacaremoto.com.br/colunajacare/wp-content/uploads/2009/06/lead110md04.jpg');
+INSERT INTO Modelo VALUES (DEFAULT, 'Scooter','PCX', 36.90,             'Honda', 'Gasolina', 1, 'http://motosnovas.com.br/wp-content/uploads/2014/01/Honda-PCX-2014-fotos.jpg');
+INSERT INTO Modelo VALUES (DEFAULT, 'Street', 'Factor 125 TBR', 40.90, 'Yamaha', 'Gasolina', 1, 'http://www.crasamotos.com.br/sites/default/files/imagecache/1024xauto/yamaha-factor-ybr-125-black-edition_2012_1600.jpg');
+INSERT INTO Modelo VALUES (DEFAULT, 'Street', 'Fazer 150 SED', 45.90,  'Yamaha', 'Gasolina', 1, 'http://quatrorodas.abril.com.br/moto/img/galerias/130902-fazer150-06.jpg');
 
 INSERT INTO Carro VALUES(1, 4, 5, 290, 5);
 INSERT INTO Carro VALUES(2, 4, 5, 290, 5);

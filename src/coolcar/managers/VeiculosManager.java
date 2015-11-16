@@ -45,7 +45,7 @@ public class VeiculosManager {
         		statusStr = "status";
 		    
 		    /*---------------------------------------------------------------------------------------CARRO-*/
-		    if(veiculo.getTipoDoVeiculo() == "Carro"){
+		    if(veiculo.getTipoDoVeiculo().equals("Carro")){
 			    if(veiculo.getCarro().getCarac().getArCond() == true)
 			    	arCondStr = "true";
 			    else
@@ -59,7 +59,7 @@ public class VeiculosManager {
 			    if(veiculo.getCarro().getCarac().getCambAuto() == true)
 			    	cambAutoStr = "true";
 			    else
-			    	cambAutoStr = "cambio_automatico";
+			    	cambAutoStr = "false";
 		    
 		        sql = "SELECT * FROM veiculo NATURAL JOIN (modelo NATURAL JOIN (carro NATURAL JOIN caracteristicascarro))"
 		        		+ "WHERE placa = " + placaStr + " AND ano = " + anoStr + " AND filial_alojada = " + filialStr + " AND"
@@ -68,7 +68,7 @@ public class VeiculosManager {
 		        
 		        System.out.println(sql);
 		        
-		        PreparedStatement stmt = connection.prepareStatement(sql);
+				PreparedStatement stmt = connection.prepareStatement(sql);
 	        	
 			    ResultSet resultados = stmt.executeQuery();
 			    while (resultados.next()) {			    
@@ -88,6 +88,8 @@ public class VeiculosManager {
 					    						   resultados.getInt("tamanho_portas_malas"),
 					    						   resultados.getInt("id_caracteristicas"),
 					    						   carac_select);
+				    
+				    carro_select.setLink(resultados.getString("link"));
 
 			    	Veiculo veiculo_select = new Veiculo("Carro",
 			    			 							resultados.getString("chassi"),
@@ -100,6 +102,7 @@ public class VeiculosManager {
 			    			 							resultados.getInt("filial_alojada"),
 			    			 							carro_select,
 			    			 							new Moto());
+			    	
 			    	veiculos.add(veiculo_select);
 			    }
 		    } 
@@ -131,7 +134,8 @@ public class VeiculosManager {
 												resultados.getInt("id_funcionario"),
 												resultados.getFloat("cilindradas"),
 												resultados.getFloat("tamanho_tanque"));	
-
+				    moto_select.setLink(resultados.getString("link"));
+				    
 			    	Veiculo veiculo_select = new Veiculo("Moto",
 			    			 							resultados.getString("chassi"),
 			    			 							resultados.getString("placa"),

@@ -6,9 +6,8 @@
 
 <script> 
 $(document).ready(function(){
-	
     $('#tipo-veiculo').on('change', function() {
-      if (this.value == "1")
+      if (this.value == "Carro")
       {
         $("#carac-carro").show();
       }
@@ -66,14 +65,14 @@ $(document).ready(function(){
       <div class="form-group">
       <label for="tipo-veiculo">Tipo de Veículo</label> 
       <select class="form-control" name="tipo-veiculo" id="tipo-veiculo" required>
-      	<option value="1" >Carro</option>
-      	<option value="2" >Moto</option>
+      	<option>Carro</option>
+      	<option>Moto</option>
       </select>
 	  </div>
 	     <div class="checkbox" id="carac-carro">
 	      <label class="checkbox-inline"> <input type="checkbox" checked="checked" name="arcond" id="arcond">Ar Condicionado</label>
 	      <label class="checkbox-inline"> <input type="checkbox" checked="checked" name="dirhidri" id="dirhidri">Direção Hidráulica</label>
-	      <label class="checkbox-inline"> <input type="checkbox" checked="checked" name="cambauto" id="cambauto">Câmbio Automático</label>
+	      <label class="checkbox-inline"> <input type="checkbox" name="cambauto" id="cambauto">Câmbio Automático</label>
 	   	 </div>
      <button type="submit" class="btn btn-default">Buscar</button>
     </form>

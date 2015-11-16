@@ -3,7 +3,7 @@ package coolcar.modelos;
 import java.math.BigDecimal;
 
 public abstract class Modelo {
-  private String nome, fabricante, combustivel, tipo;
+  private String nome, fabricante, combustivel, tipo, link;
   private BigDecimal diaria;
   private int idModelo, idFuncionario;
 
@@ -77,5 +77,13 @@ public abstract class Modelo {
 
   public void setIdFuncionario(int idFuncionario) {
     this.idFuncionario = idFuncionario;
+  }
+  
+  public String getLink() {
+	return link;
+  }
+
+  public void setLink(String link) {
+	this.link = link;
   }
 }

@@ -15,7 +15,9 @@
   moto_teste.setCilindradas(150);
   
   Veiculo veiculo_teste = new Veiculo();
-  veiculo_teste.setTipoDoVeiculo("Moto");
+  veiculo_teste.setTipoDoVeiculo("Carro");
+  veiculo_teste.setFilialAlojada(1);
+
 
   ClientePFManager cpf_manager = new ClientePFManager();
   CarroManager carro_manager = new CarroManager();	
@@ -33,8 +35,9 @@
   Iterator<Veiculo> i = veiculos.iterator();
   while (i.hasNext()) {
 	Veiculo j = i.next();
-    String nome = j.getMoto().getNome();
-    out.println("<li>" + nome  + "</li>");
+    String nome = j.getCarro().getNome();
+    int fil = j.getFilialAlojada();
+    out.println("<li>" + nome  + fil +  "</li>");
   }
   out.println("</ul>");
 

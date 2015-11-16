@@ -49,12 +49,12 @@ public class Veiculo {
 	public String getTipoDoVeiculo(){return this.tipoDoVeiculo;}
 	public String getChassi() {return this.chassi;}
 	public String getPlaca() {return this.placa;}
-	public int getKm() {return this.km;}
-	public int getAno() {return this.ano;}
+	public int    getKm() {return this.km;}
+	public int    getAno() {return this.ano;}
 	public String getStatus() {return this.status;}
-	public int getIdFunc() {return this.id_func;}
-	public int getIdModelo() {return this.id_modelo;}
-	public int getFilialAlojada() {return this.filial_alojada;}	
-	public Carro getCarro(){return this.carro;}
-	public Moto getMoto(){return this.moto;}
+	public int    getIdFunc() {return this.id_func;}
+	public int    getIdModelo() {return this.id_modelo;}
+	public int    getFilialAlojada() {return this.filial_alojada;}	
+	public Carro  getCarro(){return this.carro;}
+	public Moto   getMoto(){return this.moto;}
 }
