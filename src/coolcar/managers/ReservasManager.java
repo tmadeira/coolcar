@@ -53,7 +53,7 @@ public class ReservasManager {
 	  try {
 	      BD bd = new BD();
 	      Connection connection = bd.getConnection();
-	      String sql = "INSERT INTO Reserva (id_cliente, id_modelo, valor, id_filial_retirada, "
+	      String sql = "INSERT INTO Reserva(id_cliente, id_modelo, valor, id_filial_retirada, "
 	          + "dt_inicio_reserva, id_filial_devolucao, dt_fim_reserva, gps, cadeiras_de_bebe, "
 	          + "seguro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
