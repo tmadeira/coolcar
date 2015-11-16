@@ -70,8 +70,8 @@ $(document).ready(function(){
       </select>
 	  </div>
 	  <div>
-	  	<label for="retirada">Data de Retirada:</label><input id="dtRetirada" type="date" value="2015-01-01"/>
-	  	<label for="entrega">Data de Entrega:</label><input id="dtEntrega" type="date" value="2015-01-02"/>
+	  	<label for="retirada">Data de Retirada:</label><input id="dtRetirada" name="dtRetirada" type="date" value="2015-01-01"/>
+	  	<label for="entrega">Data de Entrega:</label><input id="dtEntrega" name="dtEntrega" type="date" value="2015-01-02"/>
 	  </div>
 	  <div class="checkbox" id="carac-carro">
  		<label class="checkbox-inline"> <input type="checkbox" checked="checked" name="arcond" id="arcond">Ar Condicionado</label>
