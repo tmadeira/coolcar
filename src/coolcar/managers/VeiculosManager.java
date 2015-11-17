@@ -25,7 +25,7 @@ public class VeiculosManager {
 	        Connection connection = bd.getConnection();
 	        
 	        if(veiculo.getPlaca() != null)
-	        	placaStr = veiculo.getPlaca();
+	        	placaStr = "'" + veiculo.getPlaca() + "'";
         	else
         		placaStr = "placa";
         	
@@ -40,7 +40,7 @@ public class VeiculosManager {
 		    	filialStr = "filial_alojada";
 		    
 		    if(veiculo.getStatus() != null)
-		    	statusStr = veiculo.getStatus();
+		    	statusStr = "'" + veiculo.getStatus() + "'";
         	else
         		statusStr = "status";
 		    
