@@ -2,7 +2,7 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 
 <script src="vendor/jquery-1.11.3.min.js"></script>
-<script src="jquery.maskedinput.js" type="text/javascript"></script>
+<script src="vendor/jquery.maskedinput.js" type="text/javascript"></script>
 
 <script> 
 $(document).ready(function(){
