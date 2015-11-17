@@ -55,7 +55,7 @@
 	    sb.append("<td>");
 	    
 	    sb.append("<br>");
-	    sb.append("<form name=\"listaVeiculos\" id=\"listaVeiculos\" action=\"realisaReserva.jsp\" method=\"post\">");
+	    sb.append("<form name=\"listaVeiculos\" id=\"listaVeiculos\" action=\"realizaReserva.jsp\" method=\"post\">");
 	    sb.append("<input type=\"hidden\" id=\"\" name=\"\" value=\"\" />");
 	    sb.append("<input type=\"hidden\" id=\"\" name=\"\" value=\"\" />");
 	    sb.append("<input type=\"hidden\" id=\"\" name=\"\" value=\"\" />");
@@ -92,7 +92,7 @@
 	    sb.append("<td>");
 	    
 	    sb.append("<br>");
-	    sb.append("<form name=\"voteVote\" id=\"voteVote\" action=\"realisaReserva.jsp\" method=\"post\">");
+	    sb.append("<form name=\"voteVote\" id=\"voteVote\" action=\"realizaReserva.jsp\" method=\"post\">");
 	    sb.append("<input type=\"hidden\" name=\"pseudo\" value=\"refutando\" />");
 	    sb.append("<input type=\"hidden\" name=\"uri\" value=\"/presentation.php\" />");
 	    sb.append("<input type=\"hidden\" name=\"LANG_IN_BLOG\" value=\"br\" />");
