@@ -1,4 +1,4 @@
-<%@page import="java.util.*"%>
+<%@page import="java.util.*, coolcar.bd.BD, coolcar.modelos.Filial, coolcar.managers.FilialManager, java.util.ArrayList"%>
 <%@page import="coolcar.managers.ModelosManager,coolcar.modelos.Modelo,coolcar.modelos.Moto,coolcar.modelos.Carro"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="header.jsp">
@@ -9,8 +9,18 @@
 
 <h2>
 <% 
-    //String param = new String(request.getParameter("local-devolucao").getBytes("iso-8859-1"), "UTF-8");   
-    out.println("Modelos disponíveis em " + request.getParameter("local-retirada"));%>
+    
+	BD bd = new BD();
+	
+	Filial filiais = new Filial();
+	FilialManager filial_manager = new FilialManager();
+	
+	ArrayList<Filial> resultados = filial_manager.consulta(filiais);
+	Filial filial = resultados.get(Integer.parseInt(request.getParameter("local-retirada")) - 1);
+
+	//String param = new String(request.getParameter("local-devolucao").getBytes("iso-8859-1"), "UTF-8");   
+    out.println("Modelos disponíveis em " + filial.getNome());
+%>
 </h2>
  <table class="table table-striped table-bordered table-hover table-condensed">
  <%-- <tr>
@@ -28,7 +38,7 @@
 
     for (Modelo modelo : modelos) {
       //sb.append("<tr><table class=\"table table-striped table-bordered table-hover table-condensed\">");
-      if (modelo.getTipo().equals("carro")) {
+      if (modelo.getTipoVeiculo().equals("carro")) {
         Carro carro = (Carro) modelo;
         sb.append("<tr><th> " + carro.getNome() + "");
         sb.append(

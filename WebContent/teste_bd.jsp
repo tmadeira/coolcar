@@ -1,4 +1,4 @@
-<%@page import="coolcar.bd.BD, coolcar.modelos.ClientePF, coolcar.managers.ClientePFManager,java.util.ArrayList, java.util.Iterator"%>
+<%@page import="coolcar.bd.BD, coolcar.modelos.*, coolcar.managers.* ,java.util.ArrayList, java.util.Iterator"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 
 <%
@@ -8,20 +8,28 @@
   cpf_teste.setEmail("adm@");
   cpf_teste.setSenha("senha123");
   
-  ClientePFManager cpf_manager = new ClientePFManager();
-	
-  ArrayList<ClientePF> resultados = cpf_manager.consulta(cpf_teste);
+  Carro carro_teste = new Carro();
+  carro_teste.setIdModelo(1);
+  
+  Moto moto_teste = new Moto();
+  moto_teste.setCilindradas(150);
 
+  ClientePFManager cpf_manager = new ClientePFManager();
+  CarroManager carro_manager = new CarroManager();	
+  MotoManager moto_manager = new MotoManager();
+
+  ArrayList<ClientePF> resultados = cpf_manager.consulta(cpf_teste);
+  ArrayList<Carro> carros = carro_manager.consulta(carro_teste);
+  ArrayList<Moto> motos = moto_manager.consulta(moto_teste);
+  
   // ResultSet resultados = bd.executaConsulta("SELECT nome FROM Usuario WHERE endereco_logradouro LIKE '%'");
 
   out.println("<ul>");
-  Iterator<ClientePF> i = resultados.iterator();
+  Iterator<Moto> i = motos.iterator();
   while (i.hasNext()) {
-	out.println("Ronaldo");
-	ClientePF j = i.next();
+	Moto j = i.next();
     String nome = j.getNome();
-    int id = j.getId();
-    out.println("<li>" + nome  + " -- " + id + "</li>");
+    out.println("<li>" + nome  + "</li>");
   }
   out.println("</ul>");
 

@@ -1,5 +1,25 @@
 <%@page import="coolcar.bd.BD, coolcar.modelos.Filial, coolcar.managers.FilialManager,java.util.ArrayList, java.util.Iterator"%>
 <%@page contentType="text/html; charset=UTF-8"%>
+
+<script src="vendor/jquery-1.11.3.min.js"></script>
+<script src="jquery.maskedinput.js" type="text/javascript"></script>
+
+<script> 
+$(document).ready(function(){
+	
+    $('#tipo-veiculo').on('change', function() {
+      if (this.value == "1")
+      {
+        $("#carac-carro").show();
+      }
+      else
+      {
+        $("#carac-carro").hide();
+      }
+    });
+});
+</script>
+
 <jsp:include page="header.jsp" />
 <div class="jumbotron">
  <div class="container">
@@ -43,15 +63,18 @@
 %>
      </select>
      </div>
-     <div class="checkbox">
-      <label class="checkbox-inline"> <input type="checkbox">
-       Ar Condicionado
-      </label> <label class="checkbox-inline"> <input type="checkbox">
-       Direção Hidráulica
-      </label> <label class="checkbox-inline"> <input type="checkbox">
-       Câmbio Automático
-      </label>
-     </div>
+      <div class="form-group">
+      <label for="tipo-veiculo">Tipo de Veículo</label> 
+      <select class="form-control" name="tipo-veiculo" id="tipo-veiculo" required>
+      	<option value="1" >Carro</option>
+      	<option value="2" >Moto</option>
+      </select>
+	  </div>
+	     <div class="checkbox" id="carac-carro">
+	      <label class="checkbox-inline"> <input type="checkbox" name="arcond" id="arcond">Ar Condicionado</label>
+	      <label class="checkbox-inline"> <input type="checkbox" name="dirhidri" id="dirhidri">Direção Hidráulica</label>
+	      <label class="checkbox-inline"> <input type="checkbox" name="cambauto" id="cambauto">Câmbio Automático</label>
+	   	 </div>
      <button type="submit" class="btn btn-default">Buscar</button>
     </form>
    </div>

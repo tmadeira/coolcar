@@ -3,7 +3,7 @@
  import="coolcar.managers.ReservasManager,coolcar.modelos.Reserva, coolcar.managers.ModelosManager, coolcar.modelos.Modelo, java.text.SimpleDateFormat, java.text.DateFormat"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="header.jsp">
- <jsp:param name="pageTitle" value="Histórico de Locações" />
+ <jsp:param name="pageTitle" value="Histórico de Reservas" />
 </jsp:include>
 
 <div class="container">
@@ -18,16 +18,13 @@
 	    ArrayList<Reserva> reservas = manager.consulta(s.getId());
 	    //if (reservas.isEmpty())
 	    //	System.out.println("VAZIO");
-	    Modelo modelo;
-	    ArrayList<Modelo> modelos = new ArrayList<Modelo>();
-	    StringBuilder sb = new StringBuilder();
-	    DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+	    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 	    
-	    out.println("<h2> Histórico de Locações de "+ s.getNomeUsuario() +"</h2>");
+	    out.println("<h2> Histórico de Reservas de "+ s.getNomeUsuario() +"</h2>");
 	%>
 	    <br><table class="table table-striped table-bordered table-hover table-condensed">
 	    <tr>
-	    <th> Id da Locação</th>
+	    <th>Id da Locação</th>
 	    <th>Data de Retirada</th>
 	    <th>Data de Devolução</th>
 	    <th>Modelo</th>
@@ -35,17 +32,14 @@
 	<%
 	    for (Reserva reserva : reservas) {
 	    	
-	      modelos = mod_manager.consulta(reserva.getId_modelo());
+	      ArrayList<Modelo> modelos = mod_manager.consulta(reserva.getId_modelo());
 	      
-	      if (modelos.size() != 1)
-	    	  out.println("ERRO NA CONSULTA");
-	      modelo = modelos.get(0);
-	      
+	      StringBuilder sb = new StringBuilder();
 	      sb.append("<tr>");
 	      sb.append("<td>" + reserva.getId_reserva() + "</td>");
-	      sb.append("<td>" + reserva.getDt_inicio_reserva() + "</td>");
-	      sb.append("<td>" + reserva.getDt_fim_reserva() + "</td>");
-	      sb.append("<td>" + modelo.getNome()  + "</td>");
+	      sb.append("<td>" + df.format(reserva.getDt_inicio_reserva()) + "</td>");
+	      sb.append("<td>" + df.format(reserva.getDt_fim_reserva()) + "</td>");
+	      sb.append("<td>" + modelos.get(0).getNome()  + "</td>");
 	      out.println(sb.toString());
 	    }
 	}

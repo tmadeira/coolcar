@@ -42,11 +42,11 @@ public class ModelosManager {
 	    	((Carro) modelo).setNumAssentos(rs.getInt("num_assentos"));
 	    	((Carro) modelo).setTamanhoPortaMalas(rs.getInt("tamanho_portas_malas"));
 	    	((Carro) modelo).setId_caracteristicas(rs.getInt("id_caracteristicas"));
-	    	 modelo.setNome(rs.getString("nome"));
-	         modelo.setDiaria(rs.getBigDecimal("diaria"));
-	         modelo.setFabricante(rs.getString("fabricante"));
-	         modelo.setCombustivel(rs.getString("combustivel"));
-	         modelo.setIdFuncionario(rs.getInt("id_funcionario"));
+	    	modelo.setNome(rs.getString("nome"));
+	        modelo.setDiaria(rs.getBigDecimal("diaria"));
+	        modelo.setFabricante(rs.getString("fabricante"));
+	        modelo.setCombustivel(rs.getString("combustivel"));
+	        modelo.setIdFuncionario(rs.getInt("id_funcionario"));
 	    	modelos.add(modelo);
 	    }
         if(modelos.isEmpty()){

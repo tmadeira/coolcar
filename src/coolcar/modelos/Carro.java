@@ -1,11 +1,29 @@
 package coolcar.modelos;
 
+import java.math.BigDecimal;
+
 public class Carro extends Modelo {
   private int numPortas, numAssentos, tamanhoPortaMalas, id_caracteristicas;
-  private String tipoCarro;
+  
 
+  public Carro() {
+	  super();
+	  numPortas = -1;
+	  numAssentos = -1;
+	  tamanhoPortaMalas = -1;
+	  id_caracteristicas = -1;
+  }
+  
+  public Carro(String nome, String fabricante, String combustivel, String tipo, BigDecimal diaria, int idModelo, int idFuncionario, int numPortas, int numAssentos, int tamanhoPortaMalas, int id_caracteristicas) {
+	  super(nome, fabricante, combustivel, tipo, diaria, idModelo, idFuncionario);
+	  this.numPortas = numPortas;
+	  this.numAssentos = numAssentos;
+	  this.tamanhoPortaMalas = tamanhoPortaMalas;
+	  this.id_caracteristicas = id_caracteristicas;
+  }
+  
   @Override
-  public String getTipo() {
+  public String getTipoVeiculo() {
     return "carro";
   }
 
@@ -31,14 +49,6 @@ public class Carro extends Modelo {
 
   public void setTamanhoPortaMalas(int tamanhoPortaMalas) {
     this.tamanhoPortaMalas = tamanhoPortaMalas;
-  }
-
-  public String getTipoCarro() {
-    return tipoCarro;
-  }
-
-  public void setTipoCarro(String tipoCarro) {
-    this.tipoCarro = tipoCarro;
   }
 
 public int getId_caracteristicas() {
