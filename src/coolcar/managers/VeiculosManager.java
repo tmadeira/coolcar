@@ -66,8 +66,6 @@ public class VeiculosManager {
 		        		+ " status = " + statusStr + " AND ar_condicionado = " + arCondStr
 		        		+ " AND direcao_hidraulica = " + dirHidStr + " AND cambio_automatico = " + cambAutoStr;
 		        
-		        System.out.println(sql);
-		        
 				PreparedStatement stmt = connection.prepareStatement(sql);
 	        	
 			    ResultSet resultados = stmt.executeQuery();

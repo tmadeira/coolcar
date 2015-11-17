@@ -54,8 +54,8 @@ public class ReservasManager {
 	      BD bd = new BD();
 	      Connection connection = bd.getConnection();
 	      String sql = "INSERT INTO Reserva(id_cliente, id_modelo, valor, id_filial_retirada, "
-	          + "dt_inicio_reserva, id_filial_devolucao, dt_fim_reserva, gps, cadeiras_de_bebe, "
-	          + "seguro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	          + "dt_inicio_reserva, id_filial_devolucao, dt_fim_reserva, id_acessorios)"
+	          + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 	      PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 	      stmt.setInt(1, reserva.getId_cliente());
@@ -65,9 +65,7 @@ public class ReservasManager {
 	      stmt.setDate(5, new Date(reserva.getDt_inicio_reserva().getTime()));
 	      stmt.setInt(6, reserva.getId_filial_devolucao());
 	      stmt.setDate(7, new Date(reserva.getDt_fim_reserva().getTime()));
-	      stmt.setBoolean(8, reserva.temGps());
-	      stmt.setInt(9, reserva.getCadeiras_de_bebe());
-	      stmt.setBoolean(10, reserva.temSeguro());
+	      stmt.setInt(8, reserva.getId_acessorios());
 	      int affectedRows = stmt.executeUpdate();
 
 	      if (affectedRows == 0) {
