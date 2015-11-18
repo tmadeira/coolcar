@@ -1,7 +1,17 @@
 coolCar
 =======
 
-**Requisitos**
+Protótipo de sistema web de locações de veículo realizado para a disciplina de Engenharia de Software (MAC0332) no IME-USP.
+
+**Autores**
+
+Caio Lopes Demario (7991187)
+Felipe Túlio Pereira da Cruz (7557709)
+Marcos Kazuya Yamazaki (7577622)
+Rodrigo Zerbini (4324346)
+Tiago Madeira (6920244)
+
+**Requisitos para desenvolvimento**
 
 - JDK 1.7
 - Eclipse 4.5.1 (Mars)

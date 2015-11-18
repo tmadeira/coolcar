@@ -7,7 +7,7 @@
 %>
 
 <script src="vendor/jquery-1.11.3.min.js"></script>
-<script src="jquery.maskedinput.js" type="text/javascript"></script>
+<script src="vendor/jquery.maskedinput.js" type="text/javascript"></script>
 <script src="maskCpf.js"></script>
 
 <script>
