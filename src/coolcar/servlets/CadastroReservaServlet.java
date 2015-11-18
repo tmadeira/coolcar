@@ -57,22 +57,24 @@ public class CadastroReservaServlet extends HttpServlet{
 	    if (s.isLogged()) {
 	      String dataFimStr = request.getParameter("reservaDataDevolucao");
 	      String dataIniStr = request.getParameter("reservaDataRetirada");
+	      
+	      System.out.println(request.getParameter("reservaModelo"));
 	    
     	  Calendar c = Calendar.getInstance();
     	  
-    	  c.set(Integer.parseInt(dataFimStr.substring(0, 4)), verificaMes(Integer.parseInt(dataFimStr.substring(5, 7))), Integer.parseInt(dataFimStr.substring(8)));
+    	  c.set(Integer.parseInt(dataFimStr.substring(0, 4)), verificaMes(Integer.parseInt(dataFimStr.substring(5, 7))), Integer.parseInt(dataFimStr.substring(8, 10)));
     	  Date dataFim = c.getTime();
-    	  c.set(Integer.parseInt(dataIniStr.substring(0, 4)), verificaMes(Integer.parseInt(dataIniStr.substring(5, 7))), Integer.parseInt(dataIniStr.substring(8)));
+    	  c.set(Integer.parseInt(dataIniStr.substring(0, 4)), verificaMes(Integer.parseInt(dataIniStr.substring(5, 7))), Integer.parseInt(dataIniStr.substring(8, 10)));
     	  Date dataIni = c.getTime();
 	    	
 	      ReservasManager reserva_manager = new ReservasManager();
 	      Reserva reserva = new Reserva(s.getId(), //id_cliente
 	    		  						0, //id_reserva -- não importa para o INSERT
-	    		  						Integer.parseInt(request.getParameter("reservaModelo")), //id_modelo
-	    		  						Integer.parseInt(request.getParameter("reservaFilialRetirada")), //id_filial_retirada,
+	    		  						1, //id_modelo
+	    		  						1, //id_filial_retirada,
 	    		  						1, //id_acessorios -- importa para o INSERT mas não demos importância agora
-	    		  						Integer.parseInt(request.getParameter("reservaFilialDevolucao")), //id_filial_devolucao,
-	    		  						Float.parseFloat(request.getParameter("reservaValor")), //valor,
+	    		  						1, //id_filial_devolucao,
+	    		  						1, //valor,
 	    		  						dataFim, //dt_fim
 	    		  						dataIni); //dt_inicio
 	      
