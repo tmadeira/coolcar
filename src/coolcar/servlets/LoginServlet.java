@@ -12,22 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import coolcar.Sessao;
 
-/*
- * Author: Crunchify.com
- * 
- */
-
-/**
- * Servlet implementation class LoginServlet
- */
-
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    // get request parameters for email and password
     String paramUserEmail = request.getParameter("userEmail");
     String paramUserPwd = request.getParameter("userPwd");
 

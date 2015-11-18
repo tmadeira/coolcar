@@ -6,7 +6,9 @@ public class Filial {
 	  private Endereco endereco;
 	  private float longitude, latitude;
 	  
-	  public Filial(){}
+	  public Filial(){
+		  id = -1;
+	  }
 	  
 	  public Filial(int id, int id_func, String nome, Endereco endereco, float longitude, float latitude) {
 		  this.id = id;
@@ -17,12 +19,20 @@ public class Filial {
 		  this.latitude = latitude;
 	  }
 	  
+	  public void setId(int id){
+		  this.id = id;
+	  }
+	  
 	  public int getId(){
 		  return id;
 	  }
 	  
 	  public int getid_funcionario_cadastrou(){
 		  return id_funcionario_cadastrou;
+	  }
+	  
+	  public void setId(String nome){
+		  this.nome = nome;
 	  }
 	  
 	  public String getNome(){

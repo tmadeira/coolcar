@@ -15,9 +15,17 @@ public class FilialManager {
 		  ArrayList<Filial> filiais = new ArrayList<Filial>();
 		  
 		  try {
+			  
+			String idStr;
+			
+			if(filial.getId() != -1)
+				idStr = Integer.toString(filial.getId());
+        	else
+        		idStr = "id_filial";
+			  
 			BD bd = new BD();
 			Connection connection = bd.getConnection();
-		    String sql = "SELECT * FROM Filial WHERE nome LIKE ?";
+		    String sql = "SELECT * FROM Filial WHERE id_filial = " + idStr + " AND nome LIKE ?";
 		    
 		    PreparedStatement stmt = connection.prepareStatement(sql);
 		    

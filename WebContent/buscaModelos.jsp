@@ -56,10 +56,13 @@
 	    
 	    sb.append("<br>");
 	    sb.append("<form name=\"listaVeiculos\" id=\"listaVeiculos\" action=\"realizaReserva.jsp\" method=\"post\">");
-	    sb.append("<input type=\"hidden\" id=\"\" name=\"\" value=\"\" />");
-	    sb.append("<input type=\"hidden\" id=\"\" name=\"\" value=\"\" />");
-	    sb.append("<input type=\"hidden\" id=\"\" name=\"\" value=\"\" />");
-	    sb.append("<input type=\"hidden\" id=\"\" name=\"\" value=\"\" />");
+	    sb.append("<input type=\"hidden\" id=\"reservaModelo\" name=\"reservaModelo\" value=\"" + veiculo.getCarro().getIdModelo() + "\" />");
+	    sb.append("<input type=\"hidden\" id=\"reservaDiaria\" name=\"reservaDiaria\" value=\"" + veiculo.getCarro().getDiaria() + "\" />");
+	    sb.append("<input type=\"hidden\" id=\"reservaFilialRetirada\" name=\"reservaFilialRetirada\" value=\"" + request.getParameter("local-retirada") + "\" />");
+	    sb.append("<input type=\"hidden\" id=\"reservaFilialDevolucao\" name=\"reservaFilialDevolucao\" value=\"" + request.getParameter("local-devolucao") + "\" />");
+	    sb.append("<input type=\"hidden\" id=\"reservaDataRetirada\" name=\"reservaDataRetirada\" value=\"" + request.getParameter("dtRetirada") + "\" />");
+	    sb.append("<input type=\"hidden\" id=\"reservaDataDevolucao\" name=\"reservaDataDevolucao\" value=\"" + request.getParameter("dtEntrega") + "\" />");
+	    sb.append("<input type=\"hidden\" id=\"reservaLinkImagem\" name=\"reservaLinkImagem\" value=\"" + veiculo.getCarro().getLink() + "\" />");
 	    sb.append("<button type=\"submit\" class=\"btn btn-warning\"><b>Reserve este modelo agora</b></button>");
 	    sb.append("</form>");
 	    
@@ -86,17 +89,20 @@
 	  VeiculosManager veiculos_manager = new VeiculosManager();
 	  ArrayList<Veiculo> veiculos = veiculos_manager.consulta(veiculo_search);
 	
-	  for (Veiculo veiculo : veiculos) {       
+	  for (Veiculo veiculo : veiculos) {    
 	    sb.append("<tr><th><h4><b>" + veiculo.getMoto().getNome() + "</b><br></h4>");
 	    sb.append("<img src=\"" + veiculo.getMoto().getLink() + "\" alt=\"...\" class=\"img-responsive img-thumbnail\" width=\"300\" height=\"300\"></th>");
 	    sb.append("<td>");
 	    
 	    sb.append("<br>");
-	    sb.append("<form name=\"voteVote\" id=\"voteVote\" action=\"realizaReserva.jsp\" method=\"post\">");
-	    sb.append("<input type=\"hidden\" name=\"pseudo\" value=\"refutando\" />");
-	    sb.append("<input type=\"hidden\" name=\"uri\" value=\"/presentation.php\" />");
-	    sb.append("<input type=\"hidden\" name=\"LANG_IN_BLOG\" value=\"br\" />");
-	    sb.append("<input type=\"hidden\" name=\"oldnote\" value=\"5\" />");
+	    sb.append("<form name=\"listaVeiculos\" id=\"listaVeiculos\" action=\"realizaReserva.jsp\" method=\"post\">");
+	    sb.append("<input type=\"hidden\" id=\"reservaModelo\" name=\"reservaModelo\" value=\"" + veiculo.getMoto().getIdModelo() + "\" />");
+	    sb.append("<input type=\"hidden\" id=\"reservaDiaria\" name=\"reservaDiaria\" value=\"" + veiculo.getMoto().getDiaria() + "\" />");
+	    sb.append("<input type=\"hidden\" id=\"reservaFilialRetirada\" name=\"reservaFilialRetirada\" value=\"" + request.getParameter("local-retirada") + "\" />");
+	    sb.append("<input type=\"hidden\" id=\"reservaFilialDevolucao\" name=\"reservaFilialDevolucao\" value=\"" + request.getParameter("local-devolucao") + "\" />");
+	    sb.append("<input type=\"hidden\" id=\"reservaDataRetirada\" name=\"reservaDataRetirada\" value=\"" + request.getParameter("dtRetirada") + "\" />");
+	    sb.append("<input type=\"hidden\" id=\"reservaDataDevolucao\" name=\"reservaDataDevolucao\" value=\"" + request.getParameter("dtEntrega") + "\" />");
+	    sb.append("<input type=\"hidden\" id=\"reservaLinkImagem\" name=\"reservaLinkImagem\" value=\"" + veiculo.getMoto().getLink() + "\" />");
 	    sb.append("<button type=\"submit\" class=\"btn btn-warning\"><b>Reserve este modelo agora</b></button>");
 	    sb.append("</form>");
 	    

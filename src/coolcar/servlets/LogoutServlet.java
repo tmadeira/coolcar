@@ -11,14 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import coolcar.Sessao;
 
-/*
- * Author: Crunchify.com
- * 
- */
-
-/**
- * Servlet implementation class LogoutServlet
- */
 
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
