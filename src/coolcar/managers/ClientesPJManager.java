@@ -9,7 +9,7 @@ import coolcar.bd.BD;
 import coolcar.modelos.Endereco;
 import coolcar.modelos.ClientePJ;
 
-public class ClientePJManager {
+public class ClientesPJManager {
 
   public ArrayList<ClientePJ> consulta(ClientePJ ClientePJ) {
     ArrayList<ClientePJ> clientesPJ = new ArrayList<ClientePJ>();

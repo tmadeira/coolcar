@@ -14,7 +14,7 @@
 	BD bd = new BD();
 	
 	Filial filiais = new Filial();
-	FilialManager filial_manager = new FilialManager();
+	FiliaisManager filial_manager = new FiliaisManager();
 	
 	ArrayList<Filial> resultados = filial_manager.consulta(filiais);
 	Filial filial = resultados.get(Integer.parseInt(request.getParameter("local-retirada")) - 1);

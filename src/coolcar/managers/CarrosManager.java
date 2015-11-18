@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import coolcar.bd.BD;
 import coolcar.modelos.Carro;
 
-public class CarroManager {
+public class CarrosManager {
   public ArrayList<Carro> consulta(Carro carro) {
     ArrayList<Carro> carros = new ArrayList<Carro>();
     String idModeloStr, numPortasStr, numAssentosStr, tamPortaMalasStr, idCaracStr;

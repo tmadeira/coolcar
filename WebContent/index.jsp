@@ -1,5 +1,5 @@
 <%@page
- import="coolcar.bd.BD, coolcar.modelos.Filial, coolcar.managers.FilialManager,java.util.ArrayList, java.util.Iterator"%>
+ import="coolcar.bd.BD, coolcar.modelos.Filial, coolcar.managers.FiliaisManager,java.util.ArrayList, java.util.Iterator"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 
 <script src="vendor/jquery-1.11.3.min.js"></script>
@@ -35,7 +35,7 @@ $(document).ready(function(){
 	  BD bd = new BD();
 	
 	  Filial filiais = new Filial();
-      FilialManager filial_manager = new FilialManager();
+      FiliaisManager filial_manager = new FiliaisManager();
       
 	  ArrayList<Filial> resultados = filial_manager.consulta(filiais);
 	  Iterator<Filial> result = resultados.iterator();

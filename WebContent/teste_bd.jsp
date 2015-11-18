@@ -24,9 +24,9 @@
   Date data = c.getTime();
   Reserva reserva = new Reserva(7, 1, 2, 1, 1, 1, 150, data, data);  
 
-  ClientePFManager cpf_manager = new ClientePFManager();
-  CarroManager carro_manager = new CarroManager();	
-  MotoManager moto_manager = new MotoManager();
+  ClientesPFManager cpf_manager = new ClientesPFManager();
+  CarrosManager carro_manager = new CarrosManager();	
+  MotosManager moto_manager = new MotosManager();
   VeiculosManager veiculos_manager = new VeiculosManager();
   ReservasManager reserva_manager = new ReservasManager();
 

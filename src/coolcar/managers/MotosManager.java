@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import coolcar.bd.BD;
 import coolcar.modelos.Moto;
 
-public class MotoManager {
+public class MotosManager {
   public ArrayList<Moto> consulta(Moto moto) {
     ArrayList<Moto> motos = new ArrayList<Moto>();
     String idModeloStr, cilindradasStr, tamTanqueStr;

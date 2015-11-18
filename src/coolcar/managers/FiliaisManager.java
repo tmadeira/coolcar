@@ -9,7 +9,7 @@ import coolcar.bd.BD;
 import coolcar.modelos.Endereco;
 import coolcar.modelos.Filial;
 
-public class FilialManager {
+public class FiliaisManager {
 
   public ArrayList<Filial> consulta(Filial filial) {
     ArrayList<Filial> filiais = new ArrayList<Filial>();

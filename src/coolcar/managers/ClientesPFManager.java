@@ -9,7 +9,7 @@ import coolcar.bd.BD;
 import coolcar.modelos.Endereco;
 import coolcar.modelos.ClientePF;
 
-public class ClientePFManager {
+public class ClientesPFManager {
 
   public ArrayList<ClientePF> consulta(ClientePF clientePF) {
     ArrayList<ClientePF> clientesPF = new ArrayList<ClientePF>();

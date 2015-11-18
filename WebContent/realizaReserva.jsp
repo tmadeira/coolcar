@@ -52,7 +52,7 @@
 	 			
 	 			Filial filial = new Filial();
 	 			filial.setId(Integer.parseInt(request.getParameter("reservaFilialRetirada")));
-	 			FilialManager filial_manager = new FilialManager();
+	 			FiliaisManager filial_manager = new FiliaisManager();
 	 			
 	 			ArrayList<Filial> resultados = filial_manager.consulta(filial);
  			%>

@@ -2,7 +2,7 @@ package coolcar;
 
 import javax.servlet.http.Cookie;
 
-import coolcar.managers.ClientePFManager;
+import coolcar.managers.ClientesPFManager;
 import coolcar.modelos.ClientePF;
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class Sessao {
     usuario.setEmail(email);
     usuario.setSenha(password);
 
-    ClientePFManager manager = new ClientePFManager();
+    ClientesPFManager manager = new ClientesPFManager();
     ArrayList<ClientePF> resultados = manager.consulta(usuario);
 
     if (resultados.size() != 1)
