@@ -7,26 +7,26 @@ public class Carro extends Modelo {
   private CaracteristicasCarro carac;
 
   public Carro() {
-	  super();
-	  numPortas = -1;
-	  numAssentos = -1;
-	  tamanhoPortaMalas = -1;
-	  id_caracteristicas = -1;
-	  
-	  carac = new CaracteristicasCarro();
+    super();
+    numPortas = -1;
+    numAssentos = -1;
+    tamanhoPortaMalas = -1;
+    id_caracteristicas = -1;
+
+    carac = new CaracteristicasCarro();
   }
-  
-  public Carro(String nome, String fabricante, String combustivel, String tipo, BigDecimal diaria, 
-		  int idModelo, int idFuncionario, int numPortas, int numAssentos, int tamanhoPortaMalas, int id_caracteristicas,
-		  CaracteristicasCarro carac) {
-	  super(nome, fabricante, combustivel, tipo, diaria, idModelo, idFuncionario);
-	  this.numPortas = numPortas;
-	  this.numAssentos = numAssentos;
-	  this.tamanhoPortaMalas = tamanhoPortaMalas;
-	  this.id_caracteristicas = id_caracteristicas;
-	  this.carac = carac;
+
+  public Carro(String nome, String fabricante, String combustivel, String tipo, BigDecimal diaria, int idModelo,
+      int idFuncionario, int numPortas, int numAssentos, int tamanhoPortaMalas, int id_caracteristicas,
+      CaracteristicasCarro carac) {
+    super(nome, fabricante, combustivel, tipo, diaria, idModelo, idFuncionario);
+    this.numPortas = numPortas;
+    this.numAssentos = numAssentos;
+    this.tamanhoPortaMalas = tamanhoPortaMalas;
+    this.id_caracteristicas = id_caracteristicas;
+    this.carac = carac;
   }
-  
+
   @Override
   public String getTipoVeiculo() {
     return "carro";
@@ -59,17 +59,17 @@ public class Carro extends Modelo {
   public int getId_caracteristicas() {
     return id_caracteristicas;
   }
-	
+
   public void setId_caracteristicas(int id_caracteristicas) {
-	this.id_caracteristicas = id_caracteristicas;
+    this.id_caracteristicas = id_caracteristicas;
   }
-  
-  public CaracteristicasCarro getCarac(){
-	return this.carac;
+
+  public CaracteristicasCarro getCarac() {
+    return this.carac;
   }
-  
-  public void setCarac(CaracteristicasCarro carac){
-	this.carac = carac;
+
+  public void setCarac(CaracteristicasCarro carac) {
+    this.carac = carac;
   }
-  
+
 }

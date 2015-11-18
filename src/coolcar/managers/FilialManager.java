@@ -11,51 +11,45 @@ import coolcar.modelos.Filial;
 
 public class FilialManager {
 
-	public ArrayList<Filial> consulta(Filial filial) {
-		  ArrayList<Filial> filiais = new ArrayList<Filial>();
-		  
-		  try {
-			  
-			String idStr;
-			
-			if(filial.getId() != -1)
-				idStr = Integer.toString(filial.getId());
-        	else
-        		idStr = "id_filial";
-			  
-			BD bd = new BD();
-			Connection connection = bd.getConnection();
-		    String sql = "SELECT * FROM Filial WHERE id_filial = " + idStr + " AND nome LIKE ?";
-		    
-		    PreparedStatement stmt = connection.prepareStatement(sql);
-		    
-		    if (filial.getNome() != null)
-		    	stmt.setString(1, filial.getNome());
-		    else
-		    	stmt.setString(1, "%");
+  public ArrayList<Filial> consulta(Filial filial) {
+    ArrayList<Filial> filiais = new ArrayList<Filial>();
 
-		    
-		    ResultSet resultados = stmt.executeQuery();
-		    while (resultados.next()) {	    	  
-		    	Endereco endereco_select = new Endereco(resultados.getString("endereco_logradouro"),
-				    									resultados.getString("endereco_complemento"),
-				    									resultados.getString("endereco_cep"),
-				    									resultados.getString("endereco_cidade"),
-				    									resultados.getString("endereco_estado"),
-				    									resultados.getInt("endereco_numero"));
-		    	
-		    	Filial filial_select = new Filial(resultados.getInt("id_filial"),
-			    								  resultados.getInt("id_funcionario_cadastrou"),
-			    								  resultados.getString("nome"),
-			    								  endereco_select,
-			    								  resultados.getFloat("coordenadas_longitude"),
-			    								  resultados.getFloat("coordenadas_latitude"));
-		    	filiais.add(filial_select);
-		    }
+    try {
 
-		  } catch (Exception e) {
-			  e.printStackTrace();
-		  }
-	    return filiais;
-	  }
+      String idStr;
+
+      if (filial.getId() != -1)
+        idStr = Integer.toString(filial.getId());
+      else
+        idStr = "id_filial";
+
+      BD bd = new BD();
+      Connection connection = bd.getConnection();
+      String sql = "SELECT * FROM Filial WHERE id_filial = " + idStr + " AND nome LIKE ?";
+
+      PreparedStatement stmt = connection.prepareStatement(sql);
+
+      if (filial.getNome() != null)
+        stmt.setString(1, filial.getNome());
+      else
+        stmt.setString(1, "%");
+
+      ResultSet resultados = stmt.executeQuery();
+      while (resultados.next()) {
+        Endereco endereco_select = new Endereco(resultados.getString("endereco_logradouro"),
+            resultados.getString("endereco_complemento"), resultados.getString("endereco_cep"),
+            resultados.getString("endereco_cidade"), resultados.getString("endereco_estado"),
+            resultados.getInt("endereco_numero"));
+
+        Filial filial_select = new Filial(resultados.getInt("id_filial"), resultados.getInt("id_funcionario_cadastrou"),
+            resultados.getString("nome"), endereco_select, resultados.getFloat("coordenadas_longitude"),
+            resultados.getFloat("coordenadas_latitude"));
+        filiais.add(filial_select);
+      }
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return filiais;
+  }
 }

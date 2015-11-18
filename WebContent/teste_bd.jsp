@@ -1,4 +1,5 @@
-<%@page import="coolcar.bd.BD, coolcar.modelos.*, coolcar.managers.* ,java.util.ArrayList, java.util.Iterator, java.util.Calendar, java.util.Date"%>
+<%@page
+ import="coolcar.bd.BD, coolcar.modelos.*, coolcar.managers.* ,java.util.ArrayList, java.util.Iterator, java.util.Calendar, java.util.Date"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 
 <%

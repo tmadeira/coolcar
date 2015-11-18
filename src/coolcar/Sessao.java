@@ -9,7 +9,8 @@ import java.util.ArrayList;
 public class Sessao {
   private static Sessao singleton = new Sessao();
   private boolean logged;
-  private ClientePF usuario; // TODO: alterar esse ClientePF para algo genérico, pois temos que abranger os ClientesPJ
+  private ClientePF usuario; // TODO: alterar esse ClientePF para algo genérico,
+                             // pois temos que abranger os ClientesPJ
   private Cookie userCookie;
 
   public static Sessao getInstance() {
@@ -22,22 +23,22 @@ public class Sessao {
   }
 
   public boolean logIn(String email, String password) {
-	
-	usuario = new ClientePF();
-	usuario.setEmail(email);
+
+    usuario = new ClientePF();
+    usuario.setEmail(email);
     usuario.setSenha(password);
-    
+
     ClientePFManager manager = new ClientePFManager();
     ArrayList<ClientePF> resultados = manager.consulta(usuario);
-    
+
     if (resultados.size() != 1)
-    	return false;
-    
+      return false;
+
     usuario = resultados.get(0);
-    
+
     userCookie = new Cookie("userEmail", usuario.getEmail());
     logged = true;
-   
+
     return true;
   }
 
@@ -66,9 +67,9 @@ public class Sessao {
   public String getNomeUsuario() {
     return usuario.getNome();
   }
-  
-  public int getId(){
-	  return usuario.getId();
+
+  public int getId() {
+    return usuario.getId();
   }
 
   public Cookie getCookie() {

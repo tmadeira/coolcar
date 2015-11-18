@@ -6,17 +6,18 @@ public class Moto extends Modelo {
   private float cilindradas, tamanhoTanque;
 
   public Moto() {
-	  super();
-	  cilindradas = -1;
-	  tamanhoTanque = -1;
+    super();
+    cilindradas = -1;
+    tamanhoTanque = -1;
   }
-  
-  public Moto(String nome, String fabricante, String combustivel, String tipo, BigDecimal diaria, int idModelo, int idFuncionario, float cilindradas, float tamanhoTanque) {
-	  super(nome, fabricante, combustivel, tipo, diaria, idModelo, idFuncionario);
-	  this.cilindradas = cilindradas;
-	  this.tamanhoTanque = tamanhoTanque;
+
+  public Moto(String nome, String fabricante, String combustivel, String tipo, BigDecimal diaria, int idModelo,
+      int idFuncionario, float cilindradas, float tamanhoTanque) {
+    super(nome, fabricante, combustivel, tipo, diaria, idModelo, idFuncionario);
+    this.cilindradas = cilindradas;
+    this.tamanhoTanque = tamanhoTanque;
   }
-  
+
   @Override
   public String getTipoVeiculo() {
     return "moto";

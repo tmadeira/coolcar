@@ -15,6 +15,6 @@ public class InstalacaoServlet extends HttpServlet {
       System.out.println("Erro ao carregar driver para Postgres.");
       e.printStackTrace();
     }
-    
+
   }
 }

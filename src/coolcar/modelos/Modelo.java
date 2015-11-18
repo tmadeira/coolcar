@@ -8,19 +8,20 @@ public abstract class Modelo {
   private int idModelo, idFuncionario;
 
   public Modelo() {
-	  idModelo = -1;
+    idModelo = -1;
   }
-  
-  public Modelo(String nome, String fabricante, String combustivel, String tipo, BigDecimal diaria, int idModelo, int idFuncionario) {
-	  this.nome = nome;
-	  this.fabricante = fabricante;
-	  this.combustivel = combustivel;
-	  this.tipo = tipo;
-	  this.diaria = diaria;
-	  this.idModelo = idModelo;
-	  this.idFuncionario = idFuncionario;
+
+  public Modelo(String nome, String fabricante, String combustivel, String tipo, BigDecimal diaria, int idModelo,
+      int idFuncionario) {
+    this.nome = nome;
+    this.fabricante = fabricante;
+    this.combustivel = combustivel;
+    this.tipo = tipo;
+    this.diaria = diaria;
+    this.idModelo = idModelo;
+    this.idFuncionario = idFuncionario;
   }
-  
+
   public abstract String getTipoVeiculo();
 
   public int getIdModelo() {
@@ -54,9 +55,9 @@ public abstract class Modelo {
   public void setCombustivel(String combustivel) {
     this.combustivel = combustivel;
   }
-  
+
   public String getTipo() {
-	return tipo;
+    return tipo;
   }
 
   public void setTipo(String tipo) {
@@ -78,12 +79,12 @@ public abstract class Modelo {
   public void setIdFuncionario(int idFuncionario) {
     this.idFuncionario = idFuncionario;
   }
-  
+
   public String getLink() {
-	return link;
+    return link;
   }
 
   public void setLink(String link) {
-	this.link = link;
+    this.link = link;
   }
 }

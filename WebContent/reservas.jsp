@@ -9,7 +9,7 @@
 <div class="container">
 
 
-  <%
+ <%
   
   	Sessao s = Sessao.getInstance();
 	if (s.isLogged()) {
@@ -22,14 +22,16 @@
 	    
 	    out.println("<h2> Histórico de Reservas de "+ s.getNomeUsuario() +"</h2>");
 	%>
-	    <br><table class="table table-striped table-bordered table-hover table-condensed">
-	    <tr>
-	    <th>ID da Reserva</th>
-	    <th>Data de Retirada</th>
-	    <th>Data de Devolução</th>
-	    <th>Modelo</th>
-	    </tr>
-	<%
+ <br>
+ <table
+  class="table table-striped table-bordered table-hover table-condensed">
+  <tr>
+   <th>ID da Reserva</th>
+   <th>Data de Retirada</th>
+   <th>Data de Devolução</th>
+   <th>Modelo</th>
+  </tr>
+  <%
 	    for (Reserva reserva : reservas) {
 	    	
 	      ArrayList<Modelo> modelos = mod_manager.consulta(reserva.getId_modelo());

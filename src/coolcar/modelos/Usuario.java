@@ -8,41 +8,47 @@ public abstract class Usuario {
   private Endereco endereco;
   private Telefone telefone, celular;
 
-  public Usuario(){}
-  
-  public Usuario(int id, String nome, String email, String senha, Endereco endereco){
-	  this.id = id;
-	  this.nome = nome;
-	  this.email = email;
-	  this.senha = senha;
-	  this.endereco = endereco;
+  public Usuario() {
   }
-  
+
+  public Usuario(int id, String nome, String email, String senha, Endereco endereco) {
+    this.id = id;
+    this.nome = nome;
+    this.email = email;
+    this.senha = senha;
+    this.endereco = endereco;
+  }
+
   public abstract String getTipo();
-  
-  public String getCpf(){ 
-	  return ""; 
-  };
-  public void setCpf(String cpf){
-  };
-  
-  public char getSexo(){
-	  return ' ';
-  };
-  public void setSexo(char sexo){
-	  
-  };
-  public Date getDtNascimento(){
-	  return new Date();
-  };
-  public void setDtNascimento(Date dtNascimento){
-	  
-  };
-  public String getCnpj(){
-	  return "";
+
+  public String getCpf() {
+    return "";
   };
 
-  public void setCnpj(String cnpj){
+  public void setCpf(String cpf) {
+  };
+
+  public char getSexo() {
+    return ' ';
+  };
+
+  public void setSexo(char sexo) {
+
+  };
+
+  public Date getDtNascimento() {
+    return new Date();
+  };
+
+  public void setDtNascimento(Date dtNascimento) {
+
+  };
+
+  public String getCnpj() {
+    return "";
+  };
+
+  public void setCnpj(String cnpj) {
   };
 
   public int getId() {
@@ -85,20 +91,19 @@ public abstract class Usuario {
     this.endereco = endereco;
   }
 
-  
   public Telefone getTelefone() {
-	  return telefone;
+    return telefone;
   }
-  
+
   public void setTelefone(Telefone telefone) {
-	  this.telefone = telefone;
+    this.telefone = telefone;
   }
-  
+
   public Telefone getCelular() {
-	  return celular;
+    return celular;
   }
-  
+
   public void setCelular(Telefone celular) {
-	  this.celular = celular;
+    this.celular = celular;
   }
 }

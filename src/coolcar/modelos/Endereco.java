@@ -4,17 +4,18 @@ public class Endereco {
   private String logradouro, complemento, cep, cidade, estado;
   private int numero;
 
-  public Endereco() {}
-  
-  public Endereco(String logradouro, String complemento, String cep, String cidade, String estado, int numero) {
-	  this.logradouro = logradouro;
-	  this.complemento = complemento;
-	  this.cep = cep;
-	  this.cidade = cidade;
-	  this.estado = estado;
-	  this.numero = numero;
+  public Endereco() {
   }
-  
+
+  public Endereco(String logradouro, String complemento, String cep, String cidade, String estado, int numero) {
+    this.logradouro = logradouro;
+    this.complemento = complemento;
+    this.cep = cep;
+    this.cidade = cidade;
+    this.estado = estado;
+    this.numero = numero;
+  }
+
   public String getLogradouro() {
     return logradouro;
   }

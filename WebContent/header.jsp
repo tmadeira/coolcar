@@ -36,19 +36,19 @@
     <form class="navbar-form navbar-right" action="LogoutServlet"
      method="post">
      <div class="form-group">
-      <font color="#bbbbbb">Bem vindo <strong>
-        <% out.println(s.getNomeUsuario()); %>!
+      <font color="#bbbbbb">Bem vindo <strong> <% out.println(s.getNomeUsuario()); %>!
       </strong></font>
      </div>
      <button type="submit" class="btn btn-danger">Logout</button>
     </form>
-    
+
     <form class="navbar-form navbar-right" action="reservas.jsp"
      method="post">
-     <button type="submit" class="btn btn-primary">Histórico de Reservas</button>
+     <button type="submit" class="btn btn-primary">Histórico de
+      Reservas</button>
     </form>
-    
-    
+
+
     <%
 			} else {
 		%>

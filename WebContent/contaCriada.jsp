@@ -5,11 +5,11 @@
 
 <div class="container">
  <h2>Conta criada com sucesso!</h2>
- 
-<%
+
+ <%
 
 %>
- 
+
 </div>
 
 <jsp:include page="footer.jsp" />
