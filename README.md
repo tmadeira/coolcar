@@ -1,15 +1,17 @@
 coolCar
 =======
 
-Protótipo de sistema web de locações de veículo realizado para a disciplina de Engenharia de Software (MAC0332) no IME-USP.
+Protótipo de sistema web de locações de veículo realizado para a disciplina de Engenharia de Software (MAC0332) no IME-USP no segundo semestre de 2015.
 
 **Autores**
 
-Caio Lopes Demario (7991187)
-Felipe Túlio Pereira da Cruz (7557709)
-Marcos Kazuya Yamazaki (7577622)
-Rodrigo Zerbini (4324346)
-Tiago Madeira (6920244)
+- Caio Lopes Demario (7991187)
+- Felipe Túlio Pereira da Cruz (7557709)
+- Marcos Kazuya Yamazaki (7577622)
+- Rodrigo Zerbini (4324346)
+- Tiago Madeira (6920244)
+
+Professora: Ana Cristina Vieira de Melo
 
 **Requisitos para desenvolvimento**
 
