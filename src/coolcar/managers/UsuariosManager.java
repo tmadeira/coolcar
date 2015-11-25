@@ -15,9 +15,8 @@ import coolcar.modelos.Usuario;
 
 public class UsuariosManager {
 
-
   public ArrayList<Usuario> consulta(Usuario usuario) {
-	  return new ArrayList<Usuario>();
+    return new ArrayList<Usuario>();
   }
 
   public boolean insere(Usuario usuario) {
@@ -70,12 +69,12 @@ public class UsuariosManager {
       }
 
       if (usuario.getTipo().equals("cliente_pj")) {
-    	  ClientePJ clientePJ = (ClientePJ) usuario;
-          sql = "INSERT INTO Cliente_PJ (id_usuario, cnpj) VALUES (?, ?)";
-          stmt = connection.prepareStatement(sql);
-          stmt.setInt(1, usuario.getId());
-          stmt.setString(2, clientePJ.getCnpj());
-          stmt.executeUpdate();
+        ClientePJ clientePJ = (ClientePJ) usuario;
+        sql = "INSERT INTO Cliente_PJ (id_usuario, cnpj) VALUES (?, ?)";
+        stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, usuario.getId());
+        stmt.setString(2, clientePJ.getCnpj());
+        stmt.executeUpdate();
       }
 
       if (usuario.getTipo().equals("funcionario")) {

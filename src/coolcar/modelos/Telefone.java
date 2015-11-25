@@ -10,7 +10,7 @@ public class Telefone {
 
   public void setDdd(String ddd) {
     this.ddd = ddd;
-    //System.out.println("ddd " + ddd);
+    // System.out.println("ddd " + ddd);
   }
 
   public String getNumero() {
@@ -20,6 +20,6 @@ public class Telefone {
   public void setNumero(String numero) {
 
     this.numero = numero;
-    //System.out.println("num " + numero);
+    // System.out.println("num " + numero);
   }
 }

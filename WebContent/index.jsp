@@ -1,4 +1,5 @@
-<%@page import="coolcar.bd.BD, coolcar.modelos.Filial, coolcar.managers.FilialManager,java.util.ArrayList, java.util.Iterator"%>
+<%@page
+ import="coolcar.bd.BD, coolcar.modelos.Filial, coolcar.managers.FiliaisManager,java.util.ArrayList, java.util.Iterator"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 
 <script src="vendor/jquery-1.11.3.min.js"></script>
@@ -28,13 +29,13 @@ $(document).ready(function(){
     <p>O que você está esperando?</p>
     <form action="buscaModelos.jsp" method="post">
      <div class="form-group">
-      <label for="local-retirada">Local de retirada</label> 
-      <select class="form-control" name="local-retirada" id="local-retirada">
-<%
+      <label for="local-retirada">Local de retirada</label> <select
+       class="form-control" name="local-retirada" id="local-retirada">
+       <%
 	  BD bd = new BD();
 	
 	  Filial filiais = new Filial();
-      FilialManager filial_manager = new FilialManager();
+      FiliaisManager filial_manager = new FiliaisManager();
       
 	  ArrayList<Filial> resultados = filial_manager.consulta(filiais);
 	  Iterator<Filial> result = resultados.iterator();
@@ -47,9 +48,9 @@ $(document).ready(function(){
       </select>
      </div>
      <div class="form-group">
-      <label for="local-devolucao">Local de devolucao</label> 
-      <select class="form-control" name="local-devolucao" id="local-devolucao">
-<%
+      <label for="local-devolucao">Local de devolucao</label> <select
+       class="form-control" name="local-devolucao" id="local-devolucao">
+       <%
 	  ArrayList<Filial> resultados2 = filial_manager.consulta(filiais);
 	  Iterator<Filial> result2 = resultados2.iterator();
 	  
@@ -60,24 +61,33 @@ $(document).ready(function(){
 
 
 %>
-     </select>
-     </div>
-      <div class="form-group">
-      <label for="tipo-veiculo">Tipo de Veículo</label> 
-      <select class="form-control" name="tipo-veiculo" id="tipo-veiculo" required>
-      	<option>Carro</option>
-      	<option>Moto</option>
       </select>
-	  </div>
-	  <div>
-	  	<label for="retirada">Data de Retirada:</label><input id="dtRetirada" name="dtRetirada" type="date" value="2015-01-01"/>
-	  	<label for="entrega">Data de Entrega:</label><input id="dtEntrega" name="dtEntrega" type="date" value="2015-01-02"/>
-	  </div>
-	  <div class="checkbox" id="carac-carro">
- 		<label class="checkbox-inline"> <input type="checkbox" checked="checked" name="arcond" id="arcond">Ar Condicionado</label>
- 		<label class="checkbox-inline"> <input type="checkbox" checked="checked" name="dirhidri" id="dirhidri">Direção Hidráulica</label>
- 		<label class="checkbox-inline"> <input type="checkbox" name="cambauto" id="cambauto">Câmbio Automático</label>
-	  </div>
+     </div>
+     <div class="form-group">
+      <label for="tipo-veiculo">Tipo de Veículo</label> <select
+       class="form-control" name="tipo-veiculo" id="tipo-veiculo"
+       required>
+       <option>Carro</option>
+       <option>Moto</option>
+      </select>
+     </div>
+     <div>
+      <label for="retirada">Data de Retirada:</label><input
+       id="dtRetirada" name="dtRetirada" type="date" value="2015-01-01" />
+      <label for="entrega">Data de Entrega:</label><input id="dtEntrega"
+       name="dtEntrega" type="date" value="2015-01-02" />
+     </div>
+     <div class="checkbox" id="carac-carro">
+      <label class="checkbox-inline"> <input type="checkbox"
+       checked="checked" name="arcond" id="arcond">Ar
+       Condicionado
+      </label> <label class="checkbox-inline"> <input type="checkbox"
+       checked="checked" name="dirhidri" id="dirhidri">Direção
+       Hidráulica
+      </label> <label class="checkbox-inline"> <input type="checkbox"
+       name="cambauto" id="cambauto">Câmbio Automático
+      </label>
+     </div>
      <button type="submit" class="btn btn-default">Buscar</button>
     </form>
    </div>

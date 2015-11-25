@@ -7,15 +7,17 @@ public class ClientePF extends Usuario {
   private char sexo;
   private Date dtNascimento;
 
-  public ClientePF() {}
-  
-  public ClientePF(int id, String nome, String email, String senha, Endereco endereco, String cpf, char sexo, Date dtNascimento) {
-	  super(id, nome, email, senha, endereco);
-	  this.cpf = cpf;
-	  this.sexo = sexo;
-	  this.dtNascimento = dtNascimento;
+  public ClientePF() {
   }
-  
+
+  public ClientePF(int id, String nome, String email, String senha, Endereco endereco, String cpf, char sexo,
+      Date dtNascimento) {
+    super(id, nome, email, senha, endereco);
+    this.cpf = cpf;
+    this.sexo = sexo;
+    this.dtNascimento = dtNascimento;
+  }
+
   @Override
   public String getTipo() {
     return "cliente_pf";

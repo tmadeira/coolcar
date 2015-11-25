@@ -5,7 +5,7 @@
 
 <div class="container">
 
-	<%
+ <%
 		String userName = null;
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
@@ -17,10 +17,11 @@
 		if (userName == null)
 		    response.sendRedirect("index.jsp");
 	%>
-	<h3>
-	    Hi <%=userName%>, Login successful.
-	</h3>
-	<br>
+ <h3>
+  Hi
+  <%=userName%>, Login successful.
+ </h3>
+ <br>
 
 </div>
 
