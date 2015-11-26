@@ -50,7 +50,7 @@ public class CadastroReservaServlet extends HttpServlet {
     return 0;
   }
 
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     Sessao s = Sessao.getInstance();
 
