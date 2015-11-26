@@ -60,8 +60,6 @@ public class CadastroServlet extends HttpServlet {
       DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
       try {
         dataDeNascimento = df.parse(request.getParameter("dtNascimento"));
-        System.out.println(request.getParameter("dtNascimento"));
-        System.out.println(dataDeNascimento);
       } catch (ParseException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
@@ -176,7 +174,6 @@ public class CadastroServlet extends HttpServlet {
         cel.setNumero("");
       }
       usuario.setCelular(cel);
-      System.out.println("Tel " + tel.getNumero() + " Cel " + cel.getNumero());
 
       if (!manager.insere(usuario)) {
         System.out.println("erro de insercao!");
