@@ -128,7 +128,7 @@ public class CadastroServletTest {
 
   @Test
   public void testSDataDeNascimentoInvalidoInexistente() throws Exception {
-  when(request.getParameter("dtNascimento")).thenReturn("12-25-2020");
+  when(request.getParameter("dtNascimento")).thenReturn("25-12-2020");
   
     new CadastroServlet().doPost(request, response);
     

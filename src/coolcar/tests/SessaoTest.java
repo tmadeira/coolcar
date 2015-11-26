@@ -2,24 +2,42 @@ package coolcar.tests;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
+
 import coolcar.Sessao;
 
 import org.junit.Test;
 
 public class SessaoTest {
-
-  Sessao sessao;
-  
-  
+  @Before
+  public void setUp() {
+	  
+  }
   
   @Test
-  public void testLogIn() {
-    fail("Not yet implemented");
+  public void testLogInErrado() {
+	  Sessao s = new Sessao(null);
+    assertNull(s.logIn("teste@coolcar.teste", "senha123"));
+  }
+
+  @Test
+  public void testLogInCorreto() {
+	  Sessao s = new Sessao(null);
+    assertNotNull(s.logIn("es@coolcar.com", "senha123"));
   }
 
   @Test
   public void testLogOut() {
-    fail("Not yet implemented");
+	  Sessao s = new Sessao(null);
+    s.logIn("es@coolcar.com", "senha123");
+
+    assertNotNull(s.logOut());
+  }
+
+  @Test
+  public void testLogOutSemLogIn() {
+    Sessao s = new Sessao(null);
+    assertNotNull(s.logOut());
   }
 
   @Test
