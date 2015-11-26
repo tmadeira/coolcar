@@ -40,7 +40,7 @@ public class Sessao {
 
     ClientesPFManager manager = new ClientesPFManager();
     ArrayList<ClientePF> resultados = manager.consulta(usuario);
-    
+
     if (resultados.size() != 1){
       usuario = null;
       logged = false;
@@ -48,7 +48,6 @@ public class Sessao {
     else {
       usuario = resultados.get(0);
       logged = true;
-
     }
   }
   

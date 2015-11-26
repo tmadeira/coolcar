@@ -41,17 +41,52 @@ public class SessaoTest {
   }
 
   @Test
-  public void testIsLogged() {
-    fail("Not yet implemented");
+  public void testIsLoggedFalso() {
+    Sessao s = new Sessao(null);
+    assert(s.isLogged() == false);
+  }
+
+  @Test
+  public void testIsLoggedFalsoDepoisDeLogarEDeslogar() {
+    Sessao s = new Sessao(null);
+    s.logIn("es@coolcar.com", "senha123");
+    s.logOut();
+
+    assert(s.isLogged() == false);
+  }
+  
+  @Test
+  public void testIsLoggedLoginSenhaErrada() {
+    Sessao s = new Sessao(null);
+    s.logIn("es@coolcar.com", "senhaClaramenteErrada");
+    assert(s.isLogged() == false);
+  }
+
+  @Test
+  public void testIsLoggedLoginEmailErrada() {
+    Sessao s = new Sessao(null);
+    s.logIn("usuarioNaoExistente@coolcar.com", "senha123");
+    assert(s.isLogged() == false);
+  }
+
+  @Test
+  public void testIsLoggedVerdadeiro() {
+    Sessao s = new Sessao(null);
+    assertNotNull(s.logIn("es@coolcar.com", "senha123"));
+    assert(s.isLogged() == true);
   }
 
   @Test
   public void testGetNomeUsuario() {
-    fail("Not yet implemented");
+    Sessao s = new Sessao(null);
+    assertNotNull(s.logIn("es@coolcar.com", "senha123"));
+    assert(s.getNomeUsuario() == "es@coolcar.com");
   }
 
   @Test
   public void testGetId() {
-    fail("Not yet implemented");
+    Sessao s = new Sessao(null);
+    assertNotNull(s.logIn("es@coolcar.com", "senha123"));
+    assert(s.getId() == 7);
   }
 }
