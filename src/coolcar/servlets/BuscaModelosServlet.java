@@ -87,7 +87,7 @@ public class BuscaModelosServlet extends HttpServlet {
 
     request.setAttribute("filial", filialRetirada);
     request.setAttribute("veiculos", veiculos);
-    RequestDispatcher rd = getServletContext().getRequestDispatcher("/buscaModelos.jsp");
+    RequestDispatcher rd = request.getRequestDispatcher("/buscaModelos.jsp");
     rd.forward(request, response);
   }
 }
