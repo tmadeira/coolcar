@@ -13,29 +13,38 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import coolcar.modelos.Filial;
 import coolcar.modelos.Veiculo;
 import coolcar.servlets.BuscaModelosServlet;
 
 public class BuscaModelosServletTest extends Mockito {
   @Captor
+  private ArgumentCaptor<Filial> filial;
+  @Captor
   private ArgumentCaptor<ArrayList<Veiculo>> veiculos;
 
+  @Mock
+  HttpServletRequest request;
+  @Mock
+  HttpServletResponse response;
+  @Mock
+  RequestDispatcher rd;
+
+  @InjectMocks
   BuscaModelosServlet servlet;
 
   @Before
   public void setUp() {
     MockitoAnnotations.initMocks(this);
-    servlet = new BuscaModelosServlet();
   }
 
   @Test
   public void testFilialNaoExistente() {
-    HttpServletRequest request = mock(HttpServletRequest.class);
-    HttpServletResponse response = mock(HttpServletResponse.class);
-
     when(request.getParameter("local-retirada")).thenReturn("-1");
 
     try {
@@ -50,10 +59,6 @@ public class BuscaModelosServletTest extends Mockito {
 
   @Test
   public void testFilialCorreta() throws IOException {
-    HttpServletRequest request = mock(HttpServletRequest.class);
-    HttpServletResponse response = mock(HttpServletResponse.class);
-    RequestDispatcher rd = mock(RequestDispatcher.class);
-
     when(request.getParameter("local-retirada")).thenReturn("1");
     when(request.getParameter("tipo-veiculo")).thenReturn("Carro");
     when(request.getRequestDispatcher("/buscaModelos.jsp")).thenReturn(rd);
@@ -65,8 +70,10 @@ public class BuscaModelosServletTest extends Mockito {
       fail("Exceção em doPost");
     }
 
-    verify(request).setAttribute(eq("filial"), eq(1));
+    verify(request).setAttribute(eq("filial"), filial.capture());
     verify(request).setAttribute(eq("veiculos"), veiculos.capture());
+
+    assertEquals(filial.getValue().getId(), 1);
 
     for (Veiculo veiculo : veiculos.getValue()) {
       assertEquals(veiculo.getFilialAlojada(), 1);
@@ -74,11 +81,24 @@ public class BuscaModelosServletTest extends Mockito {
   }
 
   @Test
-  public void testApenasCarros() throws IOException {
-    HttpServletRequest request = mock(HttpServletRequest.class);
-    HttpServletResponse response = mock(HttpServletResponse.class);
-    RequestDispatcher rd = mock(RequestDispatcher.class);
+  public void testExistemVeiculos() {
+    when(request.getParameter("local-retirada")).thenReturn("1");
+    when(request.getParameter("tipo-veiculo")).thenReturn("Carro");
+    when(request.getRequestDispatcher("/buscaModelos.jsp")).thenReturn(rd);
 
+    try {
+      servlet.doPost(request, response);
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Exceção em doPost");
+    }
+
+    verify(request).setAttribute(eq("veiculos"), veiculos.capture());
+    assertTrue(veiculos.getValue().size() > 0);
+  }
+
+  @Test
+  public void testApenasCarros() throws IOException {
     when(request.getParameter("local-retirada")).thenReturn("1");
     when(request.getParameter("tipo-veiculo")).thenReturn("Carro");
     when(request.getRequestDispatcher("/buscaModelos.jsp")).thenReturn(rd);
@@ -99,10 +119,6 @@ public class BuscaModelosServletTest extends Mockito {
 
   @Test
   public void testApenasMotos() throws IOException {
-    HttpServletRequest request = mock(HttpServletRequest.class);
-    HttpServletResponse response = mock(HttpServletResponse.class);
-    RequestDispatcher rd = mock(RequestDispatcher.class);
-
     when(request.getParameter("local-retirada")).thenReturn("1");
     when(request.getParameter("tipo-veiculo")).thenReturn("Moto");
     when(request.getRequestDispatcher("/buscaModelos.jsp")).thenReturn(rd);
