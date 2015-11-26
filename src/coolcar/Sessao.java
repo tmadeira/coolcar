@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Sessao {
   private boolean logged;
   private ClientePF usuario; // TODO: alterar esse ClientePF para algo genérico,
-                             // pois temos que abranger os ClientesPJ
+                             // pois temos que abrait stnger os ClientesPJ
   private Cookie emailCookie;
   private Cookie pwdCookie;
 
