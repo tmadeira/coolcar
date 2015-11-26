@@ -4,7 +4,15 @@ import static org.mockito.Mockito.*;
 
 import java.io.PrintWriter;
 
-import org.junit.Test;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import coolcar.bd.BD;
+
+import org.junit.*;
 import javax.servlet.http.*;
 import javax.servlet.*;
 
@@ -17,7 +25,8 @@ public class CadastroServletTest {
   RequestDispatcher dispatcher;
   PrintWriter out;
   
-  public CadastroServletTest() {
+  @Before
+  public void setUp() {
     request = criaRequestCorreto();
     response = mock(HttpServletResponse.class);
     dispatcher = mock(RequestDispatcher.class);
@@ -28,7 +37,7 @@ public class CadastroServletTest {
     HttpServletRequest request = mock(HttpServletRequest.class);
 
     when(request.getParameter("selectbasic")).thenReturn("1");
-    when(request.getParameter("nome")).thenReturn("João");
+    when(request.getParameter("nome")).thenReturn("Jonas");
     when(request.getParameter("sobrenome")).thenReturn("da Silva");
     when(request.getParameter("dtNascimento")).thenReturn("1990-12-25");
     when(request.getParameter("cpf")).thenReturn("123.456.789-00");
@@ -50,15 +59,9 @@ public class CadastroServletTest {
   }
 
   @Test
-  public void testTelefoneErrado() throws Exception {
-    when(request.getParameter("telefone")).thenReturn("12345");
-
+  public void testDadosCorretos() throws Exception {
     new CadastroServlet().doPost(request, response);
-
-    verify(request, atLeast(1)).getParameter("telefone");
-
-    verify(response, never()).sendRedirect("contaCriada.jsp");
-
+    verify(response).sendRedirect("contaCriada.jsp");
   }
 
   @Test
@@ -76,5 +79,144 @@ public class CadastroServletTest {
     verify(response, never()).sendRedirect("contaCriada.jsp");
 
   }
+  
+  @Test
+  public void testConfirmacaoPasswordDiferente() throws Exception {
+	when(request.getParameter("pwd")).thenReturn("0000000000");
+	when(request.getParameter("confirmacaoDePassword")).thenReturn("0000000001");
+    when(request.getRequestDispatcher("/cadastro.jsp")).thenReturn(dispatcher);
+    when(response.getWriter()).thenReturn(out);
 
+    new CadastroServlet().doPost(request, response);
+
+    verify(request, atLeast(1)).getParameter("email");
+    verify(request, atLeast(1)).getParameter("confirmacaoDeEmail");
+
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+
+  }
+
+  @Test
+  public void testNomeErradoComCaracteresEspeciais() throws Exception {
+  when(request.getParameter("nome")).thenReturn("João\\%32^!~`'");
+  
+    new CadastroServlet().doPost(request, response);
+    
+    verify(request, atLeast(1)).getParameter("nome");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+
+  @Test
+  public void testSobrenomeErradoComCaracteresEspeciais() throws Exception {
+  when(request.getParameter("sobrenome")).thenReturn("Y1a;ma\"\n\0");
+  
+    new CadastroServlet().doPost(request, response);
+    
+    verify(request, atLeast(1)).getParameter("sobrenome");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+
+  @Test
+  public void testSDataDeNascimentoInvalido() throws Exception {
+  when(request.getParameter("dtNascimento")).thenReturn("12-25-1992");
+  
+    new CadastroServlet().doPost(request, response);
+    
+    verify(request, atLeast(1)).getParameter("dtNascimento");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+
+  @Test
+  public void testSDataDeNascimentoInvalidoInexistente() throws Exception {
+  when(request.getParameter("dtNascimento")).thenReturn("12-25-2020");
+  
+    new CadastroServlet().doPost(request, response);
+    
+    verify(request, atLeast(1)).getParameter("dtNascimento");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+  
+  @Test
+  public void testSDataDeNascimentoInvalidoCaracteresEspeciais() throws Exception {
+  when(request.getParameter("dtNascimento")).thenReturn("12!25:2020");
+  
+    new CadastroServlet().doPost(request, response);
+    
+    verify(request, atLeast(1)).getParameter("dtNascimento");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+
+  @Test
+  public void testCpfErrado() throws Exception {
+	when(request.getParameter("cpf")).thenReturn("XXX.XXX.XXX-XX");
+	
+    new CadastroServlet().doPost(request, response);
+    
+    verify(request, atLeast(1)).getParameter("cpf");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+  
+  @Test
+  public void testSexoErrado() throws Exception {
+	when(request.getParameter("sexo")).thenReturn("Y");
+	
+    new CadastroServlet().doPost(request, response);
+    
+    verify(request, atLeast(1)).getParameter("sexo");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+  
+  @Test
+  public void testCepErrado() throws Exception {
+	when(request.getParameter("cep")).thenReturn("18086-32A");
+	
+    new CadastroServlet().doPost(request, response);
+    
+    verify(request, atLeast(1)).getParameter("cep");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+
+  @Test
+  public void testEstadoErrado() throws Exception {
+    when(request.getParameter("estado")).thenReturn("\\!");
+    new CadastroServlet().doPost(request, response);
+    
+    verify(request, atLeast(1)).getParameter("estado");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+
+  @Test
+  public void testCelularErrado() throws Exception {
+    when(request.getParameter("celular")).thenReturn("(as) eceev-wjnw");
+    new CadastroServlet().doPost(request, response);
+    
+    verify(request, atLeast(1)).getParameter("celular");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+
+  @Test
+  public void testTelefoneErrado() throws Exception {
+    when(request.getParameter("telefone")).thenReturn("12345");
+
+    new CadastroServlet().doPost(request, response);
+
+    verify(request, atLeast(1)).getParameter("telefone");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+  
+  @After
+  public void tearDown() {
+	 try{
+	  	BD bd = new BD();
+	    Connection connection = bd.getConnection();
+	    
+	    String sql = "DELETE FROM Usuario WHERE email like 'teste@coolcar.com'";
+	    
+	    PreparedStatement stmt = connection.prepareStatement(sql);
+	    stmt.executeUpdate();
+	    
+	 } catch (Exception e) {
+	    e.printStackTrace();
+	 }
+  }
 }

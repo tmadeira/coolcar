@@ -15,6 +15,7 @@ CREATE TABLE Filial (
   CONSTRAINT FILIAL_PK PRIMARY KEY(id_filial)
 );
 
+
 DROP TABLE IF EXISTS Usuario CASCADE;
 CREATE TABLE Usuario (
   id_usuario                        SERIAL PRIMARY KEY,
@@ -30,6 +31,7 @@ CREATE TABLE Usuario (
 );
 
 DROP TABLE IF EXISTS Funcionario CASCADE;
+
 CREATE TABLE Funcionario (
   id_usuario                        INT PRIMARY KEY,
   cpf                               CHAR(11) NOT NULL UNIQUE,
