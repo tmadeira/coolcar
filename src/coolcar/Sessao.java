@@ -37,10 +37,10 @@ public class Sessao {
 
   private void verificaECadastraUsuario(String email, String password) {
     usuario = new ClientePF(email, password);
-
+    
     ClientesPFManager manager = new ClientesPFManager();
     ArrayList<ClientePF> resultados = manager.consulta(usuario);
-
+    
     if (resultados.size() != 1){
       usuario = null;
       logged = false;

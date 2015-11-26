@@ -96,7 +96,7 @@ public class SessaoTest {
     ArrayList<ClientePF> resultados = new ArrayList<ClientePF>();
     resultados.add(usuario);
     Cookie emailCookie = new Cookie("userEmail", "es@coolcar.com");
-    Cookie pwdCookie = new Cookie("userPwd", "senha123");
+    Cookie pwdCookie = new Cookie("userPwd", Integer.toString(Math.abs("senha123".hashCode())));
     Cookie[] cookies = {emailCookie, pwdCookie};
     
     s = new Sessao(cookies);
