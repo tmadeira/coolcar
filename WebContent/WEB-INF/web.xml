@@ -8,5 +8,5 @@
     <servlet-name>InstalacaoServlet</servlet-name>
     <servlet-class>coolcar.servlets.InstalacaoServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
-</servlet>
+  </servlet>
 </web-app>

@@ -27,7 +27,7 @@ $(document).ready(function(){
    <div class="col-md-6">
     <h2>Faça já sua reserva!</h2>
     <p>O que você está esperando?</p>
-    <form action="buscaModelos.jsp" method="post">
+    <form action="BuscaModelosServlet" method="post">
      <div class="form-group">
       <label for="local-retirada">Local de retirada</label> <select
        class="form-control" name="local-retirada" id="local-retirada">
