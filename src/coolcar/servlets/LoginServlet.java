@@ -16,7 +16,7 @@ import coolcar.Sessao;
 public class LoginServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     String paramUserEmail = request.getParameter("userEmail");
     String paramUserPwd = request.getParameter("userPwd");
