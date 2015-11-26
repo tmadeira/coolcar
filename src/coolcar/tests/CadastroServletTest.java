@@ -2,13 +2,28 @@ package coolcar.tests;
 
 import static org.mockito.Mockito.*;
 
+import java.io.PrintWriter;
+
 import org.junit.Test;
 import javax.servlet.http.*;
+import javax.servlet.*;
 
 import coolcar.servlets.CadastroServlet;
 
 public class CadastroServletTest {
 
+  HttpServletRequest request;
+  HttpServletResponse response;
+  RequestDispatcher dispatcher;
+  PrintWriter out;
+  
+  public CadastroServletTest() {
+    request = criaRequestCorreto();
+    response = mock(HttpServletResponse.class);
+    dispatcher = mock(RequestDispatcher.class);
+    out = mock(PrintWriter.class);
+  }
+  
   private HttpServletRequest criaRequestCorreto() {
     HttpServletRequest request = mock(HttpServletRequest.class);
 
@@ -36,9 +51,6 @@ public class CadastroServletTest {
 
   @Test
   public void testTelefoneErrado() throws Exception {
-    HttpServletRequest request = criaRequestCorreto();
-    HttpServletResponse response = mock(HttpServletResponse.class);
-
     when(request.getParameter("telefone")).thenReturn("12345");
 
     new CadastroServlet().doPost(request, response);
@@ -51,11 +63,10 @@ public class CadastroServletTest {
 
   @Test
   public void testEmailDeConfirmacaoDiferente() throws Exception {
-    HttpServletRequest request = criaRequestCorreto();
-    HttpServletResponse response = mock(HttpServletResponse.class);
-
     when(request.getParameter("email")).thenReturn("abc@coolcar.com");
     when(request.getParameter("confirmacaoDeEmail")).thenReturn("def@coolcar.com");
+    when(request.getRequestDispatcher("/cadastro.jsp")).thenReturn(dispatcher);
+    when(response.getWriter()).thenReturn(out);
 
     new CadastroServlet().doPost(request, response);
 

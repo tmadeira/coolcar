@@ -181,7 +181,7 @@ public class CadastroServlet extends HttpServlet {
 
       response.sendRedirect("contaCriada.jsp");
     } else {
-      RequestDispatcher rd = getServletContext().getRequestDispatcher("/cadastro.jsp");
+      RequestDispatcher rd = request.getRequestDispatcher("/cadastro.jsp");
       response.setCharacterEncoding("utf-8");
       PrintWriter out = response.getWriter();
       // TODO: essa mensagem de erro precisa ser corrigida.
