@@ -25,11 +25,11 @@ import coolcar.modelos.Usuario;
 public class CadastroServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  protected boolean validaEmailSenha(String email, String email2, String pwd, String pwd2) {
+  private boolean validaEmailSenha(String email, String email2, String pwd, String pwd2) {
     return (email.equals(email2) && pwd.equals(pwd2));
   }
 
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     String nome, sobrenome, cpf, telefone, celular;
     String email, email2, password, password2;
