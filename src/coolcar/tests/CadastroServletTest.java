@@ -118,7 +118,7 @@ public class CadastroServletTest {
 
   @Test
   public void testSDataDeNascimentoInvalido() throws Exception {
-  when(request.getParameter("dtNascimento")).thenReturn("12-25-1992");
+  when(request.getParameter("dtNascimento")).thenReturn("12-25-1992"); // Invertido, propositalmente!
   
     new CadastroServlet().doPost(request, response);
     
@@ -128,7 +128,7 @@ public class CadastroServletTest {
 
   @Test
   public void testSDataDeNascimentoInvalidoInexistente() throws Exception {
-  when(request.getParameter("dtNascimento")).thenReturn("25-12-2020");
+  when(request.getParameter("dtNascimento")).thenReturn("2020-12-25");
   
     new CadastroServlet().doPost(request, response);
     
@@ -138,7 +138,7 @@ public class CadastroServletTest {
   
   @Test
   public void testSDataDeNascimentoInvalidoCaracteresEspeciais() throws Exception {
-  when(request.getParameter("dtNascimento")).thenReturn("12!25:2020");
+  when(request.getParameter("dtNascimento")).thenReturn("2000!05:03");
   
     new CadastroServlet().doPost(request, response);
     
@@ -186,6 +186,17 @@ public class CadastroServletTest {
   }
 
   @Test
+  public void testCidadeNaoConfereEstado() throws Exception {
+    when(request.getParameter("estado")).thenReturn("RJ");
+    when(request.getParameter("cidade")).thenReturn("São Paulo");
+    new CadastroServlet().doPost(request, response);
+    
+    verify(request, atLeast(1)).getParameter("estado");
+    verify(request, atLeast(1)).getParameter("cidade");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+
+  @Test
   public void testCelularErrado() throws Exception {
     when(request.getParameter("celular")).thenReturn("(as) eceev-wjnw");
     new CadastroServlet().doPost(request, response);
@@ -195,7 +206,7 @@ public class CadastroServletTest {
   }
 
   @Test
-  public void testTelefoneErrado() throws Exception {
+  public void testTelefoneErradoSemDDD() throws Exception {
     when(request.getParameter("telefone")).thenReturn("12345");
 
     new CadastroServlet().doPost(request, response);
@@ -203,6 +214,27 @@ public class CadastroServletTest {
     verify(request, atLeast(1)).getParameter("telefone");
     verify(response, never()).sendRedirect("contaCriada.jsp");
   }
+
+  @Test
+  public void testTelefoneErradoComDDD() throws Exception {
+    when(request.getParameter("telefone")).thenReturn("(11) 999-000");
+
+    new CadastroServlet().doPost(request, response);
+
+    verify(request, atLeast(1)).getParameter("telefone");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+
+  @Test
+  public void testTelefoneDDDErrado() throws Exception {
+    when(request.getParameter("telefone")).thenReturn("(01) 95448-1233");
+
+    new CadastroServlet().doPost(request, response);
+
+    verify(request, atLeast(1)).getParameter("telefone");
+    verify(response, never()).sendRedirect("contaCriada.jsp");
+  }
+
   
   @After
   public void tearDown() {
