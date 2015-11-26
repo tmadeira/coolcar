@@ -11,7 +11,7 @@
 
  <%
   
-  	Sessao s = Sessao.getInstance();
+  	Sessao s = new Sessao(request.getCookies());
 	if (s.isLogged()) {
 	    ReservasManager manager = new ReservasManager();
 	    ModelosManager mod_manager = new ModelosManager();

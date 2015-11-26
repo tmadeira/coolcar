@@ -30,7 +30,7 @@
    </div>
    <div id="navbar" class="navbar-collapse collapse">
     <%
-			Sessao s = Sessao.getInstance();
+			Sessao s = new Sessao(request.getCookies());
 			if (s.isLogged()) {
 	%>
     <form class="navbar-form navbar-right" action="LogoutServlet"

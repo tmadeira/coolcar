@@ -9,6 +9,10 @@ public class ClientePF extends Usuario {
 
   public ClientePF() {
   }
+  
+  public ClientePF(String email, String senha) {
+    super(email, senha);
+  }
 
   public ClientePF(int id, String nome, String email, String senha, Endereco endereco, String cpf, char sexo,
       Date dtNascimento) {

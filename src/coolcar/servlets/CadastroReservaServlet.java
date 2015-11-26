@@ -52,7 +52,7 @@ public class CadastroReservaServlet extends HttpServlet {
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    Sessao s = Sessao.getInstance();
+    Sessao s = new Sessao(request.getCookies());
 
     if (s.isLogged()) {
       String dataFimStr = request.getParameter("reservaDataDevolucao");

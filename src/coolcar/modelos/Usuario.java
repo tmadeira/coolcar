@@ -10,6 +10,11 @@ public abstract class Usuario {
 
   public Usuario() {
   }
+  
+  public Usuario(String email, String senha) {
+    this.email = email;
+    this.senha = senha;
+  }
 
   public Usuario(int id, String nome, String email, String senha, Endereco endereco) {
     this.id = id;

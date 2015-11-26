@@ -2,10 +2,16 @@ package coolcar.tests;
 
 import static org.junit.Assert.*;
 
+import coolcar.Sessao;
+
 import org.junit.Test;
 
 public class SessaoTest {
 
+  Sessao sessao;
+  
+  
+  
   @Test
   public void testLogIn() {
     fail("Not yet implemented");

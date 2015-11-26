@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,11 +22,14 @@ public class LoginServlet extends HttpServlet {
     String paramUserEmail = request.getParameter("userEmail");
     String paramUserPwd = request.getParameter("userPwd");
 
-    Sessao s = Sessao.getInstance();
+    Sessao s = new Sessao(request.getCookies());
 
-    if (s.logIn(paramUserEmail, paramUserPwd)) {
-      response.addCookie(s.getCookie());
-      response.sendRedirect("index.jsp");
+    Cookie[] cookies = s.logIn(paramUserEmail, paramUserPwd);
+    
+    if (cookies != null) {
+      for (Cookie c : cookies)
+        response.addCookie(c);
+        response.sendRedirect("index.jsp");
     } else {
       RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
       response.setCharacterEncoding("utf-8");

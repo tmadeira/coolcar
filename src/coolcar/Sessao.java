@@ -7,57 +7,84 @@ import coolcar.modelos.ClientePF;
 import java.util.ArrayList;
 
 public class Sessao {
-  private static Sessao singleton = new Sessao();
   private boolean logged;
   private ClientePF usuario; // TODO: alterar esse ClientePF para algo genérico,
                              // pois temos que abranger os ClientesPJ
-  private Cookie userCookie;
+  private Cookie emailCookie;
+  private Cookie pwdCookie;
 
-  public static Sessao getInstance() {
-    return singleton;
+  public Sessao(Cookie[] cookies) {
+    if (cookies != null) {
+      String email = "";
+      String password = "";
+      for (Cookie c : cookies) {
+        if (c.getName().equals("userEmail")) {
+          email = c.getValue();
+          emailCookie = c;
+        }
+        if (c.getName().equals("userPwd")) {
+          password = c.getValue();
+          pwdCookie = c;
+        }
+      }
+      verificaECadastraUsuario(email, password);
+    }
+    else {
+      logged = false;
+      usuario = null;
+    }
   }
 
-  private Sessao() {
-    logged = false;
-    usuario = null;
-  }
-
-  public boolean logIn(String email, String password) {
-
-    usuario = new ClientePF();
-    usuario.setEmail(email);
-    usuario.setSenha(password);
+  private void verificaECadastraUsuario(String email, String password) {
+    usuario = new ClientePF(email, password);
 
     ClientesPFManager manager = new ClientesPFManager();
     ArrayList<ClientePF> resultados = manager.consulta(usuario);
+    
+    if (resultados.size() != 1){
+      usuario = null;
+      logged = false;
+    }
+    else {
+      usuario = resultados.get(0);
+      logged = true;
 
-    if (resultados.size() != 1)
-      return false;
+    }
+  }
+  
+  public Cookie[] logIn(String email, String password) {
 
-    usuario = resultados.get(0);
+    Cookie[] cookies = new Cookie[2];
 
-    userCookie = new Cookie("userEmail", usuario.getEmail());
-    logged = true;
+    verificaECadastraUsuario(email, Integer.toString(Math.abs(password.hashCode())));
+    
+    if (usuario == null)
+      return null;
+    
+    emailCookie = new Cookie("userEmail", usuario.getEmail());
+    pwdCookie = new Cookie("userPwd", usuario.getSenha());
+    
+    cookies[0] = emailCookie;
+    cookies[1] = pwdCookie;
 
-    return true;
+    return cookies;
   }
 
-  public Cookie logOut(Cookie[] cookies) {
+  public Cookie[] logOut() {
 
-    Cookie loginCookie = null;
-    if (cookies != null) {
-      for (Cookie cookie : cookies) {
-        if (cookie.getName().equals("userEmail")) {
-          loginCookie = cookie;
-          break;
-        }
-      }
-    }
-
+    Cookie[] cookies = new Cookie[2];
+    
     logged = false;
     usuario = null;
+    
+    cookies[0] = emailCookie;
+    cookies[1] = pwdCookie;
+    
+    emailCookie = null;
+    pwdCookie = null;
+    
+    return cookies;
 
-    return loginCookie;
   }
 
   public boolean isLogged() {
@@ -72,8 +99,12 @@ public class Sessao {
     return usuario.getId();
   }
 
-  public Cookie getCookie() {
-    return userCookie;
+  public Cookie getEmailCookie() {
+    return emailCookie;
+  }
+  
+  public Cookie getPwdCookie() {
+    return pwdCookie;
   }
 
 }

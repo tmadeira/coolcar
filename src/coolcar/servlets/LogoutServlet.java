@@ -15,17 +15,22 @@ import coolcar.Sessao;
 public class LogoutServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
+  private void matarCookie(Cookie cookie, HttpServletResponse response) {
+    if (cookie != null) {
+      cookie.setMaxAge(0);
+      response.addCookie(cookie);
+    }
+  }
+  
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     response.setContentType("text/html");
 
-    Sessao s = Sessao.getInstance();
-    Cookie loginCookie = s.logOut(request.getCookies());
+    Sessao s = new Sessao(request.getCookies());
+    Cookie[] cookies = s.logOut();
 
-    if (loginCookie != null) {
-      loginCookie.setMaxAge(0);
-      response.addCookie(loginCookie);
-    }
-
+    for (Cookie c : cookies)
+      matarCookie(c, response);
+    
     response.sendRedirect("index.jsp");
   }
 
