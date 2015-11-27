@@ -132,6 +132,17 @@ public class RealizaReservaServletTest extends Mockito {
   }
 
   @Test
+  public void testModeloCorretoRetirada() {
+    preencheComDadosValidos();
+    when(request.getParameter("idModelo")).thenReturn("2");
+    posta();
+    verify(request).setAttribute(eq("modelo"), modeloCaptor.capture());
+
+    Modelo modelo = modeloCaptor.getValue();
+    assertTrue(modelo.getIdModelo() == 2);
+  }
+
+  @Test
   public void testFilialRetirada() {
     preencheComDadosValidos();
     when(request.getParameter("local-retirada")).thenReturn("2");
