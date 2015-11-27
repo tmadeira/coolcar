@@ -43,6 +43,7 @@ public class ModelosManager {
         ((Moto) modelo).setTamanhoTanque(rs.getFloat("tamanho_tanque"));
       }
 
+      modelo.setIdModelo(rs.getInt("id_modelo"));
       modelo.setNome(rs.getString("nome"));
       modelo.setLink(rs.getString("link"));
       modelo.setDiaria(rs.getBigDecimal("diaria"));

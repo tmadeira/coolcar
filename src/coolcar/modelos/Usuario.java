@@ -86,6 +86,7 @@ public abstract class Usuario {
 
   public void setSenha(String senha) {
     this.senha = Integer.toString(Math.abs(senha.hashCode()));
+    //this.senha = senha;
   }
 
   public Endereco getEndereco() {

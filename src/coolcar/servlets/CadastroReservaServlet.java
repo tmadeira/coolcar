@@ -46,11 +46,11 @@ public class CadastroReservaServlet extends HttpServlet {
       ReservasManager reserva_manager = new ReservasManager();
       Reserva reserva = new Reserva(s.getId(), // id_cliente
           0, // id_reserva -- não importa para o INSERT
-          1,//Integer.parseInt(request.getParameter("reservaModelo")), // id_modelo
-          1,// Integer.parseInt(request.getParameter("reservaFilialRetirada")), // id_filial_retirada,
+          Integer.parseInt(request.getParameter("reservaModelo")), // id_modelo
+          Integer.parseInt(request.getParameter("reservaFilialRetirada")), // id_filial_retirada,
           1, // id_acessorios -- importa para o INSERT mas não demos importância agora
-          1,//Integer.parseInt(request.getParameter("reservaFilialDevolucao")), // id_filial_devolucao,
-          1,//Float.parseFloat(request.getParameter("reservaValor")), // valor,
+          Integer.parseInt(request.getParameter("reservaFilialDevolucao")), // id_filial_devolucao,
+          Float.parseFloat(request.getParameter("reservaValor")), // valor,
           dataFim, // dt_fim
           dataIni); // dt_inicio
 

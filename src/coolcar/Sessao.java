@@ -28,8 +28,7 @@ public class Sessao {
         }
       }
       verificaECadastraUsuario(email, password);
-    }
-    else {
+    } else {
       logged = false;
       usuario = null;
     }
@@ -41,28 +40,28 @@ public class Sessao {
     ClientesPFManager manager = new ClientesPFManager();
     ArrayList<ClientePF> resultados = manager.consulta(usuario);
 
-    if (resultados.size() != 1){
+    if (resultados.size() != 1) {
       usuario = null;
       logged = false;
-    }
-    else {
+    } else {
       usuario = resultados.get(0);
       logged = true;
     }
   }
-  
+
   public Cookie[] logIn(String email, String password) {
 
     Cookie[] cookies = new Cookie[2];
 
     verificaECadastraUsuario(email, Integer.toString(Math.abs(password.hashCode())));
-    
+    // verificaECadastraUsuario(email, password);
+
     if (usuario == null)
       return null;
-    
+
     emailCookie = new Cookie("userEmail", usuario.getEmail());
     pwdCookie = new Cookie("userPwd", usuario.getSenha());
-    
+
     cookies[0] = emailCookie;
     cookies[1] = pwdCookie;
 
@@ -72,16 +71,16 @@ public class Sessao {
   public Cookie[] logOut() {
 
     Cookie[] cookies = new Cookie[2];
-    
+
     logged = false;
     usuario = null;
-    
+
     cookies[0] = emailCookie;
     cookies[1] = pwdCookie;
-    
+
     emailCookie = null;
     pwdCookie = null;
-    
+
     return cookies;
 
   }
@@ -101,7 +100,7 @@ public class Sessao {
   public Cookie getEmailCookie() {
     return emailCookie;
   }
-  
+
   public Cookie getPwdCookie() {
     return pwdCookie;
   }

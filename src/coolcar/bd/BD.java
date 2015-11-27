@@ -70,19 +70,10 @@ public class BD {
     return this.connection;
   }
 
-  public void executaAtualizacao(String query) throws SQLException {
-    this.resetStatement();
-    this.statement.executeUpdate(query);
-  }
-
-  public ResultSet executaConsulta(String query) throws SQLException {
-    this.resetStatement();
-    return this.statement.executeQuery(query);
-  }
-
   private String getVersao() {
     try {
-      ResultSet rs = this.executaConsulta("SELECT versao FROM versoes");
+      this.resetStatement();
+      ResultSet rs = this.statement.executeQuery("SELECT versao FROM versoes");
       if (rs.next()) {
         return rs.getString("versao");
       }
@@ -95,9 +86,10 @@ public class BD {
 
   private void atualizaVersao(String versao) {
     try {
-      this.executaAtualizacao("CREATE TABLE IF NOT EXISTS versoes (versao CHAR(32))");
-      this.executaAtualizacao("DELETE FROM versoes");
-      this.executaAtualizacao("INSERT INTO versoes VALUES ('" + versao + "')");
+      this.resetStatement();
+      this.statement.executeUpdate("CREATE TABLE IF NOT EXISTS versoes (versao CHAR(32))");
+      this.statement.executeUpdate("DELETE FROM versoes");
+      this.statement.executeUpdate("INSERT INTO versoes VALUES ('" + versao + "')");
       System.out.println("Versao do BD atualizada para " + versao);
     } catch (SQLException e) {
       System.out.println("Nao foi possivel atualizar a versao do BD.");
