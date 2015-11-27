@@ -8,6 +8,7 @@ import java.util.Calendar;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,7 +58,8 @@ public class CadastroReservaServlet extends HttpServlet {
       response.sendRedirect("index.jsp");
 
     } else {
-      RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+
+      RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
       response.setCharacterEncoding("utf-8");
       PrintWriter out = response.getWriter();
       out.println("<font color=red>Por favor, faça o login antes de reservar!</font>\n");
