@@ -1,7 +1,6 @@
 package coolcar.tests;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
@@ -101,20 +100,18 @@ public class SessaoTest {
     
     s = new Sessao(cookies);
     
-    //when(manager.consulta(usuario)).thenReturn(resultados);
     assertTrue(s.isLogged());
   }
   
   @Test
   public void testConstrutorComParametrosErrados() {
-    //ClientePF usuario = new ClientePF("teste@teste.coolcar.com", "senha12345");
     Cookie emailCookie = new Cookie("userEmail", "teste@teste.coolcar.com");
     Cookie pwdCookie = new Cookie("userPwd", "senha12345");
     Cookie[] cookies = {emailCookie, pwdCookie};
     
     s = new Sessao(cookies);
         
-    //when(manager.consulta(usuario)).thenReturn(new ArrayList<ClientePF>());
     assertFalse(s.isLogged());
   }
+  
 }

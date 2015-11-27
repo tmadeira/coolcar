@@ -97,12 +97,4 @@ public class Sessao {
     return usuario.getId();
   }
 
-  public Cookie getEmailCookie() {
-    return emailCookie;
-  }
-
-  public Cookie getPwdCookie() {
-    return pwdCookie;
-  }
-
 }
