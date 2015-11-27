@@ -19,7 +19,6 @@
 
  <table
   class="table table-striped table-bordered table-hover table-condensed">
-
   <%
     if (request.getParameter("tipo-veiculo").equals("Carro")) {
       for (Veiculo veiculo : veiculos) {
@@ -34,9 +33,7 @@
    <td>
     <form name="listaVeiculos" id="listaVeiculos"
      action="RealizaReservaServlet" method="post">
-     <input type="hidden" name="tipo-veiculo"
-      value="<%=request.getParameter("tipo-veiculo")%>" /> <input
-      type="hidden" name="idModelo"
+     <input type="hidden" name="idModelo"
       value="<%=veiculo.getCarro().getIdModelo()%>" /> <input
       type="hidden" name="local-retirada"
       value="<%=request.getParameter("local-retirada")%>" /> <input
@@ -119,9 +116,7 @@
    <td>
     <form name="listaVeiculos" id="listaVeiculos"
      action="RealizaReservaServlet" method="post">
-     <input type="hidden" name="tipo-veiculo"
-      value="<%=request.getParameter("tipo-veiculo")%>" /> <input
-      type="hidden" name="idModelo"
+     <input type="hidden" name="idModelo"
       value="<%=veiculo.getMoto().getIdModelo()%>" /> <input
       type="hidden" name="local-retirada"
       value="<%=request.getParameter("local-retirada")%>" /> <input
@@ -166,6 +161,7 @@
      }
      }
    %>
+  
  </table>
 </div>
 

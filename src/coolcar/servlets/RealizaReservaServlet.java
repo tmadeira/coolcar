@@ -24,10 +24,6 @@ public class RealizaReservaServlet extends HttpServlet {
   private static final long msPerDay = 1000 * 60 * 60 * 24;
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    if (request.getParameter("tipo-veiculo") == null) {
-      System.out.println("Tipo de veiculo nao informado");
-      return;
-    }
     if (request.getParameter("idModelo") == null) {
       System.out.println("ID do modelo nao informado");
       return;
