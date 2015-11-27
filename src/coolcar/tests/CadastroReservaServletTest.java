@@ -7,19 +7,20 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import coolcar.Sessao;
+import coolcar.bd.BD;
 import coolcar.servlets.CadastroReservaServlet;
-import coolcar.servlets.CadastroServlet;
 
 public class CadastroReservaServletTest {
 	
@@ -40,8 +41,8 @@ public class CadastroReservaServletTest {
 
   private HttpServletRequest criaRequestCorreto() {
 	HttpServletRequest request = mock(HttpServletRequest.class);
-	when(request.getParameter("reservaDataDevolucao")).thenReturn("2011-01-01");
-	when(request.getParameter("reservaDataRetirada")).thenReturn("2011-01-02");
+	when(request.getParameter("reservaDataDevolucao")).thenReturn("1971-01-01");
+	when(request.getParameter("reservaDataRetirada")).thenReturn("1971-01-02");
 	when(request.getParameter("reservaModelo")).thenReturn("1");
 	when(request.getParameter("reservaFilialRetirada")).thenReturn("3");
 	when(request.getParameter("reservaFilialDevolucao")).thenReturn("3");
@@ -121,5 +122,20 @@ public void testDevolucaoLongaData() throws Exception{
 	  
 	verify(response, never()).sendRedirect("index.jsp"); 
 	}
+@After
+public void tearDown() {
+	 try{
+	  	BD bd = new BD();
+	    Connection connection = bd.getConnection();
+	    
+	    String sql = "DELETE FROM Reserva WHERE dt_inicio_reserva = '1971-01-01'";
+	    
+	    PreparedStatement stmt = connection.prepareStatement(sql);
+	    stmt.executeUpdate();
+	    
+	 } catch (Exception e) {
+	    e.printStackTrace();
+	 }
+}
 
 }
