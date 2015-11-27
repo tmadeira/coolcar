@@ -137,4 +137,25 @@ public class BuscaModelosServletTest extends Mockito {
     }
   }
 
+  @Test
+  public void testArCond() {
+    when(request.getParameter("local-retirada")).thenReturn("1");
+    when(request.getParameter("tipo-veiculo")).thenReturn("Carro");
+    when(request.getParameter("arcond")).thenReturn("1");
+    when(request.getRequestDispatcher("/buscaModelos.jsp")).thenReturn(rd);
+
+    try {
+      servlet.doPost(request, response);
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Exceção em doPost");
+    }
+
+    verify(request).setAttribute(eq("veiculos"), veiculos.capture());
+
+    for (Veiculo veiculo : veiculos.getValue()) {
+      assertTrue(veiculo.getCarro().getCarac().getArCond());
+    }
+  }
+
 }
