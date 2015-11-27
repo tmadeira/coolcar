@@ -56,6 +56,7 @@ public class Sessao {
     Cookie[] cookies = new Cookie[2];
 
     verificaECadastraUsuario(email, Integer.toString(Math.abs(password.hashCode())));
+    //verificaECadastraUsuario(email, password);
     
     if (usuario == null)
       return null;
