@@ -49,7 +49,7 @@ public class SessaoTest {
 
   @Test
   public void testIsLoggedFalso() {
-    assert(s.isLogged() == false);
+    assertFalse(s.isLogged());
   }
 
   @Test
@@ -57,37 +57,37 @@ public class SessaoTest {
     s.logIn("es@coolcar.com", "senha123");
     s.logOut();
 
-    assert(s.isLogged() == false);
+    assertFalse(s.isLogged());
   }
   
   @Test
   public void testIsLoggedLoginSenhaErrada() {
     s.logIn("es@coolcar.com", "senhaClaramenteErrada");
-    assert(s.isLogged() == false);
+    assertFalse(s.isLogged());
   }
 
   @Test
   public void testIsLoggedLoginEmailErrada() {
     s.logIn("usuarioNaoExistente@coolcar.com", "senha123");
-    assert(s.isLogged() == false);
+    assertFalse(s.isLogged());
   }
 
   @Test
   public void testIsLoggedVerdadeiro() {
     assertNotNull(s.logIn("es@coolcar.com", "senha123"));
-    assert(s.isLogged() == true);
+    assertTrue(s.isLogged());
   }
 
   @Test
   public void testGetNomeUsuario() {
     s.logIn("es@coolcar.com", "senha123");
-    assert(s.getNomeUsuario() == "es@coolcar.com");
+    assertEquals(s.getNomeUsuario(), "Epifânia Santos");
   }
 
   @Test
   public void testGetId() {
     s.logIn("es@coolcar.com", "senha123");
-    assert(s.getId() == 7);
+    assertEquals(s.getId(), 7);
   }
   
   @Test
