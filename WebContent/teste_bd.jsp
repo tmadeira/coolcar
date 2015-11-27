@@ -1,10 +1,8 @@
 <%@page
- import="coolcar.bd.BD, coolcar.modelos.*, coolcar.managers.* ,java.util.ArrayList, java.util.Iterator, java.util.Calendar, java.util.Date"%>
+ import="coolcar.modelos.*, coolcar.managers.* ,java.util.ArrayList, java.util.Iterator, java.util.Calendar, java.util.Date"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 
 <%
-  BD bd = new BD();
-
   ClientePF cpf_teste = new ClientePF();
   cpf_teste.setEmail("adm@");
   cpf_teste.setSenha("senha123");
@@ -37,8 +35,6 @@
   ArrayList<Reserva> reservas = reserva_manager.consulta(7);
   
   reserva_manager.insere(reserva);
-  
-  // ResultSet resultados = bd.executaConsulta("SELECT nome FROM Usuario WHERE endereco_logradouro LIKE '%'");
 
   out.println("<ul>");
   Iterator<Veiculo> i = veiculos.iterator();
