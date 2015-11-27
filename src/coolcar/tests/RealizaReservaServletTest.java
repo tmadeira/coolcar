@@ -128,7 +128,7 @@ public class RealizaReservaServletTest extends Mockito {
     long numDias = numDiasCaptor.getValue();
     BigDecimal precoTotal = precoTotalCaptor.getValue();
 
-    assertTrue(precoTotal.equals(modelo.getDiaria().multiply(new BigDecimal(numDias))));
+    assertEquals(precoTotal, modelo.getDiaria().multiply(new BigDecimal(numDias)));
   }
 
   @Test
@@ -139,7 +139,7 @@ public class RealizaReservaServletTest extends Mockito {
     verify(request).setAttribute(eq("modelo"), modeloCaptor.capture());
 
     Modelo modelo = modeloCaptor.getValue();
-    assertTrue(modelo.getIdModelo() == 2);
+    assertEquals(modelo.getIdModelo(), 2);
   }
 
   @Test
@@ -150,7 +150,7 @@ public class RealizaReservaServletTest extends Mockito {
     verify(request).setAttribute(eq("filialRetirada"), filialCaptor.capture());
 
     Filial filial = filialCaptor.getValue();
-    assertTrue(filial.getId() == 2);
+    assertEquals(filial.getId(), 2);
   }
 
   @Test
@@ -161,7 +161,47 @@ public class RealizaReservaServletTest extends Mockito {
     verify(request).setAttribute(eq("filialDevolucao"), filialCaptor.capture());
 
     Filial filial = filialCaptor.getValue();
-    assertTrue(filial.getId() == 2);
+    assertEquals(filial.getId(), 2);
+  }
+
+  @Test
+  public void testSemIdModelo() {
+    preencheComDadosValidos();
+    when(request.getParameter("idModelo")).thenReturn(null);
+    posta();
+    verify(request, never()).getRequestDispatcher("/realizaReserva.jsp");
+  }
+
+  @Test
+  public void testSemFilialRetirada() {
+    preencheComDadosValidos();
+    when(request.getParameter("local-retirada")).thenReturn(null);
+    posta();
+    verify(request, never()).getRequestDispatcher("/realizaReserva.jsp");
+  }
+
+  @Test
+  public void testSemFilialDevolucao() {
+    preencheComDadosValidos();
+    when(request.getParameter("local-devolucao")).thenReturn(null);
+    posta();
+    verify(request, never()).getRequestDispatcher("/realizaReserva.jsp");
+  }
+
+  @Test
+  public void testSemDataRetirada() {
+    preencheComDadosValidos();
+    when(request.getParameter("dtRetirada")).thenReturn(null);
+    posta();
+    verify(request, never()).getRequestDispatcher("/realizaReserva.jsp");
+  }
+
+  @Test
+  public void testSemDataDevolucao() {
+    preencheComDadosValidos();
+    when(request.getParameter("dtDevolucao")).thenReturn(null);
+    posta();
+    verify(request, never()).getRequestDispatcher("/realizaReserva.jsp");
   }
 
 }
