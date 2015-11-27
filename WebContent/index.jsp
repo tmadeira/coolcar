@@ -5,19 +5,16 @@
 <script src="vendor/jquery-1.11.3.min.js"></script>
 <script src="vendor/jquery.maskedinput.js" type="text/javascript"></script>
 
-<script> 
-$(document).ready(function(){
-    $('#tipo-veiculo').on('change', function() {
-      if (this.value == "Carro")
-      {
-        $("#carac-carro").show();
-      }
-      else
-      {
-        $("#carac-carro").hide();
-      }
-    });
-});
+<script>
+	$(document).ready(function() {
+		$('#tipo-veiculo').on('change', function() {
+			if (this.value == "Carro") {
+				$("#carac-carro").show();
+			} else {
+				$("#carac-carro").hide();
+			}
+		});
+	});
 </script>
 
 <jsp:include page="header.jsp" />
@@ -32,35 +29,33 @@ $(document).ready(function(){
       <label for="local-retirada">Local de retirada</label> <select
        class="form-control" name="local-retirada" id="local-retirada">
        <%
-	  BD bd = new BD();
-	
-	  Filial filiais = new Filial();
-      FiliaisManager filial_manager = new FiliaisManager();
-      
-	  ArrayList<Filial> resultados = filial_manager.consulta(filiais);
-	  Iterator<Filial> result = resultados.iterator();
-	  
-	  while (result.hasNext()) {
-		Filial tupla = result.next();
-	    out.println("<option value=\"" + tupla.getId() + "\">" + tupla.getNome() + "</option>");
-	  }
-%>
+         BD bd = new BD();
+
+         Filial filiais = new Filial();
+         FiliaisManager filial_manager = new FiliaisManager();
+
+         ArrayList<Filial> resultados = filial_manager.consulta(filiais);
+         Iterator<Filial> result = resultados.iterator();
+
+         while (result.hasNext()) {
+           Filial tupla = result.next();
+           out.println("<option value=\"" + tupla.getId() + "\">" + tupla.getNome() + "</option>");
+         }
+       %>
       </select>
      </div>
      <div class="form-group">
-      <label for="local-devolucao">Local de devolucao</label> <select
+      <label for="local-devolucao">Local de devolução</label> <select
        class="form-control" name="local-devolucao" id="local-devolucao">
        <%
-	  ArrayList<Filial> resultados2 = filial_manager.consulta(filiais);
-	  Iterator<Filial> result2 = resultados2.iterator();
-	  
-	  while (result2.hasNext()) {
-		Filial tupla = result2.next();
-	    out.println("<option value=\"" + tupla.getId() + "\">" + tupla.getNome() + "</option>");
-	  }
+         ArrayList<Filial> resultados2 = filial_manager.consulta(filiais);
+         Iterator<Filial> result2 = resultados2.iterator();
 
-
-%>
+         while (result2.hasNext()) {
+           Filial tupla = result2.next();
+           out.println("<option value=\"" + tupla.getId() + "\">" + tupla.getNome() + "</option>");
+         }
+       %>
       </select>
      </div>
      <div class="form-group">
@@ -72,10 +67,11 @@ $(document).ready(function(){
       </select>
      </div>
      <div>
-      <label for="retirada">Data de Retirada:</label><input
+      <label for="dtRetirada">Data Retirada:</label><input
        id="dtRetirada" name="dtRetirada" type="date" value="2015-01-01" />
-      <label for="entrega">Data de Entrega:</label><input id="dtEntrega"
-       name="dtEntrega" type="date" value="2015-01-02" />
+      <label for="dtDevolucao">Data Devolução:</label><input
+       id="dtDevolucao" name="dtDevolucao" type="date"
+       value="2015-01-02" />
      </div>
      <div class="checkbox" id="carac-carro">
       <label class="checkbox-inline"> <input type="checkbox"

@@ -21,33 +21,8 @@ public class CadastroReservaServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   private int verificaMes(int substr) {
-    switch (substr) {
-    case 1:
-      return Calendar.JANUARY;
-    case 2:
-      return Calendar.FEBRUARY;
-    case 3:
-      return Calendar.MARCH;
-    case 4:
-      return Calendar.APRIL;
-    case 5:
-      return Calendar.MAY;
-    case 6:
-      return Calendar.JUNE;
-    case 7:
-      return Calendar.JULY;
-    case 8:
-      return Calendar.AUGUST;
-    case 9:
-      return Calendar.SEPTEMBER;
-    case 10:
-      return Calendar.OCTOBER;
-    case 11:
-      return Calendar.NOVEMBER;
-    case 12:
-      return Calendar.DECEMBER;
-    }
-    return 0;
+    substr--;
+    return 0 <= substr && substr < 12 ? substr : 0;
   }
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

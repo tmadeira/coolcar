@@ -5,106 +5,167 @@
  <jsp:param name="pageTitle" value="Resultados da busca" />
 </jsp:include>
 
-<div class="container">
-
 <%
-Filial filial = (Filial) request.getAttribute("filial");
-ArrayList<Veiculo> veiculos = (ArrayList<Veiculo>) request.getAttribute("veiculos");
+  Filial filial = (Filial) request.getAttribute("filial");
+  @SuppressWarnings("unchecked")
+  ArrayList<Veiculo> veiculos = (ArrayList<Veiculo>) request.getAttribute("veiculos");
 %>
 
- <h2>Modelos disponíveis em <% out.print(filial.getNome()); %></h2>
+<div class="container">
+ <h2>
+  Modelos disponíveis em
+  <%=filial.getNome()%>
+ </h2>
 
  <table
   class="table table-striped table-bordered table-hover table-condensed">
 
   <%
-    StringBuilder sb = new StringBuilder();
     if (request.getParameter("tipo-veiculo").equals("Carro")) {
       for (Veiculo veiculo : veiculos) {
-        sb.append("<tr><th width=\"30%\"> <h4><b>" + veiculo.getCarro().getNome() + "</b><br></h4>");
-        sb.append("<img src=\"" + veiculo.getCarro().getLink()
-            + "\" alt=\"...\" class=\"img-responsive img-thumbnail\" width=\"300\" height=\"300\"></th>");
-        sb.append("<td>");
+  %>
+  <tr>
+   <th width="30%">
+    <h4>
+     <%=veiculo.getCarro().getNome()%>
+    </h4> <img src="<%=veiculo.getCarro().getLink()%>"
+    class="img-responsive img-thumbnail" width="300" height="300">
+   </th>
+   <td>
+    <form name="listaVeiculos" id="listaVeiculos"
+     action="RealizaReservaServlet" method="post">
+     <input type="hidden" name="tipo-veiculo"
+      value="<%=request.getParameter("tipo-veiculo")%>" /> <input
+      type="hidden" name="idModelo"
+      value="<%=veiculo.getCarro().getIdModelo()%>" /> <input
+      type="hidden" name="local-retirada"
+      value="<%=request.getParameter("local-retirada")%>" /> <input
+      type="hidden" name="local-devolucao"
+      value="<%=request.getParameter("local-devolucao")%>" /> <input
+      type="hidden" name="dtRetirada"
+      value="<%=request.getParameter("dtRetirada")%>" /> <input
+      type="hidden" name="dtDevolucao"
+      value="<%=request.getParameter("dtDevolucao")%>" />
+     <button type="submit" class="btn btn-warning">Reserve este
+      modelo agora</button>
+    </form>
 
-        sb.append("<br>");
-        sb.append("<form name=\"listaVeiculos\" id=\"listaVeiculos\" action=\"realizaReserva.jsp\" method=\"post\">");
-        sb.append("<input type=\"hidden\" id=\"reservaModelo\" name=\"reservaModelo\" value=\""
-            + veiculo.getCarro().getIdModelo() + "\" />");
-        sb.append("<input type=\"hidden\" id=\"reservaDiaria\" name=\"reservaDiaria\" value=\""
-            + veiculo.getCarro().getDiaria() + "\" />");
-        sb.append("<input type=\"hidden\" id=\"reservaFilialRetirada\" name=\"reservaFilialRetirada\" value=\""
-            + request.getParameter("local-retirada") + "\" />");
-        sb.append("<input type=\"hidden\" id=\"reservaFilialDevolucao\" name=\"reservaFilialDevolucao\" value=\""
-            + request.getParameter("local-devolucao") + "\" />");
-        sb.append("<input type=\"hidden\" id=\"reservaDataRetirada\" name=\"reservaDataRetirada\" value=\""
-            + request.getParameter("dtRetirada") + "\" />");
-        sb.append("<input type=\"hidden\" id=\"reservaDataDevolucao\" name=\"reservaDataDevolucao\" value=\""
-            + request.getParameter("dtEntrega") + "\" />");
-        sb.append("<input type=\"hidden\" id=\"reservaLinkImagem\" name=\"reservaLinkImagem\" value=\""
-            + veiculo.getCarro().getLink() + "\" />");
-        sb.append("<button type=\"submit\" class=\"btn btn-warning\"><b>Reserve este modelo agora</b></button>");
-        sb.append("</form>");
-
-        sb.append("<table><tr><td><h4><b>Preço da Diária: R$" + String.format("%.2f", veiculo.getCarro().getDiaria())
-            + " </b></h4></td></tr>");
-        sb.append("<tr><td><b> Ano:</b> " + veiculo.getAno() + " </td></tr>");
-        sb.append("<tr><td><b> Fabricante:</b> " + veiculo.getCarro().getFabricante() + " </td></tr>");
-        sb.append("<tr><td><b> Tipo:</b> " + veiculo.getCarro().getTipo() + " </td></tr>");
-        sb.append("<tr><td><b> Número de Portas:</b> " + veiculo.getCarro().getNumPortas() + " </td></tr>");
-        sb.append("<tr><td><b> Número de Assentos:</b> " + veiculo.getCarro().getNumAssentos() + " </td></tr>");
-        sb.append(
-            "<tr><td><b> Tamanho do Porta-Malas:</b> " + veiculo.getCarro().getTamanhoPortaMalas() + "L </td></tr>");
-        sb.append("<tr><td><b> Combustível:</b> " + veiculo.getCarro().getCombustivel() + " </td></tr>");
-        if (veiculo.getCarro().getCarac().getArCond())
-          sb.append("<tr><td> Ar Condicionado </td></tr>");
-        if (veiculo.getCarro().getCarac().getCambAuto())
-          sb.append("<tr><td> Câmbio Automático </td></tr>");
-        else
-          sb.append("<tr><td> Câmbio Manual </td></tr>");
-        if (veiculo.getCarro().getCarac().getDirHid())
-          sb.append("<tr><td> Direção Hidráulica </td></tr>");
-
-        sb.append("</table></td></tr>");
-      }
+    <table>
+     <tr>
+      <td><h4>
+        Preço da Diária: R$
+        <%=String.format("%.2f", veiculo.getCarro().getDiaria())%>
+       </h4></td>
+     </tr>
+     <tr>
+      <td><b>Ano:</b> <%=veiculo.getAno()%></td>
+     </tr>
+     <tr>
+      <td><b>Fabricante:</b> <%=veiculo.getCarro().getFabricante()%></td>
+     </tr>
+     <tr>
+      <td><b>Tipo:</b> <%=veiculo.getCarro().getTipo()%></td>
+     </tr>
+     <tr>
+      <td><b>Número de Portas:</b> <%=veiculo.getCarro().getNumPortas()%>
+      </td>
+     </tr>
+     <tr>
+      <td><b>Número de Assentos:</b> <%=veiculo.getCarro().getNumAssentos()%></td>
+     </tr>
+     <tr>
+      <td><b>Tamanho do Porta-Malas:</b> <%=veiculo.getCarro().getTamanhoPortaMalas()%>L
+      </td>
+     </tr>
+     <tr>
+      <td><b>Combustível:</b> <%=veiculo.getCarro().getCombustivel()%></td>
+     </tr>
+     <%
+       if (veiculo.getCarro().getCarac().getArCond()) {
+     %>
+     <tr>
+      <td>Ar Condicionado</td>
+     </tr>
+     <%
+       }
+     %>
+     <tr>
+      <td>Câmbio <%=veiculo.getCarro().getCarac().getCambAuto() ? "Automático" : "Manual"%></td>
+     </tr>
+     <%
+       if (veiculo.getCarro().getCarac().getDirHid()) {
+     %>
+     <tr>
+      <td>Direção Hidráulica</td>
+     </tr>
+     <%
+       }
+     %>
+    </table>
+   </td>
+  </tr>
+  <%
+    }
     } else {
       for (Veiculo veiculo : veiculos) {
-        sb.append("<tr><th><h4><b>" + veiculo.getMoto().getNome() + "</b><br></h4>");
-        sb.append("<img src=\"" + veiculo.getMoto().getLink()
-            + "\" alt=\"...\" class=\"img-responsive img-thumbnail\" width=\"300\" height=\"300\"></th>");
-        sb.append("<td>");
-
-        sb.append("<br>");
-        sb.append("<form name=\"listaVeiculos\" id=\"listaVeiculos\" action=\"realizaReserva.jsp\" method=\"post\">");
-        sb.append("<input type=\"hidden\" id=\"reservaModelo\" name=\"reservaModelo\" value=\""
-            + veiculo.getMoto().getIdModelo() + "\" />");
-        sb.append("<input type=\"hidden\" id=\"reservaDiaria\" name=\"reservaDiaria\" value=\""
-            + veiculo.getMoto().getDiaria() + "\" />");
-        sb.append("<input type=\"hidden\" id=\"reservaFilialRetirada\" name=\"reservaFilialRetirada\" value=\""
-            + request.getParameter("local-retirada") + "\" />");
-        sb.append("<input type=\"hidden\" id=\"reservaFilialDevolucao\" name=\"reservaFilialDevolucao\" value=\""
-            + request.getParameter("local-devolucao") + "\" />");
-        sb.append("<input type=\"hidden\" id=\"reservaDataRetirada\" name=\"reservaDataRetirada\" value=\""
-            + request.getParameter("dtRetirada") + "\" />");
-        sb.append("<input type=\"hidden\" id=\"reservaDataDevolucao\" name=\"reservaDataDevolucao\" value=\""
-            + request.getParameter("dtEntrega") + "\" />");
-        sb.append("<input type=\"hidden\" id=\"reservaLinkImagem\" name=\"reservaLinkImagem\" value=\""
-            + veiculo.getMoto().getLink() + "\" />");
-        sb.append("<button type=\"submit\" class=\"btn btn-warning\"><b>Reserve este modelo agora</b></button>");
-        sb.append("</form>");
-
-        sb.append("<table><tr><td><h4><b>Preço da Diária: R$" + String.format("%.2f", veiculo.getMoto().getDiaria())
-            + " </b></h4></td></tr>");
-        sb.append("<tr><td><b> Ano: " + veiculo.getAno() + " </b></td></tr>");
-        sb.append("<tr><td><b> Fabricante: " + veiculo.getMoto().getFabricante() + " </b></td></tr>");
-        sb.append("<tr><td><b> Tipo: " + veiculo.getMoto().getTipo() + " </b></td></tr>");
-        sb.append("<tr><td><b> Combustível: " + veiculo.getMoto().getCombustivel() + " </b></td></tr>");
-        sb.append("<tr><td><b> Tamanho do Tanque: " + veiculo.getMoto().getTamanhoTanque() + "L </b></td></tr>");
-        sb.append("<tr><td><b> Cilindradas: " + veiculo.getMoto().getCilindradas() + " </b></td></tr>");
-        sb.append("</tr></table></td>");
-      }
-    }
-    out.println(sb.toString());
   %>
+  <tr>
+   <th width="30%">
+    <h4>
+     <%=veiculo.getMoto().getNome()%>
+    </h4> <img src="<%=veiculo.getMoto().getLink()%>"
+    class="img-responsive img-thumbnail" width="300" height="300">
+   </th>
+   <td>
+    <form name="listaVeiculos" id="listaVeiculos"
+     action="RealizaReservaServlet" method="post">
+     <input type="hidden" name="tipo-veiculo"
+      value="<%=request.getParameter("tipo-veiculo")%>" /> <input
+      type="hidden" name="idModelo"
+      value="<%=veiculo.getMoto().getIdModelo()%>" /> <input
+      type="hidden" name="local-retirada"
+      value="<%=request.getParameter("local-retirada")%>" /> <input
+      type="hidden" name="local-devolucao"
+      value="<%=request.getParameter("filialDevolucao")%>" /> <input
+      type="hidden" name="dtRetirada"
+      value="<%=request.getParameter("dtRetirada")%>" /> <input
+      type="hidden" name="dtDevolucao"
+      value="<%=request.getParameter("dtDevolucao")%>" />
+     <button type="submit" class="btn btn-warning">Reserve este
+      modelo agora</button>
+    </form>
+
+    <table>
+     <tr>
+      <td><h4>
+        Preço da Diária: R$
+        <%=String.format("%.2f", veiculo.getMoto().getDiaria())%>
+       </h4></td>
+     </tr>
+     <tr>
+      <td><b>Ano:</b> <%=veiculo.getAno()%></td>
+     </tr>
+     <tr>
+      <td><b>Fabricante:</b> <%=veiculo.getMoto().getFabricante()%></td>
+     </tr>
+     <tr>
+      <td><b>Tipo:</b> <%=veiculo.getMoto().getTipo()%></td>
+     </tr>
+     <tr>
+      <td><b>Combustível:</b> <%=veiculo.getMoto().getCombustivel()%></td>
+     </tr>
+     <tr>
+      <td><b>Tamanho do Tanque:</b> <%=veiculo.getMoto().getTamanhoTanque()%>L</td>
+     </tr>
+     <tr>
+      <td><b>Cilindradas:</b> <%=veiculo.getMoto().getCilindradas()%></td>
+     </tr>
+    </table>
+   </td>
+   <%
+     }
+     }
+   %>
  </table>
 </div>
 
