@@ -47,7 +47,14 @@ public class RealizaReservaServlet extends HttpServlet {
 
     // Pega modelo
     ModelosManager manager = new ModelosManager();
-    ArrayList<Modelo> modelos = manager.consulta(Integer.parseInt(request.getParameter("idModelo")));
+    ArrayList<Modelo> modelos;
+    try {
+      modelos = manager.consulta(Integer.parseInt(request.getParameter("idModelo")));
+    } catch (Exception e) {
+      System.out.println("Erro ao transformar modelo em inteiro.");
+      e.printStackTrace();
+      return;
+    }
     if (modelos.size() != 1) {
       System.out.println("Modelo nao encontrado");
       return;
@@ -72,8 +79,14 @@ public class RealizaReservaServlet extends HttpServlet {
     // Pega filiais
     ArrayList<Filial> filiais;
     Filial filialRetirada = new Filial(), filialDevolucao = new Filial();
-    filialRetirada.setId(Integer.parseInt(request.getParameter("local-retirada")));
-    filialDevolucao.setId(Integer.parseInt(request.getParameter("local-devolucao")));
+    try {
+      filialRetirada.setId(Integer.parseInt(request.getParameter("local-retirada")));
+      filialDevolucao.setId(Integer.parseInt(request.getParameter("local-devolucao")));
+    } catch (NumberFormatException e) {
+      System.out.println("Erro ao transformar parametros em inteiros");
+      e.printStackTrace();
+      return;
+    }
     FiliaisManager filiais_manager = new FiliaisManager();
 
     filiais = filiais_manager.consulta(filialRetirada);
