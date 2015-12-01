@@ -10,10 +10,12 @@ import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import coolcar.Sessao;
 import coolcar.managers.UsuariosManager;
 import coolcar.modelos.ClientePF;
 import coolcar.modelos.ClientePJ;
@@ -39,6 +41,10 @@ public class CadastroServlet extends HttpServlet {
     int numero;
     boolean validado;
     Date dataDeNascimento = null;
+
+    RequestDispatcher rd;
+    response.setCharacterEncoding("utf-8");
+    PrintWriter out = response.getWriter();
 
     numero = 0;
     nome = sobrenome = cpf = cnpj = telefone = celular = tipoPessoa = "";
@@ -176,16 +182,23 @@ public class CadastroServlet extends HttpServlet {
       usuario.setCelular(cel);
 
       if (!manager.insere(usuario)) {
-        System.out.println("erro de insercao!");
+        out.println("<font color=red>Erro de insercao!</font>\n");
+      } else {
+        Sessao sessao = new Sessao(null);
+        Cookie[] cookies = sessao.logIn(request.getParameter("email"), request.getParameter("pwd"));
+
+        if (cookies != null) {
+          for (Cookie c : cookies) {
+            response.addCookie(c);
+          }
+        }
+        response.sendRedirect("index.jsp");
       }
 
-      response.sendRedirect("contaCriada.jsp");
     } else {
-      RequestDispatcher rd = request.getRequestDispatcher("/cadastro.jsp");
-      response.setCharacterEncoding("utf-8");
-      PrintWriter out = response.getWriter();
+      rd = request.getRequestDispatcher("/cadastro.jsp");
       // TODO: essa mensagem de erro precisa ser corrigida.
-      out.println("<font color=red>Email ou senha nao conferem. Por favor, tente novamente!</font>\n");
+      out.println("<font color=red>Email ou senha não conferem. Por favor, tente novamente!</font>\n");
       rd.include(request, response);
     }
 

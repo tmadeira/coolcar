@@ -4,8 +4,9 @@
 
 <%
   ClientePF cpf_teste = new ClientePF();
-  cpf_teste.setEmail("adm@");
-  cpf_teste.setSenha("senha123");
+//  cpf_teste.setEmail("adm@");
+//  cpf_teste.setSenha("senha123");
+  cpf_teste.setNome("Ronaldo %");
   
   Carro carro_teste = new Carro();
   carro_teste.setIdModelo(1);
@@ -37,12 +38,11 @@
   reserva_manager.insere(reserva);
 
   out.println("<ul>");
-  Iterator<Veiculo> i = veiculos.iterator();
+  Iterator<ClientePF> i = resultados.iterator();
   while (i.hasNext()) {
-	Veiculo j = i.next();
-    String nome = j.getCarro().getNome();
-    int fil = j.getFilialAlojada();
-    out.println("<li>" + nome  + fil +  "</li>");
+	ClientePF j = i.next();
+    String nome = j.getNome();
+    out.println("<li>" + nome + "</li>");
   }
   out.println("</ul>");
   
