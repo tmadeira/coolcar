@@ -54,7 +54,7 @@ public class CadastroReservaServlet extends HttpServlet {
           dataIni); // dt_inicio
 
       reserva_manager.insere(reserva);
-      response.sendRedirect("index.jsp");
+      response.sendRedirect("reservas.jsp");
 
     } else {
 
