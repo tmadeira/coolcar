@@ -80,6 +80,7 @@ public class RealizaReservaServlet extends HttpServlet {
     ArrayList<Filial> filiais;
     Filial filialRetirada = new Filial(), filialDevolucao = new Filial();
     try {
+      System.out.println(request.getParameter("local-devolucao"));
       filialRetirada.setId(Integer.parseInt(request.getParameter("local-retirada")));
       filialDevolucao.setId(Integer.parseInt(request.getParameter("local-devolucao")));
     } catch (NumberFormatException e) {

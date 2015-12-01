@@ -121,7 +121,7 @@
       type="hidden" name="local-retirada"
       value="<%=request.getParameter("local-retirada")%>" /> <input
       type="hidden" name="local-devolucao"
-      value="<%=request.getParameter("filialDevolucao")%>" /> <input
+      value="<%=request.getParameter("local-devolucao")%>" /> <input
       type="hidden" name="dtRetirada"
       value="<%=request.getParameter("dtRetirada")%>" /> <input
       type="hidden" name="dtDevolucao"
