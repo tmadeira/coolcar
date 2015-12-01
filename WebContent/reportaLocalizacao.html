@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Formulário para reportar localização de veículo</title>
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+ <div class="container">
+  <div class="row">
+   <h1>Formulário para reportar localização de veículo</h1>
+   <form action="ReportaLocalizacaoServlet" method="post">
+    <p>
+     <label>ID do Veículo<br /> <input
+      placeholder="ID do veículo (e.g. 2)" type="text" name="idVeiculo" />
+     </label>
+    </p>
+    <p>
+     <label>Latitude<br /> <input
+      placeholder="Latitude (e.g. 12.23232)" type="text" name="lat" />
+     </label>
+    </p>
+    <p>
+     <label>Longitude<br /> <input
+      placeholder="Longitude (e.g. -23.42412)" type="text" name="lng" />
+     </label>
+    </p>
+    <p>
+     <input type="submit" value="Salvar" />
+    </p>
+   </form>
+  </div>
+ </div>
+</body>
+</html>
