@@ -10,19 +10,19 @@
 
 
  <%
-  
-  	Sessao s = new Sessao(request.getCookies());
-	if (s.isLogged()) {
-	    ReservasManager manager = new ReservasManager();
-	    ModelosManager mod_manager = new ModelosManager();
-	    ArrayList<Reserva> reservas = manager.consulta(s.getId());
-	    //if (reservas.isEmpty())
-	    //	System.out.println("VAZIO");
-	    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-	    
-	    out.println("<h2> Histórico de Reservas de "+ s.getNomeUsuario() +"</h2>");
-	%>
- <br>
+   Sessao s = new Sessao(request.getCookies());
+   if (s.isLogged()) {
+     ReservasManager manager = new ReservasManager();
+     ModelosManager mod_manager = new ModelosManager();
+     ArrayList<Reserva> reservas = manager.consulta(s.getId());
+     //if (reservas.isEmpty())
+     //	System.out.println("VAZIO");
+     DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+ %>
+ <h2>
+  Histórico de Reservas de
+  <%=s.getNomeUsuario()%></h2>
+
  <table
   class="table table-striped table-bordered table-hover table-condensed">
   <tr>
@@ -32,19 +32,18 @@
    <th>Modelo</th>
   </tr>
   <%
-	    for (Reserva reserva : reservas) {
-	    	
-	      ArrayList<Modelo> modelos = mod_manager.consulta(reserva.getId_modelo());
-	      
-	      StringBuilder sb = new StringBuilder();
-	      sb.append("<tr>");
-	      sb.append("<td>" + reserva.getId_reserva() + "</td>");
-	      sb.append("<td>" + df.format(reserva.getDt_inicio_reserva()) + "</td>");
-	      sb.append("<td>" + df.format(reserva.getDt_fim_reserva()) + "</td>");
-	      sb.append("<td>" + modelos.get(0).getNome()  + "</td>");
-	      out.println(sb.toString());
-	    }
-	}
+    for (Reserva reserva : reservas) {
+        ArrayList<Modelo> modelos = mod_manager.consulta(reserva.getId_modelo());
+  %>
+  <tr>
+   <td><%=reserva.getId_reserva()%></td>
+   <td><%=df.format(reserva.getDt_inicio_reserva())%></td>
+   <td><%=df.format(reserva.getDt_fim_reserva())%></td>
+   <td><%=modelos.get(0).getNome()%></td>
+  </tr>
+  <%
+    }
+    }
   %>
  </table>
 </div>
