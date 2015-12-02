@@ -1,5 +1,5 @@
 <%@page
- import="coolcar.bd.BD, coolcar.modelos.Filial, coolcar.managers.FiliaisManager,java.util.ArrayList, java.util.Iterator"%>
+ import="coolcar.modelos.Filial, coolcar.managers.FiliaisManager,java.util.ArrayList, java.util.Iterator"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="header.jsp" />
 
@@ -14,8 +14,6 @@
       <label for="local-retirada">Local de retirada</label> <select
        class="form-control" name="local-retirada" id="local-retirada">
        <%
-         BD bd = new BD();
-
          Filial filiais = new Filial();
          FiliaisManager filial_manager = new FiliaisManager();
 
