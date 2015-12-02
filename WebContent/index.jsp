@@ -1,23 +1,8 @@
 <%@page
  import="coolcar.bd.BD, coolcar.modelos.Filial, coolcar.managers.FiliaisManager,java.util.ArrayList, java.util.Iterator"%>
 <%@page contentType="text/html; charset=UTF-8"%>
-
-<script src="vendor/jquery-1.11.3.min.js"></script>
-<script src="vendor/jquery.maskedinput.js" type="text/javascript"></script>
-
-<script>
-	$(document).ready(function() {
-		$('#tipo-veiculo').on('change', function() {
-			if (this.value == "Carro") {
-				$("#carac-carro").show();
-			} else {
-				$("#carac-carro").hide();
-			}
-		});
-	});
-</script>
-
 <jsp:include page="header.jsp" />
+
 <div class="jumbotron">
  <div class="container">
   <div class="row">
@@ -124,3 +109,14 @@
 </div>
 
 <jsp:include page="footer.jsp" />
+<script>
+  $(document).ready(function() {
+    $('#tipo-veiculo').on('change', function() {
+      if (this.value == "Carro") {
+        $("#carac-carro").show();
+      } else {
+        $("#carac-carro").hide();
+      }
+    });
+  });
+</script>
